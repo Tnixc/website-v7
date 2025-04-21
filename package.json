@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "fmt": "prettier . --write"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.4",
@@ -21,6 +22,9 @@
     "katex": "^0.16.22"
   },
   "devDependencies": {
-    "@unpic/astro": "^1.0.0"
+    "@unpic/astro": "^1.0.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.11"
   }
 }

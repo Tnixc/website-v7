@@ -33,17 +33,13 @@ const openGraphConfig = {
   fonts: [
     {
       name: "Inter",
-      data: await readFile(
-        "node_modules/@fontsource/inter/files/inter-latin-400-normal.woff",
-      ),
+      data: await readFile("node_modules/@fontsource/inter/files/inter-latin-400-normal.woff"),
       style: "normal",
       weight: 400,
     },
     {
       name: "Inter",
-      data: await readFile(
-        "node_modules/@fontsource/inter/files/inter-latin-700-normal.woff",
-      ),
+      data: await readFile("node_modules/@fontsource/inter/files/inter-latin-700-normal.woff"),
       style: "normal",
       weight: 700,
     },
@@ -65,4 +61,3 @@ export default defineConfig({
 
   adapter: vercel(),
 });
-
