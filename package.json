@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fmt": "prettier . --write"
+    "fmt": "biome format . --write",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint . --write --unsafe"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.4",
