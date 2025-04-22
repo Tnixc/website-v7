@@ -1,8 +1,8 @@
-// @ts-check
-import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { imageService } from "@unpic/astro/service";
+// @ts-check
+import { defineConfig } from "astro/config";
 
 import svelte from "@astrojs/svelte";
 

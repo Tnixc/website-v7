@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPost from "../../layouts/BlogPost.astro";
 import { render } from "astro:content";
+import BlogPost from "@/layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -15,6 +15,13 @@ type Props = CollectionEntry<"blog">;
 const post = Astro.props;
 const { Content } = await render(post);
 ---
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
+  integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP"
+  crossorigin="anonymous"
+/>
 
 <BlogPost {...post.data}>
   <Content />
