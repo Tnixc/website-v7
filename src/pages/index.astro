@@ -1,24 +1,11 @@
 ---
-import BaseHead from "@components/BaseHead.astro";
-import Footer from "@components/Footer.astro";
-import Header from "@components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import Layout from "@/layouts/Layout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>Welcome!</h1>
-      <p>
-        <!-- Add your main page content here -->
-        This is the main page. You can add your content here.
-      </p>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Layout title="Index" description="Index | tnixc.space">
+  <h1>Welcome!</h1>
+  <p>
+    <!-- Add your main page content here -->
+    This is the main page. You can add your content here.
+  </p>
+</Layout>

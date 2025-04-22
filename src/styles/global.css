@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+:root {
+  --themed-text: oklch(0.28 0.0071 106.85);
+  --themed-bg: oklch(0.97 0.0108 95.16);
+  --themed-link: oklch(0.53 0.2639 260.26);
+
+  --themed-a1: oklch(0.71 0.0789 238.32);
+  --themed-a2: oklch(0.71 0.1184 34.41);
+  --themed-a3: oklch(0.71 0.0937 300.18);
+  --themed-a4: oklch(0.71 0.1135 132.88);
+}
+
+[data-theme="dark"],
+.dark {
+  --themed-text: oklch(0.88 0.0614 259.83);
+  --themed-bg: oklch(0.21 0.0353 259.49);
+  --themed-link: oklch(0.71 0.1643 254.62);
+
+  --themed-a1: oklch(0.71 0.0789 238.32);
+  --themed-a2: oklch(0.71 0.1184 34.41);
+  --themed-a3: oklch(0.71 0.0937 300.18);
+  --themed-a4: oklch(0.71 0.1135 132.88);
+}
+
+@theme {
+  --color-text: var(--themed-text);
+  --color-bg: var(--themed-bg);
+  --color-link: var(--themed-link);
+  --color-a1: var(--themed-a1);
+  --color-a2: var(--themed-a2);
+  --color-a3: var(--themed-a3);
+  --color-a4: var(--themed-a4);
+}
