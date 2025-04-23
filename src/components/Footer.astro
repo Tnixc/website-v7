@@ -1,52 +1,56 @@
 ---
 import DashedLine from "@components/DashedLine.astro";
 import FancyArrow from "@components/icons/FancyArrow.astro";
+import Link from "@components/Link.astro";
 
 const today = new Date();
 const gridRows = 5;
 const gridCols = 20;
 const totalArrows = gridRows * gridCols;
+
+//@ts-ignore
+const commit = BUILD_COMMIT;
+//@ts-ignore
+const date_unix = new Date(Date.parse(BUILD_DATE));
+const date = date_unix.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
 ---
 
-<footer class="my-50">
-  <div class="arrow-grid">
-    {
-      Array.from({ length: totalArrows }).map((_, i) => (
-        <div class="arrow-wrapper text-text">
-          <FancyArrow />
-        </div>
-      ))
-    }
+<footer class="h-96 py-12">
+  <div id="arrow-box">
+    <div class="arrow-grid">
+      {
+        Array.from({ length: totalArrows }).map((_, i) => (
+          <div class="arrow-wrapper text-text">
+            <FancyArrow />
+          </div>
+        ))
+      }
+    </div>
   </div>
-  <div class="footer-content">
-    &copy; {today.getFullYear()} Tnixc. All rights reserved.
-    <DashedLine width="40ch" class="mt-5" />
+  <DashedLine width="100%" class="my-5" />
+  <div class="flex flex-col gap-3">
+    <p class="flex gap-2 items-center w-fit">
+      <Link href="https://github.com/tnixc" external>Github</Link>
+      <Link href="https://bsky.app/profile/tnixc.space" external>Bluesky</Link>
+      <Link href="https://twitter.com/_tnixc" external>Twitter</Link>
+    </p>
+    <p>v7 | Built with Astro | Updated {date} | Commit {commit}</p>
+    <p>
+      &copy; {today.getFullYear()} Tnixc. All rights reserved.
+    </p>
   </div>
 </footer>
 
 <style>
-  footer {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 0;
-    overflow: hidden;
-  }
-
-  .footer-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    margin-top: 2rem;
-  }
-
   .arrow-grid {
-    position: absolute;
-    inset: 0;
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(5, 1fr);
+    row-gap: 16px;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -71,7 +75,7 @@ const totalArrows = gridRows * gridCols;
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const arrowWrappers = document.querySelectorAll(".arrow-wrapper");
-    const footer = document.querySelector("footer");
+    const footer = document.querySelector("#arrow-box");
 
     if (!footer) return;
 
@@ -197,13 +201,13 @@ const totalArrows = gridRows * gridCols;
         const normalizedDistance = distance / maxDistance;
         let opacity = isNearFooter
           ? Math.max(
-              0.1,
-              1 - Math.abs(normalizedDistance - optimalDistanceRatio) * 3
+              0.2,
+              1 - Math.abs(normalizedDistance - optimalDistanceRatio) * 2
             )
-          : 0.1;
+          : 0.2;
 
         // Apply transformations
-        arrow.style.transform = `rotate(${angle}deg) translate(${spring.x}px, ${spring.y}px)`;
+        arrow.style.transform = `translate(${spring.x}px, ${spring.y}px) rotate(${angle}deg) `;
         arrow.style.color = `var(--color-link)`;
         arrow.style.opacity = opacity.toFixed(2);
       });

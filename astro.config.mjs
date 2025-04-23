@@ -15,6 +15,11 @@ import partytown from "@astrojs/partytown";
 import vercel from "@astrojs/vercel";
 
 import { readFile } from "node:fs/promises";
+import { execSync } from 'node:child_process';
+
+
+const commitHash = execSync("git rev-parse HEAD").toString().trim();
+const commitDate = execSync("git log -1 --format=%cI").toString().trim();
 
 /** @type {import('astro-opengraph-image').Options} */
 const openGraphConfig = {
@@ -49,7 +54,13 @@ const openGraphConfig = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://tnixc.space",
-  integrations: [mdx(), sitemap(), svelte(), opengraphImage(openGraphConfig), partytown()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    svelte(),
+    opengraphImage(openGraphConfig),
+    partytown(),
+  ],
 
   image: {
     service: imageService(),
@@ -57,6 +68,11 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      // These variables are replaced at build time.
+      "BUILD_COMMIT": JSON.stringify(commitHash.slice(0, 7)),
+      "BUILD_DATE": JSON.stringify(commitDate),
+    },
   },
   adapter: vercel(),
 });
