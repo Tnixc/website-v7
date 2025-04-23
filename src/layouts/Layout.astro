@@ -9,11 +9,12 @@ const { title, description } = Astro.props;
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead {title} {description} />
   </head>
-  <body class="bg-bg min-h-screen text-text/70 font-crimson md:p-20 flex gap-12">
-    <Aside class="" />
-    <div>
+  <body
+    class="bg-bg text-text/70 font-crimson flex min-h-screen w-screen flex-wrap-reverse items-end justify-start gap-12 p-2 lg:p-20">
+    <Aside class="md:sticky md:top-20" />
+    <div class="w-[100ch] max-w-full">
       <Header />
       <main>
         <slot />

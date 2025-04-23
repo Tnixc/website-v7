@@ -106,3 +106,6 @@ h6 {
   background: var(--color-link);
   color: var(--color-bg);
 }
+p {
+  white-space: normal;
+}
