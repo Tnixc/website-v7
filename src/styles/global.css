@@ -72,3 +72,28 @@
   --font-zodiak: "Zodiak", serif;
   --font-mono: "MonaspaceNeon", ui-monospace, monospace;
 }
+
+/* Add this to your global CSS */
+:root {
+  --transition-duration: 500ms;
+}
+
+html {
+  transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+}
+
+/* Add transitions to other elements that change with theme */
+body,
+main,
+section,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, border-color
+    var(--transition-duration) ease;
+}
