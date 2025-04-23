@@ -1,11 +1,63 @@
 ---
+import Chip from "@/components/Chip.astro";
+import Copy from "@/components/Copy.astro";
+import DashedLine from "@/components/DashedLine.astro";
+import Hero from "@/components/Hero.astro";
+import Canada from "@/components/icons/Canada.astro";
+import HongKong from "@/components/icons/HongKong.astro";
+import Link from "@/components/Link.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Index" description="Index | tnixc.space">
-  <h1>Welcome!</h1>
-  <p>
-    <!-- Add your main page content here -->
-    This is the main page. You can add your content here.
-  </p>
+  <Hero />
+  <DashedLine width="20ch" class="mt-5" />
+  <article class="max-w-[60ch] flex flex-col gap-3">
+    <h1 class="font-zodiak text-2xl text-text flex gap-1 pt-4 pb-3">
+      <span class="font-thin text-text/25 w-[3ch]">0x1</span>About
+    </h1>
+    <p class="flex items-center text-text">
+      I'm a 16 year old grade 12 student from <Chip
+        class="mx-1 bg-a1/50 h-[1.4em]"
+      >
+        <span class="pl-[0.5px]"> <HongKong /> </span> Hong Kong
+      </Chip>
+      studying in <Chip class="mx-1 bg-a2/50 h-[1.4em]">
+        <span class="pl-[0.5px]"> <Canada /> </span> Canada
+      </Chip>
+    </p>
+    <p>
+      I love programming and design. You will learn way more about me on <Link
+        href="/interests">interests</Link
+      >
+    </p>
+    <DashedLine width="40ch" class="mt-5" />
+    <h1 class="font-zodiak text-2xl text-text flex gap-1 pt-4 pb-3">
+      <span class="font-thin text-text/25 w-[3ch]">0x2</span>Work
+    </h1>
+    <p>I now mostly work with <Chip class="bg-a2/50">Rust</Chip></p>
+    <p>
+      I've also worked with <Chip class="bg-a1/50">JavaScript & TypeScript</Chip
+      ><Chip class="bg-a3/50">Java</Chip><Chip class="bg-a4/50">Python</Chip>
+      and other web development languages with frameworks such as <Chip
+        class="bg-a4/50">Vue</Chip
+      ><Chip class="bg-a2/50">Svelte</Chip><Chip class="bg-a1/50">Solid</Chip>
+    </p>
+    <p>
+      You can view <Link href="/projects">my projects</Link> on my <Link
+        href="https://github.com/tnixc"
+        external>GitHub</Link
+      >
+    </p>
+    <DashedLine width="60ch" class="mt-5" />
+    <h1 class="font-zodiak text-2xl text-text flex gap-1 pt-4 pb-3">
+      <span class="font-thin text-text/25 w-[3ch]">0x3</span>Contact
+    </h1>
+    <p>Free free to email me or shoot me a dm on Discord.</p>
+    <p>
+      Email me at <Copy text="tnixxc@gmail.com">tnixxc@gmail.com</Copy>
+      <br />
+      Discord <Copy text="Tnixc">@Tnixc</Copy>
+    </p>
+  </article>
 </Layout>

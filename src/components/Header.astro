@@ -1,14 +1,16 @@
 ---
-import { SITE_TITLE } from "@/consts";
 import HeaderLink from "@components/HeaderLink.astro";
+import DashedLine from "./DashedLine.astro";
 ---
 
-<header>
+<header class="w-fit">
   <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <div class="bg-bg">
+    <div class="flex gap-11 px-5 pb-2 pr-24 text-sm">
       <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/projects">Projects</HeaderLink>
+      <HeaderLink href="/writing">Writing</HeaderLink>
+      <HeaderLink href="/interests">Interests</HeaderLink>
     </div>
   </nav>
+  <DashedLine width="100%" />
 </header>
