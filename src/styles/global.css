@@ -1,36 +1,36 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
-  font-family: "Crimson Pro";
-  src: url("/fonts/Crimson-Pro-Regular.woff2") format("woff2");
+  font-family: 'Crimson Pro';
+  src: url('/fonts/Crimson-Pro-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Onest";
-  src: url("/fonts/Onest-Variable.woff2") format("woff2");
+  font-family: 'Onest';
+  src: url('/fonts/Onest-Variable.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Zodiak";
-  src: url("/fonts/Zodiak-Variable.woff2") format("woff2");
+  font-family: 'Zodiak';
+  src: url('/fonts/Zodiak-Variable.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Zodiak";
-  src: url("/fonts/Zodiak-VariableItalic.woff2") format("woff2");
+  font-family: 'Zodiak';
+  src: url('/fonts/Zodiak-VariableItalic.woff2') format('woff2');
   font-weight: 100 900;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "MonaspaceNeon";
-  src: url("/fonts/Monaspace-Neon-Regular.woff2") format("woff2");
+  font-family: 'MonaspaceNeon';
+  src: url('/fonts/Monaspace-Neon-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
@@ -46,7 +46,7 @@
   --themed-a4: oklch(0.71 0.1135 132.88);
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .dark {
   --themed-text: oklch(0.88 0.0614 259.83);
   --themed-bg: oklch(0.21 0.0353 259.49);
@@ -69,10 +69,10 @@
   --color-a3: var(--themed-a3);
   --color-a4: var(--themed-a4);
 
-  --font-crimson: "Crimson Pro", serif;
-  --font-onest: "Onest", system-ui, sans-serif;
-  --font-zodiak: "Zodiak", serif;
-  --font-mono: "MonaspaceNeon", ui-monospace, monospace;
+  --font-crimson: 'Crimson Pro', serif;
+  --font-onest: 'Onest', system-ui, sans-serif;
+  --font-zodiak: 'Zodiak', serif;
+  --font-mono: 'MonaspaceNeon', ui-monospace, monospace;
 }
 
 :root {
@@ -80,7 +80,9 @@
 }
 
 html {
-  transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+  transition:
+    background-color var(--transition-duration) ease,
+    color var(--transition-duration) ease;
 }
 
 body,
@@ -94,8 +96,10 @@ h3,
 h4,
 h5,
 h6 {
-  transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, border-color
-    var(--transition-duration) ease;
+  transition:
+    background-color var(--transition-duration) ease,
+    color var(--transition-duration) ease,
+    border-color var(--transition-duration) ease;
 }
 
 ::selection {
