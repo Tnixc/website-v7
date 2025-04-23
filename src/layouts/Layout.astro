@@ -4,7 +4,12 @@ import BaseHead from '@components/BaseHead.astro';
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
 
-const { title, description } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  dim?: boolean;
+}
+const { title, description, dim: isDim } = Astro.props;
 ---
 
 <html lang="en">
@@ -13,7 +18,7 @@ const { title, description } = Astro.props;
   </head>
   <body
     class="bg-bg text-text/70 font-crimson flex min-h-screen w-screen flex-wrap-reverse items-end justify-start gap-12 p-2 lg:p-20">
-    <Aside class="md:sticky md:top-20" />
+    <Aside class="md:sticky md:top-20" dim={isDim} />
     <div class="w-[100ch] max-w-full">
       <Header />
       <main>

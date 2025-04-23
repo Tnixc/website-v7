@@ -1,19 +1,16 @@
+import { execSync } from 'node:child_process';
 // @ts-check
 import mdx from '@astrojs/mdx';
+import partytown from '@astrojs/partytown';
+
 import sitemap from '@astrojs/sitemap';
-import { imageService } from '@unpic/astro/service';
-import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import { imageService } from '@unpic/astro/service';
+
 import opengraphImage from 'astro-opengraph-image';
-
-import partytown from '@astrojs/partytown';
-
-import vercel from '@astrojs/vercel';
-
-import { readFile } from 'node:fs/promises';
-import { execSync } from 'node:child_process';
+import { defineConfig } from 'astro/config';
 
 const commitHash = execSync('git rev-parse HEAD').toString().trim();
 const commitDate = execSync('git log -1 --format=%cI').toString().trim();
@@ -65,5 +62,5 @@ export default defineConfig({
       BUILD_DATE: JSON.stringify(commitDate),
     },
   },
-  adapter: vercel(),
+  // adapter: vercel(),
 });

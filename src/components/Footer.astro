@@ -8,9 +8,9 @@ const gridRows = 5;
 const gridCols = 20;
 const totalArrows = gridRows * gridCols;
 
-//@ts-ignore
+// @ts-ignore
 const commit = BUILD_COMMIT;
-//@ts-ignore
+// @ts-ignore
 const date_unix = new Date(Date.parse(BUILD_DATE));
 const date = date_unix.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -39,9 +39,9 @@ const date = date_unix.toLocaleDateString('en-US', {
       <Link href="https://twitter.com/_tnixc" external>Twitter</Link>
     </p>
     <p>
-      v7 | Built with Astro | Updated <span class="font-mono text-[14px]">{date}</span> | Commit <span
+      website-v7 | Built with &lt;3 and Astro | Updated <span class="font-mono text-[14px]">{date}</span> | Commit <span
         class="font-mono text-[14px]">{commit}</span
-      > | <Link href="https://github.com/tnixc/website-v7" external>Source</Link>
+      > | <Link href="https://github.com/tnixc/website-v7" external class="-translate-y-px">Source</Link>
     </p>
     <p>
       &copy; {today.getFullYear()} Tnixc. All rights reserved.
@@ -81,7 +81,9 @@ const date = date_unix.toLocaleDateString('en-US', {
     const arrowWrappers = document.querySelectorAll('.arrow-wrapper');
     const footer = document.querySelector('#arrow-box');
 
-    if (!footer) return;
+    if (!footer) {
+      return;
+    }
 
     // Spring physics configuration
     const springs = Array.from(arrowWrappers).map(() => ({
@@ -96,7 +98,9 @@ const date = date_unix.toLocaleDateString('en-US', {
     const maxOffset = 40; // Maximum distance arrows can move from origin
 
     function updateArrows(e: MouseEvent) {
-      if (!footer) return;
+      if (!footer) {
+        return;
+      }
       const footerRect = footer.getBoundingClientRect();
       const mouseX = e.clientX;
       const mouseY = e.clientY;
@@ -110,7 +114,7 @@ const date = date_unix.toLocaleDateString('en-US', {
       const footerCenterX = footerRect.left + footerRect.width / 2;
       const footerCenterY = footerRect.top + footerRect.height / 2;
       const distanceThreshold = Math.max(footerRect.width, footerRect.height) * 0.75;
-      const distanceToCenter = Math.sqrt(Math.pow(mouseX - footerCenterX, 2) + Math.pow(mouseY - footerCenterY, 2));
+      const distanceToCenter = Math.sqrt((mouseX - footerCenterX) ** 2 + (mouseY - footerCenterY) ** 2);
 
       // Process each arrow
       arrowWrappers.forEach((wrapper, index) => {
@@ -118,7 +122,9 @@ const date = date_unix.toLocaleDateString('en-US', {
         const arrowX = arrowRect.left + arrowRect.width / 2;
         const arrowY = arrowRect.top + arrowRect.height / 2;
         const arrow = wrapper.querySelector('svg');
-        if (!arrow) return;
+        if (!arrow) {
+          return;
+        }
 
         // Target calculation (mouse or center)
         let targetX, targetY;
@@ -192,7 +198,7 @@ const date = date_unix.toLocaleDateString('en-US', {
         // Opacity calculation
         const optimalDistanceRatio = 0;
         const normalizedDistance = distance / maxDistance;
-        let opacity = isNearFooter ? Math.max(0.2, 1 - Math.abs(normalizedDistance - optimalDistanceRatio) * 2) : 0.2;
+        const opacity = isNearFooter ? Math.max(0.2, 1 - Math.abs(normalizedDistance - optimalDistanceRatio) * 2) : 0.2;
 
         // Apply transformations
         arrow.style.transform = `translate(${spring.x}px, ${spring.y}px) rotate(${angle}deg) `;

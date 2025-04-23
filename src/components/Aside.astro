@@ -8,12 +8,14 @@ type Props = {
 const { dim, class: className } = Astro.props;
 ---
 
-<section
-  class:list={[
-    className,
-    'relative h-[600px] w-full flex-col gap-12 overflow-hidden rounded-md after:absolute after:inset-0 after:z-10 after:rounded-md after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)] md:max-w-[300px]',
-  ]}>
-  <div class="relative h-full w-full">
+<section class:list={[className, 'h-[600px] w-full flex-col gap-12 overflow-hidden rounded-md md:max-w-[300px]']}>
+  <div
+    class:list={[
+      'relative h-full w-full',
+      dim
+        ? 'opacity-10 after:absolute after:inset-0 after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/2%)]'
+        : 'opacity-100 after:absolute after:inset-0 after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]',
+    ]}>
     <div class="absolute inset-0" id="day"></div>
     <div class="absolute inset-0 overflow-hidden opacity-0 dark:opacity-100" id="night">
       <StarrySky />

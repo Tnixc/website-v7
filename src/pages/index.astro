@@ -76,7 +76,7 @@ import Layout from '@/layouts/Layout.astro';
       const scrollY = window.scrollY * 0.7;
       // Calculate the new margin: reduce it by the scroll amount but not below zero.
       const newMargin = Math.max(initialMargin - scrollY, 0);
-      dashedLine.style.marginTop = newMargin + 'px';
+      dashedLine.style.marginTop = `${newMargin}px`;
     });
   </script>
 </Layout>

@@ -49,7 +49,9 @@ const { text, class: className } = Astro.props;
     copyElements.forEach((element) => {
       element.addEventListener('click', async () => {
         const textToCopy = element.getAttribute('data-copy-text');
-        if (!textToCopy) return;
+        if (!textToCopy) {
+          return;
+        }
 
         try {
           await navigator.clipboard.writeText(textToCopy);
