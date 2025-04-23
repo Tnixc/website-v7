@@ -1,16 +1,21 @@
 ---
 import HeaderLink from "@components/HeaderLink.astro";
-import DashedLine from "./DashedLine.astro";
+import DashedLine from "@components/DashedLine.astro";
+import ThemeToggle from "@components/ThemeToggle.astro";
+
 ---
 
 <header class="w-fit">
-  <nav>
-    <div class="flex gap-11 px-5 pb-2 pr-24 text-sm">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/projects">Projects</HeaderLink>
-      <HeaderLink href="/writing">Writing</HeaderLink>
-      <HeaderLink href="/interests">Interests</HeaderLink>
-    </div>
-  </nav>
+  <div class="flex items-center py-2">
+    <nav>
+      <div class="flex gap-11 px-5 pr-24 text-sm">
+        <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/projects">Projects</HeaderLink>
+        <HeaderLink href="/writing">Writing</HeaderLink>
+        <HeaderLink href="/interests">Interests</HeaderLink>
+      </div>
+    </nav>
+    <ThemeToggle />
+  </div>
   <DashedLine width="100%" />
 </header>

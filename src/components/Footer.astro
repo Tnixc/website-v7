@@ -38,7 +38,13 @@ const date = date_unix.toLocaleDateString("en-US", {
       <Link href="https://bsky.app/profile/tnixc.space" external>Bluesky</Link>
       <Link href="https://twitter.com/_tnixc" external>Twitter</Link>
     </p>
-    <p>v7 | Built with Astro | Updated {date} | Commit {commit}</p>
+    <p>
+      v7 | Built with Astro | Updated <span class="font-mono text-[14px]"
+        >{date}</span
+      > | Commit <span class="font-mono text-[14px]">{commit}</span> | <Link
+        href="https://github.com/tnixc/website-v7"
+        external>Source</Link>
+    </p>
     <p>
       &copy; {today.getFullYear()} Tnixc. All rights reserved.
     </p>
@@ -67,7 +73,7 @@ const date = date_unix.toLocaleDateString("en-US", {
     width: 16px;
     height: 16px;
     transform-origin: center;
-    transition: opacity 0.2s ease;
+    /* transition: opacity 0.2s ease, color 0.2s ease; */
     opacity: 0;
   }
 </style>

@@ -28,6 +28,13 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "MonaspaceNeon";
+  src: url("/fonts/Monaspace-Neon-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   --themed-text: oklch(0.28 0.0071 106.85);
   --themed-bg: oklch(0.97 0.0108 95.16);
@@ -61,6 +68,7 @@
   --color-a4: var(--themed-a4);
 
   --font-crimson: "Crimson Pro", serif;
-  --font-onest: "Onest", sans-serif;
-  --font-zodiak: "Zodiak", sans-serif;
+  --font-onest: "Onest", system-ui, sans-serif;
+  --font-zodiak: "Zodiak", serif;
+  --font-mono: "MonaspaceNeon", ui-monospace, monospace;
 }
