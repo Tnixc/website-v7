@@ -11,17 +11,20 @@ import Layout from '@/layouts/Layout.astro';
 
 <Layout title="Index" description="Index | tnixc.space">
   <Hero />
-  <DashedLine width="20ch" class="mt-5 md:mt-80" />
-  <article class="max-w-[60ch] flex flex-col gap-3">
-    <h1 class="font-zodiak text-2xl text-text flex gap-1 pt-4 pb-3">
-      <span class="font-thin text-text/25 w-[3ch]">0x1</span>About
+  <div id="collapsing-margin-container">
+    <DashedLine width="20ch" class="scroll-dashed mt-80" style="margin-top: 320px;" />
+  </div>
+
+  <article class="flex max-w-[60ch] flex-col gap-3">
+    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl">
+      <span class="text-text/25 w-[3ch] font-thin">0x1</span>About
     </h1>
-    <p class="flex items-center text-text flex-wrap">
-      I'm a 16 year old grade 12 student from <Chip class="mx-1 bg-a1/50 h-[1.4em]">
-        <span class="pl-[0.5px]"> <HongKong /> </span> Hong Kong
+    <p class="text-text flex flex-wrap items-center">
+      I'm a 16 year old grade 12 student from <Chip class="bg-a1/50 mx-1 h-[1.4em]">
+        <span class="pl-[0.5px]"><HongKong /></span> Hong Kong
       </Chip>
-      studying in <Chip class="mx-1 bg-a2/50 h-[1.4em]">
-        <span class="pl-[0.5px]"> <Canada /> </span> Canada
+      studying in <Chip class="bg-a2/50 mx-1 h-[1.4em]">
+        <span class="pl-[0.5px]"><Canada /></span> Canada
       </Chip>
       I go by <b class="mx-1 font-extrabold">Tnixc</b> online.
     </p>
@@ -29,32 +32,51 @@ import Layout from '@/layouts/Layout.astro';
       I love programming and design. You will learn way more about me on <Link href="/interests">interests</Link>
     </p>
     <DashedLine width="40ch" class="mt-5" />
-    <h1 class="font-zodiak text-2xl text-text flex gap-1 pt-4 pb-3">
-      <span class="font-thin text-text/25 w-[3ch]">0x2</span>Work
+    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl">
+      <span class="text-text/25 w-[3ch] font-thin">0x2</span>Work
     </h1>
     <p>I now mostly work with <Chip class="bg-a2/50">Rust</Chip></p>
     <p>
-      I've also worked with <Chip class="bg-a1/50">JavaScript & TypeScript</Chip><Chip class="bg-a3/50">Java</Chip><Chip
-        class="bg-a4/50">Python</Chip
-      >
-      and other web development languages with frameworks such as <Chip class="bg-a4/50">Vue</Chip><Chip
-        class="bg-a2/50">Svelte</Chip
-      ><Chip class="bg-a1/50">Solid</Chip>
+      I've also worked with <Chip class="bg-a1/50">JavaScript & TypeScript</Chip>
+      <Chip class="bg-a3/50">Java</Chip>
+      <Chip class="bg-a4/50">Python</Chip>
+      and other web development languages with frameworks such as
+      <Chip class="bg-a4/50">Vue</Chip>
+      <Chip class="bg-a2/50">Svelte</Chip>
+      <Chip class="bg-a1/50">Solid</Chip>
     </p>
     <p>
-      You can view <Link href="/projects">my projects</Link> on my <Link href="https://github.com/tnixc" external
-        >GitHub</Link
-      >
+      You can view <Link href="/projects">my projects</Link> on my
+      <Link href="https://github.com/tnixc" external>GitHub</Link>
     </p>
     <DashedLine width="60ch" class="mt-5" />
-    <h1 class="font-zodiak text-2xl text-text flex gap-1 pt-4 pb-3">
-      <span class="font-thin text-text/25 w-[3ch]">0x3</span>Contact
+    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl">
+      <span class="text-text/25 w-[3ch] font-thin">0x3</span>Contact
     </h1>
-    <p>Free free to email me or shoot me a dm on Discord.</p>
+    <p>Feel free to email me or shoot me a dm on Discord.</p>
     <p>
       Email me at <Copy text="tnixxc@gmail.com">tnixxc@gmail.com</Copy>
       <br />
       Discord <Copy text="Tnixc">@Tnixc</Copy>
     </p>
   </article>
+
+  {
+    /*
+    Here we define a simple script that listens for the window scroll event.
+    It decreases the margin-top of the dashed line element until it reaches 0.
+  */
+  }
+  <script>
+    const dashedLine = document.querySelector('.scroll-dashed');
+    const initialMargin = 320; // initial margin in pixels (adjust if necessary)
+
+    window.addEventListener('scroll', () => {
+      // Get current scroll position in pixels.
+      const scrollY = window.scrollY * 0.7;
+      // Calculate the new margin: reduce it by the scroll amount but not below zero.
+      const newMargin = Math.max(initialMargin - scrollY, 0);
+      dashedLine.style.marginTop = newMargin + 'px';
+    });
+  </script>
 </Layout>
