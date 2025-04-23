@@ -12,6 +12,8 @@ import { imageService } from '@unpic/astro/service';
 import opengraphImage from 'astro-opengraph-image';
 import { defineConfig } from 'astro/config';
 
+import vercel from '@astrojs/vercel';
+
 const commitHash = execSync('git rev-parse HEAD').toString().trim();
 const commitDate = execSync('git log -1 --format=%cI').toString().trim();
 
@@ -62,5 +64,5 @@ export default defineConfig({
       BUILD_DATE: JSON.stringify(commitDate),
     },
   },
-  // adapter: vercel(),
+  adapter: vercel(),
 });

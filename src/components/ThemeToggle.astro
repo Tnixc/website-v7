@@ -22,12 +22,12 @@ import { Moon, Sun } from 'astro-feather-icons2';
   }
 
   // On load, check localStorage for the saved theme and update the HTML element's class and icon
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
+  // const savedTheme = localStorage.getItem('theme');
+  // if (savedTheme === 'dark') {
+  //   document.documentElement.classList.add('dark');
+  // } else {
+  //   document.documentElement.classList.remove('dark');
+  // }
   updateIcon();
 
   // Function to toggle the theme with transition
