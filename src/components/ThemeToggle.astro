@@ -13,22 +13,13 @@ import { Moon, Sun } from 'astro-feather-icons2';
 <div id="theme-transition-overlay" class="fixed inset-0 blur-[80px] -z-10 pointer-events-none will-change-transform">
 </div>
 
-<script>
+<script is:inline>
   // Function to update the displayed icon based on the current theme
   function updateIcon() {
     const isDark = document.documentElement.classList.contains('dark');
     document.getElementById('icon-moon').style.display = isDark ? 'none' : 'inline-block';
     document.getElementById('icon-sun').style.display = isDark ? 'inline-block' : 'none';
   }
-
-  // On load, check localStorage for the saved theme and update the HTML element's class and icon
-  // const savedTheme = localStorage.getItem('theme');
-  // if (savedTheme === 'dark') {
-  //   document.documentElement.classList.add('dark');
-  // } else {
-  //   document.documentElement.classList.remove('dark');
-  // }
-  updateIcon();
 
   // Function to toggle the theme with transition
   function toggleTheme() {
@@ -73,10 +64,23 @@ import { Moon, Sun } from 'astro-feather-icons2';
   }
 
   // Attach the click event listener to the toggle button
-  const toggleButton = document.getElementById('theme-toggle');
-  if (toggleButton) {
-    toggleButton.addEventListener('click', toggleTheme);
+  function init() {
+    const toggleButton = document.getElementById('theme-toggle');
+    if (toggleButton) {
+      toggleButton.addEventListener('click', toggleTheme);
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    // On load, check localStorage for the saved theme and update the HTML element's class and icon
+    updateIcon();
   }
+  document.addEventListener('astro:after-swap', init);
+  init();
 </script>
 
 <style>

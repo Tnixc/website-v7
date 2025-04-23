@@ -29,8 +29,8 @@
 }
 
 @font-face {
-  font-family: 'MonaspaceNeon';
-  src: url('/fonts/Monaspace-Neon-Regular.woff2') format('woff2');
+  font-family: 'iAWriterMono';
+  src: url('/fonts/iA-Writer-Mono-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
@@ -72,7 +72,7 @@
   --font-crimson: 'Crimson Pro', serif;
   --font-onest: 'Onest', system-ui, sans-serif;
   --font-zodiak: 'Zodiak', serif;
-  --font-mono: 'MonaspaceNeon', ui-monospace, monospace;
+  --font-mono: 'iAWriterMono', ui-monospace, monospace;
 }
 
 :root {

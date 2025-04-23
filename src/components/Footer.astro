@@ -43,9 +43,6 @@ const date = date_unix.toLocaleDateString('en-US', {
         class="font-mono text-[14px]">{commit}</span
       > | <Link href="https://github.com/tnixc/website-v7" external class="-translate-y-px">Source</Link>
     </p>
-    <p>
-      &copy; {today.getFullYear()} Tnixc. All rights reserved.
-    </p>
   </div>
 </footer>
 
@@ -93,7 +90,7 @@ const date = date_unix.toLocaleDateString('en-US', {
       vy: 0,
     }));
 
-    const springStrength = 0.1; // How quickly arrows move toward target
+    const springStrength = 0.07; // How quickly arrows move toward target
     const damping = 0.8; // Higher = less oscillation
     const maxOffset = 40; // Maximum distance arrows can move from origin
 
