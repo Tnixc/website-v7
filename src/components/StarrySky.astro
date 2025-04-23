@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="sky">
+    <div class="stars"></div>
+    <div class="stars1"></div>
+    <div class="stars2"></div>
+  </div>
+</div>
+
+<style scoped>
+  /* Variables */
+  :root {
+    --star-field-width: 2560px;
+    --star-field-height: 2560px;
+    --star-start-offset: 600px;
+    --star-one-scroll-duration: 100s;
+    --star-two-scroll-duration: 125s;
+    --star-three-scroll-duration: 175s;
+  }
+
+  .container {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #01000f 0%, #00184c 50%, #002154 85%, #3c47a6 110%);
+    background: linear-gradient(
+      180deg,
+      color(display-p3 0.004 0 0.055) 0%,
+      color(display-p3 0.02 0.09 0.286) 50%,
+      color(display-p3 0.024 0.125 0.318) 85%,
+      color(display-p3 0.261 0.294 0.559) 110%
+    );
+  }
+
+  /* Stars */
+  .stars {
+    z-index: 10;
+    width: 1px;
+    height: 1px;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: generateStars(1700);
+    rotate: 45deg;
+    animation: animStar var(--star-one-scroll-duration) linear infinite;
+  }
+  .stars:after {
+    content: ' ';
+    top: calc(-1 * var(--star-start-offset));
+    width: 1px;
+    height: 1px;
+    border-radius: 0;
+    position: absolute;
+    background: transparent;
+    rotate: 45deg;
+    box-shadow: generateStars(1700);
+  }
+
+  .stars1 {
+    z-index: 10;
+    width: 2px;
+    height: 2px;
+    border-radius: 0;
+    background: transparent;
+    rotate: 45deg;
+    box-shadow: generateStars(700);
+    animation: animStar var(--star-two-scroll-duration) linear infinite;
+  }
+  .stars1:after {
+    content: ' ';
+    top: calc(-1 * var(--star-start-offset));
+    width: 2px;
+    height: 2px;
+    border-radius: 0;
+    position: absolute;
+    background: transparent;
+    rotate: 45deg;
+    box-shadow: generateStars(700);
+  }
+
+  .stars2 {
+    z-index: 10;
+    width: 3px;
+    height: 3px;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: generateStars(200);
+    rotate: 45deg;
+    animation: animStar var(--star-three-scroll-duration) linear infinite;
+  }
+  .stars2:after {
+    content: ' ';
+    top: calc(-1 * var(--star-start-offset));
+    width: 3px;
+    height: 3px;
+    border-radius: 0;
+    position: absolute;
+    background: transparent;
+    rotate: 45deg;
+    box-shadow: generateStars(200);
+  }
+  /* Animations */
+  @keyframes animStar {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(calc(-1 * var(--star-field-height))) translateX(calc(-1 * var(--star-field-width)));
+    }
+  }
+</style>
+
+<script>
+  // Function to generate the star field
+  function generateStarField(numStars) {
+    const starFieldWidth = 2560;
+    const starFieldHeight = 2560;
+    let stars = [];
+
+    for (let i = 0; i < numStars; i++) {
+      const x = Math.floor(Math.random() * starFieldWidth);
+      const y = Math.floor(Math.random() * starFieldHeight);
+      stars.push(`${x}px ${y}px #FFF`);
+    }
+
+    return stars.join(', ');
+  }
+
+  // Apply star fields when the component loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const starsElements = [
+      { element: document.querySelector('.stars'), count: 1700 },
+      { element: document.querySelector('.stars:after'), count: 1700 },
+      { element: document.querySelector('.stars1'), count: 700 },
+      { element: document.querySelector('.stars1:after'), count: 700 },
+      { element: document.querySelector('.stars2'), count: 200 },
+      { element: document.querySelector('.stars2:after'), count: 200 },
+    ];
+
+    starsElements.forEach(({ element, count }) => {
+      if (element) {
+        element.style.boxShadow = generateStarField(count);
+      }
+    });
+  });
+</script>
