@@ -1,79 +1,69 @@
 ---
-import { Moon, Sun } from "astro-feather-icons2";
+import { Moon, Sun } from 'astro-feather-icons2';
 ---
 
-<button
-  id="theme-toggle"
-  class="bg-text/10 aspect-square place-items-center inline-grid size-8 hover:bg-text/20"
->
+<button id="theme-toggle" class="bg-text/10 aspect-square place-items-center inline-grid size-8 hover:bg-text/20">
   <span id="icon-moon"><Moon size="18" /></span>
   <span id="icon-sun"><Sun size="18" /></span>
 </button>
 
 <!-- Add this overlay div -->
-<div
-  id="theme-transition-overlay"
-  class="fixed inset-0 blur-[80px] -z-10 pointer-events-none will-change-transform"
->
+<div id="theme-transition-overlay" class="fixed inset-0 blur-[80px] -z-10 pointer-events-none will-change-transform">
 </div>
 
 <script>
   // Function to update the displayed icon based on the current theme
   function updateIcon() {
-    const isDark = document.documentElement.classList.contains("dark");
-    document.getElementById("icon-moon").style.display = isDark
-      ? "none"
-      : "inline-block";
-    document.getElementById("icon-sun").style.display = isDark
-      ? "inline-block"
-      : "none";
+    const isDark = document.documentElement.classList.contains('dark');
+    document.getElementById('icon-moon').style.display = isDark ? 'none' : 'inline-block';
+    document.getElementById('icon-sun').style.display = isDark ? 'inline-block' : 'none';
   }
 
   // On load, check localStorage for the saved theme and update the HTML element's class and icon
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.documentElement.classList.add("dark");
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.documentElement.classList.add('dark');
   } else {
-    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.remove('dark');
   }
   updateIcon();
 
   // Function to toggle the theme with transition
   function toggleTheme() {
-    const isDark = document.documentElement.classList.contains("dark");
-    const overlay = document.getElementById("theme-transition-overlay");
+    const isDark = document.documentElement.classList.contains('dark');
+    const overlay = document.getElementById('theme-transition-overlay');
 
     // Set initial position of overlay
-    overlay.style.transform = "translateX(-100%)";
-    overlay.style.display = "block";
+    overlay.style.transform = 'translateX(-100%)';
+    overlay.style.display = 'block';
     overlay.style.background =
-      "linear-gradient(to right, var(--color-a1),  var(--color-a2), var(--color-a3), var(--color-a4))";
-    overlay.style.mixBlendMode = isDark ? "soft-light" : "color";
+      'linear-gradient(to right, var(--color-a1),  var(--color-a2), var(--color-a3), var(--color-a4))';
+    overlay.style.mixBlendMode = isDark ? 'soft-light' : 'color';
     // dark to light : light to dark
     // Trigger animation
     setTimeout(() => {
-      overlay.style.transform = "translateX(0) translateY(0)";
+      overlay.style.transform = 'translateX(0) translateY(0)';
 
       // Change theme when overlay is halfway through
       setTimeout(() => {
         if (isDark) {
-          document.documentElement.classList.remove("dark");
-          localStorage.setItem("theme", "light");
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
         } else {
-          document.documentElement.classList.add("dark");
-          localStorage.setItem("theme", "dark");
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
         }
         updateIcon();
 
         // Complete the animation
         setTimeout(() => {
-          overlay.style.transform = "translateX(100%)";
-          overlay.style.opacity = "0";
+          overlay.style.transform = 'translateX(100%)';
+          overlay.style.opacity = '0';
 
           // Hide overlay when done
           setTimeout(() => {
-            overlay.style.display = "none";
-            overlay.style.opacity = "1";
+            overlay.style.display = 'none';
+            overlay.style.opacity = '1';
           }, 500);
         }, 50);
       }, 250);
@@ -81,9 +71,9 @@ import { Moon, Sun } from "astro-feather-icons2";
   }
 
   // Attach the click event listener to the toggle button
-  const toggleButton = document.getElementById("theme-toggle");
+  const toggleButton = document.getElementById('theme-toggle');
   if (toggleButton) {
-    toggleButton.addEventListener("click", toggleTheme);
+    toggleButton.addEventListener('click', toggleTheme);
   }
 </script>
 

@@ -1,30 +1,27 @@
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import { imageService } from "@unpic/astro/service";
 // @ts-check
-import { defineConfig } from "astro/config";
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import { imageService } from '@unpic/astro/service';
+import { defineConfig } from 'astro/config';
 
-import svelte from "@astrojs/svelte";
+import tailwindcss from '@tailwindcss/vite';
 
-import tailwindcss from "@tailwindcss/vite";
+import opengraphImage from 'astro-opengraph-image';
 
-import opengraphImage from "astro-opengraph-image";
+import partytown from '@astrojs/partytown';
 
-import partytown from "@astrojs/partytown";
+import vercel from '@astrojs/vercel';
 
-import vercel from "@astrojs/vercel";
-
-import { readFile } from "node:fs/promises";
+import { readFile } from 'node:fs/promises';
 import { execSync } from 'node:child_process';
 
-
-const commitHash = execSync("git rev-parse HEAD").toString().trim();
-const commitDate = execSync("git log -1 --format=%cI").toString().trim();
+const commitHash = execSync('git rev-parse HEAD').toString().trim();
+const commitDate = execSync('git log -1 --format=%cI').toString().trim();
 
 /** @type {import('astro-opengraph-image').Options} */
 const openGraphConfig = {
   // what color do you want your background to be?
-  background: "#000000",
+  background: '#000000',
 
   // what size do you want your images to be?
   // 1200x630 is a good default across platforms,
@@ -53,14 +50,8 @@ const openGraphConfig = {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://tnixc.space",
-  integrations: [
-    mdx(),
-    sitemap(),
-    svelte(),
-    opengraphImage(openGraphConfig),
-    partytown(),
-  ],
+  site: 'https://tnixc.space',
+  integrations: [mdx(), sitemap(), opengraphImage(openGraphConfig), partytown()],
 
   image: {
     service: imageService(),
@@ -70,8 +61,8 @@ export default defineConfig({
     plugins: [tailwindcss()],
     define: {
       // These variables are replaced at build time.
-      "BUILD_COMMIT": JSON.stringify(commitHash.slice(0, 7)),
-      "BUILD_DATE": JSON.stringify(commitDate),
+      BUILD_COMMIT: JSON.stringify(commitHash.slice(0, 7)),
+      BUILD_DATE: JSON.stringify(commitDate),
     },
   },
   adapter: vercel(),

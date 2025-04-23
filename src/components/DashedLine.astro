@@ -1,10 +1,10 @@
 ---
 const { width, class: className } = Astro.props;
-const dashColor = "var(--color-text)";
+const dashColor = 'var(--color-text)';
 ---
 
 <hr
-  class:list={["h-px border-0 bg-transparent opacity-20", className]}
+  class:list={['h-px border-0 bg-transparent opacity-20', className]}
   style={`
   background-image: repeating-linear-gradient(to right, ${dashColor} 0px, ${dashColor} 12px, transparent 12px, transparent 24px);
   width: ${width};
