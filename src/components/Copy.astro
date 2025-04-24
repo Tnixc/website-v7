@@ -43,7 +43,7 @@ const { text, class: className } = Astro.props;
 </span>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
     const copyElements = document.querySelectorAll('.copy-wrapper');
 
     copyElements.forEach((element) => {

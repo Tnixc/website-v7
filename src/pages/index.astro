@@ -6,6 +6,7 @@ import Hero from '@/components/Hero.astro';
 import Canada from '@/components/icons/Canada.astro';
 import HongKong from '@/components/icons/HongKong.astro';
 import Link from '@/components/Link.astro';
+import ContactForm from '@/components/ContactForm.astro';
 import Layout from '@/layouts/Layout.astro';
 ---
 
@@ -59,15 +60,12 @@ import Layout from '@/layouts/Layout.astro';
       <br />
       Discord <Copy text="Tnixc">@Tnixc</Copy>
     </p>
+    <h1 class="font-zodiak text-text flex gap-1 text-lg">
+      <span class="text-text/25 w-[2ch] font-thin">&</span>Say anything
+    </h1>
+    <ContactForm />
   </article>
-
-  {
-    /*
-    Here we define a simple script that listens for the window scroll event.
-    It decreases the margin-top of the dashed line element until it reaches 0.
-  */
-  }
-  <script>
+  <script is:inline>
     const dashedLine = document.querySelector('.scroll-dashed');
     const initialMargin = 320; // initial margin in pixels (adjust if necessary)
 

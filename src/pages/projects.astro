@@ -3,9 +3,73 @@ import Layout from '@/layouts/Layout.astro';
 ---
 
 <Layout title="Projects" description="Projects | tnixc.space" dim>
-  <div class="flex justify-center" style="view-transition-name: hero;">
-    <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,110px)] font-thin italic" transition:name="hero">
-      Projects
-    </h1>
+  <div class="flex items-center gap-7 justify-center" transition:animate="slide">
+    <div class="spinny size-14"></div>
+    <div transition:name="hero">
+      <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,110px)] font-thin italic" id="title-text">Tnixc</h1>
+    </div>
   </div>
 </Layout>
+
+<script is:inline>
+  document.addEventListener('astro:after-swap', (e) => {
+    const ele = document.getElementById('title-text');
+    if (!ele) return;
+
+    const originalText = ele.textContent.trim();
+    const targetText = 'Projects';
+
+    // Wait a bit before starting the animation
+    setTimeout(() => {
+      let currentText = originalText;
+      let currentIndex = 0;
+      const maxLength = Math.max(originalText.length, targetText.length);
+
+      const interval = setInterval(() => {
+        if (currentIndex >= maxLength) {
+          clearInterval(interval);
+          return;
+        }
+
+        // Build the new text with animation effects
+        let newText = '';
+        for (let i = 0; i < maxLength; i++) {
+          if (i < currentIndex) {
+            // Characters already transformed
+            newText += targetText[i] || '';
+          } else if (i === currentIndex) {
+            // Currently transforming character
+            const char = targetText[i] || '';
+            newText += `<span class="animate-character">${char}</span>`;
+          } else if (i < originalText.length) {
+            // Characters waiting to be transformed
+            newText += originalText[i];
+          }
+        }
+
+        ele.innerHTML = newText;
+        currentIndex++;
+      }, 150); // Adjust timing as needed
+    }, 0);
+  });
+</script>
+
+<style>
+  .animate-character {
+    animation: slideBlur 0.3s ease-out;
+    display: inline-block;
+  }
+
+  @keyframes slideBlur {
+    0% {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+  }
+</style>

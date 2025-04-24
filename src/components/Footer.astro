@@ -74,7 +74,7 @@ const date = date_unix.toLocaleDateString('en-US', {
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
     const arrowWrappers = document.querySelectorAll('.arrow-wrapper');
     const footer = document.querySelector('#arrow-box');
 
