@@ -14,8 +14,6 @@ import { defineConfig } from 'astro/config';
 
 import vercel from '@astrojs/vercel';
 
-import svelte from '@astrojs/svelte';
-
 const commitHash = execSync('git rev-parse HEAD').toString().trim();
 const commitDate = execSync('git log -1 --format=%cI').toString().trim();
 
@@ -52,7 +50,7 @@ const openGraphConfig = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tnixc.space',
-  integrations: [mdx(), sitemap(), opengraphImage(openGraphConfig), partytown(), svelte()],
+  integrations: [mdx(), sitemap(), opengraphImage(openGraphConfig), partytown()],
 
   image: {
     service: imageService(),

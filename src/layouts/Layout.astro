@@ -20,8 +20,8 @@ const { title, description, dim: isDim, class: classList } = Astro.props;
     <ClientRouter fallback="animate" />
   </head>
   <body
-    class="bg-bg text-text/70 font-crimson flex min-h-screen w-screen flex-wrap-reverse items-end justify-start gap-12 p-2 lg:p-20">
-    <Aside class="md:sticky md:top-20" dim={isDim} transition:persist="aside" />
+    class="bg-bg text-text/70 font-crimson grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] min-h-screen w-screen gap-12 p-2 lg:p-12 relative">
+    <Aside class="md:sticky top-12" dim={isDim} transition:persist="aside" />
     <div class="w-[100ch] max-w-full">
       <Header transition:animate="fade" />
       <main transition:animate="fade" class={classList}>
@@ -29,5 +29,6 @@ const { title, description, dim: isDim, class: classList } = Astro.props;
       </main>
       <Footer transition:persist />
     </div>
+    <div class="md:max-w-[300px] w-full"></div>
   </body>
 </html>

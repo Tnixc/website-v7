@@ -66,15 +66,17 @@ import Layout from '@/layouts/Layout.astro';
     <ContactForm />
   </article>
   <script is:inline>
-    const dashedLine = document.querySelector('.scroll-dashed');
-    const initialMargin = 320; // initial margin in pixels (adjust if necessary)
+    document.addEventListener('astro:page-load', () => {
+      const dashedLine = document.querySelector('.scroll-dashed');
+      const initialMargin = 320; // initial margin in pixels (adjust if necessary)
 
-    window.addEventListener('scroll', () => {
-      // Get current scroll position in pixels.
-      const scrollY = window.scrollY * 0.7;
-      // Calculate the new margin: reduce it by the scroll amount but not below zero.
-      const newMargin = Math.max(initialMargin - scrollY, 0);
-      dashedLine.style.marginTop = `${newMargin}px`;
+      window.addEventListener('scroll', () => {
+        // Get current scroll position in pixels.
+        const scrollY = window.scrollY * 0.7;
+        // Calculate the new margin: reduce it by the scroll amount but not below zero.
+        const newMargin = Math.max(initialMargin - scrollY, 0);
+        dashedLine.style.marginTop = `${newMargin}px`;
+      });
     });
   </script>
 </Layout>
