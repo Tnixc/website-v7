@@ -63,11 +63,11 @@ import { ArrowRight, Loader, Check, X } from 'astro-feather-icons2';
 <script>
   // Client-side script that runs in the browser
   document.addEventListener('astro:page-load', () => {
-    const form = document.getElementById('contactForm');
-    const messageInput = document.getElementById('message');
-    const contactInput = document.getElementById('contact');
-    const submitButton = document.getElementById('submitButton');
-    const errorMessageElement = document.getElementById('errorMessage');
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+    const contactInput = document.getElementById('contact') as HTMLInputElement;
+    const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+    const errorMessageElement = document.getElementById('errorMessage') as HTMLParagraphElement;
 
     // Icon elements
     const idleIcon = document.getElementById('idleIcon');
@@ -78,34 +78,36 @@ import { ArrowRight, Loader, Check, X } from 'astro-feather-icons2';
     let status = 'idle'; // idle, sending, success, error
 
     // Function to update UI based on form status
-    function updateUI(newStatus, errorMsg = '') {
+    function updateUI(newStatus: 'idle' | 'sending' | 'success' | 'error', errorMsg = '') {
       status = newStatus;
 
       // Hide all icons first
-      idleIcon.classList.add('hidden');
-      sendingIcon.classList.add('hidden');
-      successIcon.classList.add('hidden');
-      errorIcon.classList.add('hidden');
+      idleIcon?.classList.add('hidden');
+      sendingIcon?.classList.add('hidden');
+      successIcon?.classList.add('hidden');
+      errorIcon?.classList.add('hidden');
 
       // Show appropriate icon based on status
       switch (status) {
         case 'idle':
-          idleIcon.classList.remove('hidden');
-          submitButton.disabled = false;
+          idleIcon?.classList.remove('hidden');
+          if (submitButton) submitButton.disabled = false;
           break;
         case 'sending':
-          sendingIcon.classList.remove('hidden');
-          submitButton.disabled = true;
+          sendingIcon?.classList.remove('hidden');
+          if (submitButton) submitButton.disabled = true;
           break;
         case 'success':
-          successIcon.classList.remove('hidden');
-          submitButton.disabled = true;
+          successIcon?.classList.remove('hidden');
+          if (submitButton) submitButton.disabled = true;
           break;
         case 'error':
-          errorIcon.classList.remove('hidden');
-          submitButton.disabled = false;
-          errorMessageElement.textContent = errorMsg;
-          errorMessageElement.classList.remove('hidden');
+          errorIcon?.classList.remove('hidden');
+          if (submitButton) submitButton.disabled = false;
+          if (errorMessageElement) {
+            errorMessageElement.textContent = errorMsg;
+            errorMessageElement.classList.remove('hidden');
+          }
           break;
       }
     }
@@ -142,7 +144,8 @@ import { ArrowRight, Loader, Check, X } from 'astro-feather-icons2';
           updateUI('idle');
         }, 3000);
       } catch (error) {
-        updateUI('error', error.message || 'Something went wrong');
+        const errorMessage = error instanceof Error ? error.message : 'Something went wrong';
+        updateUI('error', errorMessage);
 
         // Reset to idle after 3 seconds
         setTimeout(() => {

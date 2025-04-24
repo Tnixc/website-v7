@@ -4,17 +4,19 @@ import HeaderLink from '@components/HeaderLink.astro';
 import ThemeToggle from '@components/ThemeToggle.astro';
 ---
 
-<header class="w-fit">
+<header class="">
   <div class="flex items-center py-2">
     <nav>
-      <div class="flex gap-11 px-5 pr-24 text-sm flex-wrap">
+      <div class="flex gap-11 px-5 text-sm flex-wrap">
         <HeaderLink href="/">Home</HeaderLink>
         <HeaderLink href="/projects">Projects</HeaderLink>
         <HeaderLink href="/writing">Writing</HeaderLink>
         <HeaderLink href="/interests">Interests</HeaderLink>
       </div>
     </nav>
-    <ThemeToggle />
+    <div class="ml-auto mr-0">
+      <ThemeToggle />
+    </div>
   </div>
   <DashedLine width="100%" />
 </header>

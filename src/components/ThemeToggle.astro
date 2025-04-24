@@ -17,14 +17,19 @@ import { Moon, Sun } from 'astro-feather-icons2';
   // Function to update the displayed icon based on the current theme
   function updateIcon() {
     const isDark = document.documentElement.classList.contains('dark');
-    document.getElementById('icon-moon').style.display = isDark ? 'none' : 'inline-block';
-    document.getElementById('icon-sun').style.display = isDark ? 'inline-block' : 'none';
+    const moonIcon = document.getElementById('icon-moon');
+    const sunIcon = document.getElementById('icon-sun');
+
+    if (moonIcon) moonIcon.style.display = isDark ? 'none' : 'inline-block';
+    if (sunIcon) sunIcon.style.display = isDark ? 'inline-block' : 'none';
   }
 
   // Function to toggle the theme with transition
   function toggleTheme() {
     const isDark = document.documentElement.classList.contains('dark');
     const overlay = document.getElementById('theme-transition-overlay');
+
+    if (!overlay) return;
 
     // Set initial position of overlay
     overlay.style.transform = 'translateX(-100%)';

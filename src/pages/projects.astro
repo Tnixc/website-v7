@@ -1,4 +1,5 @@
 ---
+import DashedLine from '@/components/DashedLine.astro';
 import Link from '@/components/Link.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 import Layout from '@/layouts/Layout.astro';
@@ -10,58 +11,53 @@ import Layout from '@/layouts/Layout.astro';
       <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,80px)] font-thin italic" id="title-text">Projects</h1>
     </div>
   </div>
-  <div class="flex gap-2 py-30" id="projects">
-    <ProjectCard
-      class="border-a1/30"
-      title="Replacer"
-      description="A static site generator/component based html inliner written in rust. It has cool features like bi-directional editing."
-      link="https://github.com/tnixc/replacer"
-    />
-    <ProjectCard
-      title="Simple"
-      description="A cli to replace text recursively in files or from stdin to stdout. Written in rust."
-      link="https://github.com/tnixc/simple"
-      class="border-a2/30"
-    />
-    <ProjectCard
-      class="border-a3/30"
-      title="3db"
-      description="A UI for using GitHub repositories as a CDN/file store. Pretty flaky, but works. Uses supabase and sveltekit."
-      link="https://github.com/tnixc/3db"
-    />
+  <DashedLine width="100%" />
+  <div class="text-lg pt-8">
+    <p>
+      <Link class="mr-1 text-xl" href="https://github.com/tnixc/replacer" external>Replacer</Link>
+      A static site generator/component based html inliner written in rust. It has cool features like bi-directional editing.
+    </p>
   </div>
-  <article class="max-w-[60ch]">
-    <h1 class="font-zodiak text-xl py-6 text-transparent bg-clip-text bg-gradient-to-t from-a1 to-text">
-      Other projects
-    </h1>
-    <div class="py-2">
-      <p>
-        <Link class="mr-1" href="https://github.com/tnixc/website-v7" external> This website </Link>
-        This is v7, v6 was built with <Link href="https://github.com/tnixc/simple" external>Simple</Link>. You can read
-        more about the history of this site <Link href="/writing/history-of-this-site">here</Link>.
-      </p>
-    </div>
-    <div class="py-2">
-      <Link class="mr-1" href="https://github.com/tnixc/nix-config" external> nix-config </Link>
-      My nix-darwin configuration. I spend way too much time on this.
-    </div>
 
-    <div class="py-2">
-      <Link class="mr-1" href="https://github.com/tnixc/lightscrape-rs" external> lightscrape-rs </Link>
-      A cli to asynchronously download lightnovels from certain websites, and compile them into an epub.
-    </div>
+  <DashedLine width="100%" />
+  <div class="text-lg pt-8">
+    <p>
+      <Link class="mr-1 text-xl" href="https://github.com/tnixc/simple" external>Simple</Link>
+      A cli to replace text recursively in files or from stdin to stdout. Written in rust.
+    </p>
+  </div>
 
-    <div class="py-2">
-      <Link class="mr-1" href="https://github.com/tnixc/toki" external> Toki </Link>
-      A macOS app usage tracking app written in swift.
-    </div>
-  </article>
+  <DashedLine width="100%" />
+  <div class="text-lg pt-8">
+    <p>
+      <Link class="mr-1 text-xl" href="https://github.com/tnixc/3db" external>3db</Link>
+      A UI for using GitHub repositories as a CDN/file store. Pretty flaky, but works. Uses supabase and sveltekit.
+    </p>
+  </div>
+  <DashedLine width="100%" />
+  <div class="text-lg pt-8">
+    <p>
+      <Link class="mr-1 text-xl" href="https://github.com/tnixc/website-v7" external> This website </Link>
+      This is v7, v6 was built with <Link href="https://github.com/tnixc/simple" external>Simple</Link>. You can read
+      more about the history of this site <Link href="/writing/history-of-this-site">here</Link>.
+    </p>
+  </div>
+  <DashedLine width="100%" />
+  <div class="text-lg pt-8">
+    <Link class="mr-1 text-xl" href="https://github.com/tnixc/nix-config" external> nix-config </Link>
+    My nix-darwin configuration. I spend way too much time on this.
+  </div>
+
+  <DashedLine width="100%" />
+  <div class="text-lg pt-8">
+    <Link class="mr-1 text-xl" href="https://github.com/tnixc/lightscrape-rs" external> lightscrape-rs </Link>
+    A cli to asynchronously download lightnovels from certain websites, and compile them into an epub.
+  </div>
+
+  <DashedLine width="100%" />
+  <div class="text-lg pt-8">
+    <Link class="mr-1 text-xl" href="https://github.com/tnixc/toki" external> Toki </Link>
+    A macOS app usage tracking app written in swift.
+  </div>
+  <DashedLine width="100%" />
 </Layout>
-<style is:inline>
-  @media (width >= 48rem /* 768px */) {
-    .project-card:nth-child(2n) {
-      --tw-translate-y: calc(var(--spacing) * 16);
-      translate: var(--tw-translate-x) var(--tw-translate-y);
-    }
-  }
-</style>

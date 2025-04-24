@@ -73,6 +73,8 @@ const date = date_unix.toLocaleDateString('en-US', {
 </style>
 
 <script>
+  let lastMouseEvent: MouseEvent | null = null;
+
   document.addEventListener('astro:page-load', () => {
     const arrowWrappers = document.querySelectorAll('.arrow-wrapper');
     const footer = document.querySelector('#arrow-box');
@@ -93,7 +95,7 @@ const date = date_unix.toLocaleDateString('en-US', {
     const damping = 0.8; // Higher = less oscillation
     const maxOffset = 40; // Maximum distance arrows can move from origin
 
-    function updateArrows(e: MouseEvent) {
+    function updateArrows(e: MouseEvent | { clientX: number; clientY: number }) {
       if (!footer) {
         return;
       }
@@ -137,35 +139,27 @@ const date = date_unix.toLocaleDateString('en-US', {
         const dy = targetY - arrowY;
         const angle = Math.atan2(dy, dx) * (180 / Math.PI);
 
-        // Calculate spring physics for nudging
         const spring = springs[index];
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // FIX 1: Normalize direction vector for consistent behavior
         let nudgeDirectionX = dx;
         let nudgeDirectionY = dy;
 
-        // Normalize direction vectors to prevent asymmetric behavior
         const dirMagnitude = Math.max(0.0001, Math.sqrt(dx * dx + dy * dy));
         nudgeDirectionX /= dirMagnitude;
         nudgeDirectionY /= dirMagnitude;
 
-        // FIX 2: Use consistent nudge calculation with normalized vectors
         const nudgeMagnitude = Math.min(distance * 0.05, maxOffset);
 
-        // Calculate target offsets using normalized vectors
         const targetOffsetX = nudgeDirectionX * nudgeMagnitude;
         const targetOffsetY = nudgeDirectionY * nudgeMagnitude;
 
-        // FIX 3: Apply more consistent spring forces
         const forceX = (targetOffsetX - spring.x) * springStrength;
         const forceY = (targetOffsetY - spring.y) * springStrength;
 
-        // Apply damping consistently to both axes
         spring.vx = spring.vx * damping + forceX;
         spring.vy = spring.vy * damping + forceY;
 
-        // FIX 4: Apply velocity cap to the combined velocity magnitude for physical consistency
         const currentVelocity = Math.sqrt(spring.vx * spring.vx + spring.vy * spring.vy);
         const maxVelocity = 2.0;
 
@@ -179,7 +173,6 @@ const date = date_unix.toLocaleDateString('en-US', {
         spring.x += spring.vx;
         spring.y += spring.vy;
 
-        // FIX 5: Add position limits to prevent extreme offsets
         const positionMagnitude = Math.sqrt(spring.x * spring.x + spring.y * spring.y);
         if (positionMagnitude > maxOffset) {
           const posScaleFactor = maxOffset / positionMagnitude;
@@ -209,7 +202,7 @@ const date = date_unix.toLocaleDateString('en-US', {
     // Animation loop for continuous spring updates
     function animateArrows() {
       // Create a synthetic mouse event using the last position
-      const lastEvent = window.lastMouseEvent || {
+      const lastEvent = lastMouseEvent || {
         clientX: window.innerWidth / 2,
         clientY: window.innerHeight * 2,
       };
@@ -220,7 +213,7 @@ const date = date_unix.toLocaleDateString('en-US', {
 
     // Store last mouse position for animation loop
     window.addEventListener('mousemove', (e) => {
-      window.lastMouseEvent = e;
+      lastMouseEvent = e;
     });
 
     // Start animation loop

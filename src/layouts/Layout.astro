@@ -9,8 +9,9 @@ interface Props {
   title: string;
   description: string;
   dim?: boolean;
+  class?: string;
 }
-const { title, description, dim: isDim } = Astro.props;
+const { title, description, dim: isDim, class: classList } = Astro.props;
 ---
 
 <html lang="en" transition:name="root" transition:animate="initial">
@@ -23,7 +24,7 @@ const { title, description, dim: isDim } = Astro.props;
     <Aside class="md:sticky md:top-20" dim={isDim} transition:persist="aside" />
     <div class="w-[100ch] max-w-full">
       <Header transition:animate="fade" />
-      <main transition:animate="fade">
+      <main transition:animate="fade" class={classList}>
         <slot />
       </main>
       <Footer transition:persist />
