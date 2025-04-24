@@ -11,58 +11,61 @@ const { dim, class: className } = Astro.props;
 <section class:list={[className, 'h-[600px] w-full flex-col gap-12 overflow-hidden rounded-md md:max-w-[300px]']}>
   <div
     class:list={[
-      'relative h-full w-full duration-300',
+      'relative h-full w-full duration-300 after:rounded-md after:absolute after:inset-0',
       dim
-        ? 'opacity-10 after:absolute after:inset-0 after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/2%)]'
-        : 'opacity-100 after:absolute after:inset-0 after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]',
+        ? 'opacity-10 after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/2%)] '
+        : 'opacity-100 after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]',
     ]}>
-    <div class="absolute inset-0" id="day"></div>
-    <div class="absolute inset-0 overflow-hidden opacity-0 dark:opacity-100" id="night">
-      <StarrySky client:only="svelte" transition:persist="stars" />
+    <div class="absolute inset-0" id="day">
+      <div class="noise w-full h-full">
+        <div class="absolute inset-0 overflow-hidden opacity-0 dark:opacity-100" id="night">
+          <StarrySky client:only="svelte" transition:persist="stars" />
+        </div>
+      </div>
+      <div class="w-full p-6 shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]"></div>
     </div>
+    <style is:global>
+      #day {
+        background: radial-gradient(
+          circle at center top,
+          #6391cb 0%,
+          #b3caed 50%,
+          #edd9db 75%,
+          #f3bebc 87.5%,
+          #c5afba 93.75%,
+          #80a9bf 100%
+        );
+        background: radial-gradient(
+          circle at center top,
+          color(display-p3 0.427 0.565 0.776) 0%,
+          color(display-p3 0.718 0.788 0.918) 50%,
+          color(display-p3 0.918 0.855 0.859) 75%,
+          color(display-p3 0.922 0.753 0.741) 87.5%,
+          color(display-p3 0.757 0.69 0.725) 93.75%,
+          color(display-p3 0.533 0.655 0.737) 100%
+        );
+      }
+      /* Rectangle 5 */
+      #night {
+        background: radial-gradient(
+          circle at center top,
+          #010112 0%,
+          #000e36 50%,
+          #001f55 75%,
+          #293762 97.5%,
+          #2c2d62 100.75%,
+          #312b6d 110%
+        );
+        background: radial-gradient(
+          circle at center top,
+          color(display-p3 0.004 0.004 0.067) 0%,
+          color(display-p3 0.008 0.055 0.204) 50%,
+          color(display-p3 0 0.118 0.322) 75%,
+          color(display-p3 0.173 0.216 0.373) 97.5%,
+          color(display-p3 0.173 0.176 0.373) 100.75%,
+          color(display-p3 0.188 0.173 0.412) 110%
+        );
+      }
+    </style>
   </div>
-  <div class="w-full p-6 shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]"></div>
 </section>
-<style is:global>
-  #day {
-    background: radial-gradient(
-      circle at center top,
-      #6391cb 0%,
-      #b3caed 50%,
-      #edd9db 75%,
-      #f3bebc 87.5%,
-      #c5afba 93.75%,
-      #80a9bf 100%
-    );
-    background: radial-gradient(
-      circle at center top,
-      color(display-p3 0.427 0.565 0.776) 0%,
-      color(display-p3 0.718 0.788 0.918) 50%,
-      color(display-p3 0.918 0.855 0.859) 75%,
-      color(display-p3 0.922 0.753 0.741) 87.5%,
-      color(display-p3 0.757 0.69 0.725) 93.75%,
-      color(display-p3 0.533 0.655 0.737) 100%
-    );
-  }
-  /* Rectangle 5 */
-  #night {
-    background: radial-gradient(
-      circle at center top,
-      #010112 0%,
-      #000e36 50%,
-      #001f55 75%,
-      #293762 97.5%,
-      #2c2d62 100.75%,
-      #312b6d 110%
-    );
-    background: radial-gradient(
-      circle at center top,
-      color(display-p3 0.004 0.004 0.067) 0%,
-      color(display-p3 0.008 0.055 0.204) 50%,
-      color(display-p3 0 0.118 0.322) 75%,
-      color(display-p3 0.173 0.216 0.373) 97.5%,
-      color(display-p3 0.173 0.176 0.373) 100.75%,
-      color(display-p3 0.188 0.173 0.412) 110%
-    );
-  }
-</style>

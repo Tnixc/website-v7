@@ -3,7 +3,6 @@ import DashedLine from '@components/DashedLine.astro';
 import FancyArrow from '@components/icons/FancyArrow.astro';
 import Link from '@components/Link.astro';
 
-const today = new Date();
 const gridRows = 5;
 const gridCols = 20;
 const totalArrows = gridRows * gridCols;
@@ -19,7 +18,7 @@ const date = date_unix.toLocaleDateString('en-US', {
 });
 ---
 
-<footer class="h-96 py-12">
+<footer class="h-96 py-12" transition:name="footer">
   <div id="arrow-box">
     <div class="arrow-grid">
       {

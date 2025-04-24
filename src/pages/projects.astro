@@ -1,75 +1,67 @@
 ---
+import Link from '@/components/Link.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
 import Layout from '@/layouts/Layout.astro';
 ---
 
-<Layout title="Projects" description="Projects | tnixc.space" dim>
-  <div class="flex items-center gap-7 justify-center" transition:animate="slide">
-    <div class="spinny size-14"></div>
-    <div transition:name="hero">
-      <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,110px)] font-thin italic" id="title-text">Tnixc</h1>
+<Layout title="Projects" description="Projects | tnixc.space">
+  <div class="flex items-center gap-7 justify-end">
+    <div transition:name="hero" transition:animate="fade">
+      <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,80px)] font-thin italic" id="title-text">Projects</h1>
     </div>
   </div>
+  <div class="flex gap-2 py-30" id="projects">
+    <ProjectCard
+      class="border-a1/30"
+      title="Replacer"
+      description="A static site generator/component based html inliner written in rust. It has cool features like bi-directional editing."
+      link="https://github.com/tnixc/replacer"
+    />
+    <ProjectCard
+      title="Simple"
+      description="A cli to replace text recursively in files or from stdin to stdout. Written in rust."
+      link="https://github.com/tnixc/simple"
+      class="border-a2/30"
+    />
+    <ProjectCard
+      class="border-a3/30"
+      title="3db"
+      description="A UI for using GitHub repositories as a CDN/file store. Pretty flaky, but works. Uses supabase and sveltekit."
+      link="https://github.com/tnixc/3db"
+    />
+  </div>
+  <article class="max-w-[60ch]">
+    <h1 class="font-zodiak text-xl py-6 text-transparent bg-clip-text bg-gradient-to-t from-a1 to-text">
+      Other projects
+    </h1>
+    <div class="py-2">
+      <p>
+        <Link class="mr-1" href="https://github.com/tnixc/website-v7" external> This website </Link>
+        This is v7, v6 was built with <Link href="https://github.com/tnixc/simple" external>Simple</Link>. You can read
+        more about the history of this site <Link href="/writing/history-of-this-site">here</Link>.
+      </p>
+    </div>
+    <div class="py-2">
+      <Link class="mr-1" href="https://github.com/tnixc/nix-config" external> nix-config </Link>
+      My nix-darwin configuration. I spend way too much time on this.
+    </div>
+
+    <div class="py-2">
+      <Link class="mr-1" href="https://github.com/tnixc/lightscrape-rs" external> lightscrape-rs </Link>
+      A cli to asynchronously download lightnovels from certain websites, and compile them into an epub.
+    </div>
+
+    <div class="py-2">
+      <Link class="mr-1" href="https://github.com/tnixc/toki" external> Toki </Link>
+      A macOS app usage tracking app written in swift.
+    </div>
+  </article>
 </Layout>
-
-<script is:inline>
-  document.addEventListener('astro:after-swap', (e) => {
-    const ele = document.getElementById('title-text');
-    if (!ele) return;
-
-    const originalText = ele.textContent.trim();
-    const targetText = 'Projects';
-
-    // Wait a bit before starting the animation
-    setTimeout(() => {
-      let currentText = originalText;
-      let currentIndex = 0;
-      const maxLength = Math.max(originalText.length, targetText.length);
-
-      const interval = setInterval(() => {
-        if (currentIndex >= maxLength) {
-          clearInterval(interval);
-          return;
-        }
-
-        // Build the new text with animation effects
-        let newText = '';
-        for (let i = 0; i < maxLength; i++) {
-          if (i < currentIndex) {
-            // Characters already transformed
-            newText += targetText[i] || '';
-          } else if (i === currentIndex) {
-            // Currently transforming character
-            const char = targetText[i] || '';
-            newText += `<span class="animate-character">${char}</span>`;
-          } else if (i < originalText.length) {
-            // Characters waiting to be transformed
-            newText += originalText[i];
-          }
-        }
-
-        ele.innerHTML = newText;
-        currentIndex++;
-      }, 150); // Adjust timing as needed
-    }, 0);
-  });
-</script>
-
-<style>
-  .animate-character {
-    animation: slideBlur 0.3s ease-out;
-    display: inline-block;
-  }
-
-  @keyframes slideBlur {
-    0% {
-      opacity: 0;
-      filter: blur(8px);
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      filter: blur(0);
-      transform: translateY(0);
+<style is:inline>
+  @media (width >= 48rem /* 768px */) {
+    .project-card:nth-child(2n) {
+      --tw-translate-y: calc(var(--spacing) * 16);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
     }
   }
 </style>

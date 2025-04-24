@@ -1,19 +1,22 @@
-<div class="flex items-center gap-7">
+<div class="flex items-center gap-7 pl-2">
   <div class="spinny size-14"></div>
-  <h1 transition:name="hero" class="font-zodiak text-text/10 text-[clamp(26px,20vmin,110px)] font-thin italic">
+  <h1
+    transition:name="hero"
+    transition:animate="fade"
+    class="font-zodiak text-text/10 text-[clamp(26px,20vmin,110px)] font-thin italic">
     Tnixc
   </h1>
 </div>
-<style>
+<style is:inline>
   .spinny {
-    animation: spin 10s ease-in-out infinite;
+    animation: spinny 10s ease-in-out infinite;
     aspect-ratio: 1/1;
     transform-origin: center;
     transform: rotate(45deg);
     opacity: 0.2;
   }
 
-  @keyframes spin {
+  @keyframes spinny {
     0% {
       transform: rotate(45deg);
       border-radius: 8px;
