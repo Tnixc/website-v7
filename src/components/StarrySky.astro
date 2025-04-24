@@ -267,16 +267,5 @@
     }
   }
 
-  // --- Event Listeners ---
-
-  // Use Astro's lifecycle events for View Transitions
-  document.addEventListener('astro:page-load', initStarfield);
-  document.addEventListener('astro:before-swap', cleanup);
-
-  // Initial check in case the script runs after initial astro:page-load
-  // This might happen with certain script loading strategies? Unlikely but safe.
-  // if (document.readyState === 'complete' && !animationFrameId) {
-  //    initStarfield();
-  // }
-  // critique: the above check is probably redundant bc astro:page-load handles initial load too. removed it for now.
+  initStarfield();
 </script>

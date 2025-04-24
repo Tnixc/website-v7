@@ -14,20 +14,20 @@ interface Props {
 const { title, description, dim: isDim, class: classList } = Astro.props;
 ---
 
-<html lang="en" transition:name="root" transition:animate="initial">
+<html lang="en">
   <head>
     <BaseHead {title} {description} />
-    <ClientRouter fallback="animate" />
+    <ClientRouter fallback="swap" />
   </head>
   <body
-    class="bg-bg text-text/70 font-crimson grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] min-h-screen w-screen gap-12 p-2 lg:p-12 relative">
-    <Aside class="md:sticky top-12" dim={isDim} transition:persist="aside" />
-    <div class="w-[100ch] max-w-full">
+    class="bg-bg text-text/70 font-crimson grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] min-h-screen w-screen gap-20 p-2 lg:p-20 relative">
+    <Aside class="md:sticky top-20" dim={isDim} transition:persist="aside" />
+    <div class="w-[80ch] max-w-full">
       <Header transition:animate="fade" />
       <main transition:animate="fade" class={classList}>
         <slot />
       </main>
-      <Footer transition:persist />
+      <Footer client:load />
     </div>
     <div class="md:max-w-[300px] w-full"></div>
   </body>

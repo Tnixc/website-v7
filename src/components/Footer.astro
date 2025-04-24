@@ -2,6 +2,7 @@
 import DashedLine from '@components/DashedLine.astro';
 import FancyArrow from '@components/icons/FancyArrow.astro';
 import Link from '@components/Link.astro';
+import { ArrowLeft, ArrowRight } from 'astro-feather-icons2';
 
 const gridRows = 5;
 const gridCols = 20;
@@ -32,10 +33,23 @@ const date = date_unix.toLocaleDateString('en-US', {
   </div>
   <DashedLine width="100%" class="my-5" />
   <div class="flex flex-col gap-3">
-    <p class="flex gap-2 items-center w-fit">
+    <p class="flex gap-2 items-center">
       <Link href="https://github.com/tnixc" external>Github</Link>
       <Link href="https://bsky.app/profile/tnixc.space" external>Bluesky</Link>
       <Link href="https://twitter.com/_tnixc" external>Twitter</Link>
+      <span class="flex items-end gap-1 ml-auto mr-0">
+        <Link href="https://ctp-webr.ing/tnixc/previous">
+          <span class="block translate-y-[-3px]">
+            <ArrowLeft size="15" />
+          </span>
+        </Link>
+        <Link href="https://ctp-webr.ing/" external>ctp webring</Link>
+        <Link href="https://ctp-webr.ing/tnixc/next">
+          <span class="block translate-y-[-3px]">
+            <ArrowRight size="15" />
+          </span>
+        </Link>
+      </span>
     </p>
     <p>
       website-v7 | Built with &lt;3 and Astro | Updated <span class="font-mono text-[14px]">{date}</span> | Commit <span

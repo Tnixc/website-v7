@@ -43,64 +43,62 @@ const { text, class: className } = Astro.props;
 </span>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const copyElements = document.querySelectorAll('.copy-wrapper');
+  const copyElements = document.querySelectorAll('.copy-wrapper');
 
-    copyElements.forEach((element) => {
-      element.addEventListener('click', async () => {
-        const textToCopy = element.getAttribute('data-copy-text');
-        if (!textToCopy) {
-          return;
-        }
+  copyElements.forEach((element) => {
+    element.addEventListener('click', async () => {
+      const textToCopy = element.getAttribute('data-copy-text');
+      if (!textToCopy) {
+        return;
+      }
 
-        try {
-          await navigator.clipboard.writeText(textToCopy);
+      try {
+        await navigator.clipboard.writeText(textToCopy);
 
-          const iconWrapper = element.querySelector('.copy-icon');
-          const copySymbol = element.querySelector('.copy-symbol');
-          const checkmark = element.querySelector('.checkmark');
-
-          // Show success state
-          if (iconWrapper && copySymbol && checkmark) {
-            iconWrapper.classList.add('opacity-100', 'scale-100', 'copied');
-            copySymbol.classList.add('hidden');
-            checkmark.classList.remove('hidden');
-
-            setTimeout(() => {
-              iconWrapper.classList.remove('opacity-100', 'scale-100');
-            }, 2000);
-            setTimeout(() => {
-              iconWrapper.classList.remove('copied');
-              copySymbol.classList.remove('hidden');
-              checkmark.classList.add('hidden');
-            }, 3000);
-          }
-        } catch (err) {
-          console.error('Failed to copy text: ', err);
-        }
-      });
-
-      // Show icon on hover
-      element.addEventListener('mouseenter', () => {
         const iconWrapper = element.querySelector('.copy-icon');
-
-        if (iconWrapper) {
-          // Only show icon if not in "copied" state
-          if (!iconWrapper.classList.contains('copied')) {
-            iconWrapper.classList.add('opacity-100', 'scale-100');
-          }
-        }
-      });
-
-      element.addEventListener('mouseleave', () => {
-        const iconWrapper = element.querySelector('.copy-icon');
+        const copySymbol = element.querySelector('.copy-symbol');
         const checkmark = element.querySelector('.checkmark');
 
-        // Only hide the icon if we're not showing the checkmark
-        if (iconWrapper && !iconWrapper.classList.contains('copied')) {
-          iconWrapper.classList.remove('opacity-100', 'scale-100');
+        // Show success state
+        if (iconWrapper && copySymbol && checkmark) {
+          iconWrapper.classList.add('opacity-100', 'scale-100', 'copied');
+          copySymbol.classList.add('hidden');
+          checkmark.classList.remove('hidden');
+
+          setTimeout(() => {
+            iconWrapper.classList.remove('opacity-100', 'scale-100');
+          }, 2000);
+          setTimeout(() => {
+            iconWrapper.classList.remove('copied');
+            copySymbol.classList.remove('hidden');
+            checkmark.classList.add('hidden');
+          }, 3000);
         }
-      });
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
+    });
+
+    // Show icon on hover
+    element.addEventListener('mouseenter', () => {
+      const iconWrapper = element.querySelector('.copy-icon');
+
+      if (iconWrapper) {
+        // Only show icon if not in "copied" state
+        if (!iconWrapper.classList.contains('copied')) {
+          iconWrapper.classList.add('opacity-100', 'scale-100');
+        }
+      }
+    });
+
+    element.addEventListener('mouseleave', () => {
+      const iconWrapper = element.querySelector('.copy-icon');
+      const checkmark = element.querySelector('.checkmark');
+
+      // Only hide the icon if we're not showing the checkmark
+      if (iconWrapper && !iconWrapper.classList.contains('copied')) {
+        iconWrapper.classList.remove('opacity-100', 'scale-100');
+      }
     });
   });
 </script>
