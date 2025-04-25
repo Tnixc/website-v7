@@ -1,8 +1,8 @@
 ---
-import Aside from '@components/Aside.astro';
-import BaseHead from '@components/BaseHead.astro';
-import Footer from '@components/Footer.astro';
-import Header from '@components/Header.astro';
+import Aside from '@/components/common/Aside.astro';
+import BaseHead from '@/components/common/BaseHead.astro';
+import Footer from '@/components/common/Footer.astro';
+import Header from '@/components/common/Header.astro';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -27,7 +27,7 @@ const { title, description, dim: isDim, class: classList } = Astro.props;
       <main transition:animate="fade" class={classList}>
         <slot />
       </main>
-      <Footer client:load />
+      <Footer />
     </div>
     <div class="md:max-w-[300px] w-full"></div>
   </body>

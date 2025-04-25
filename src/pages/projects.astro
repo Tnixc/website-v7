@@ -1,21 +1,21 @@
 ---
-import DashedLine from '@/components/DashedLine.astro';
-import Link from '@/components/Link.astro';
+import DashedLine from '@/components/common/DashedLine.astro';
+import Link from '@/components/common/Link.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 import Layout from '@/layouts/Layout.astro';
 ---
 
 <Layout title="Projects" description="Projects | tnixc.space" dim>
-  <div class="flex items-center gap-7 justify-end">
+  <div class="flex items-center gap-7">
     <div transition:name="hero" transition:animate="fade">
-      <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,80px)] font-thin italic" id="title-text">Projects</h1>
+      <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,90px)] font-thin italic" id="title-text">Projects</h1>
     </div>
   </div>
   <DashedLine width="100%" />
 
   <div class="text-lg pt-8">
     <p>
-      <Link class="mr-1 text-xl" href="https://github.com/tnixc/simple" external>Simple</Link>
+      <Link class="mr-1 text-xl bg-gradient-to-bl from-a1/20 via-a2/20 to-a3/10" href="https://github.com/tnixc/simple" external>Simple</Link>
       A static site generator/component based html inliner written in rust. It has cool features like bi-directional editing.
     </p>
   </div>

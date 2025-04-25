@@ -1,13 +1,19 @@
 ---
-const { width, class: className } = Astro.props;
+interface Props {
+  width?: string;
+  class?: string;
+  shrink?: boolean;
+}
+const { width, class: className, shrink } = Astro.props;
+let s;
+if (width) {
+  s = `width: ${width};`;
+} else {
+  s = '';
+}
 ---
 
-<hr
-  class:list={['h-px border-0 bg-transparent opacity-20 inline-block', className]}
-  style={`
-  width: 100%; max-width: ${width};
-  `}
-/>
+<hr class:list={['h-px border-0 bg-transparent opacity-20 inline-block', className]} style={s} />
 
 <style is:global>
   hr {
