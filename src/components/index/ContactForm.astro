@@ -1,10 +1,5 @@
 ---
 import { ArrowRight, Loader, Check, X } from 'astro-feather-icons2';
-
-const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
-const subpath = pathname.match(/[^/]+/g);
-const href = '/';
-const correctPage = href === pathname || href === `/${subpath?.[0] || ''}`;
 ---
 
 <form id="contactForm" class="flex flex-col gap-4 max-w-md">
@@ -65,9 +60,11 @@ const correctPage = href === pathname || href === `/${subpath?.[0] || ''}`;
   }
 </style>
 
-<script is:inline define:vars={{ correctPage }}>
-  const fnContactForm = () => {
+<script>
+  document.addEventListener('astro:page-load', contactForm);
+  function contactForm() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
     const messageInput = document.getElementById('message');
     const contactInput = document.getElementById('contact');
     const submitButton = document.getElementById('submitButton');
@@ -159,6 +156,5 @@ const correctPage = href === pathname || href === `/${subpath?.[0] || ''}`;
         }, 3000);
       }
     });
-  };
-  if (correctPage) fnContactForm;
+  }
 </script>
