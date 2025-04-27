@@ -8,17 +8,17 @@ const posts = (await getCollection('writing')).sort((a, b) => b.data.pubDate.val
 ---
 
 <Layout title="Writing" description="Writing | tnixc.space">
-  <ul class="py-20">
+  <ul class="py-10 flex flex-col gap-4">
     {
       posts.map((post) => (
-        <a class="hover:bg-a1" href={`/writing/${post.id}/`}>
-          <div class="rotate-6 flex">
-            <h4 class="text-2xl -rotate-6">{post.data.title}</h4>
-            <DashedLine class="flex-grow min-w-0" />
-            <span class="block -rotate-6">
-              <FormattedDate date={post.data.pubDate} />
-            </span>
-          </div>
+        <a class="block my-4" href={`/writing/${post.id}/`}>
+          <h1 class="font-zodiak text-3xl font-light text-text" transition:name={`post ${post.data.title}`}>
+            {post.data.title}
+          </h1>
+          <span class="block">
+            <FormattedDate date={post.data.pubDate} />
+          </span>
+          <DashedLine width="100%" />
         </a>
       ))
     }

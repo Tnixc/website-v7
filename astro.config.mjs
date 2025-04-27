@@ -51,7 +51,11 @@ const openGraphConfig = {
 export default defineConfig({
   site: 'https://tnixc.space',
   integrations: [mdx(), sitemap(), opengraphImage(openGraphConfig), partytown()],
-
+  markdown: {
+    shikiConfig: {
+      theme: 'ayu-dark',
+    },
+  },
   image: {
     service: imageService(),
   },

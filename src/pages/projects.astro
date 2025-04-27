@@ -1,67 +1,95 @@
 ---
+const projects = [
+  {
+    name: 'Simple',
+    href: 'https://github.com/tnixc/simple',
+    description:
+      'A static site generator/component based html inliner written in rust. It has cool features like bi-directional editing.',
+    linkStyle: 'px-2 mr-1 text-xl bg-gradient-to-bl from-a1/30 via-a2/30 to-a3/30',
+  },
+  {
+    name: 'Replacer',
+    href: 'https://github.com/tnixc/replacer',
+    description: 'A cli to replace text recursively in files or from stdin to stdout. Written in rust.',
+  },
+  {
+    name: '3db',
+    href: 'https://github.com/tnixc/3db',
+    description:
+      'A UI for using GitHub repositories as a CDN/file store. Pretty flaky, but works. Uses supabase and sveltekit.',
+  },
+  {
+    tag: 'website',
+    name: 'This website',
+    href: 'https://github.com/tnixc/website-v7',
+  },
+  {
+    name: 'nix-config',
+    href: 'https://github.com/tnixc/nix-config',
+    description: 'My nix-darwin configuration. I spend way too much time on this.',
+  },
+  {
+    name: 'lightscrape-rs',
+    href: 'https://github.com/tnixc/lightscrape-rs',
+    description: 'A cli to asynchronously download lightnovels from certain websites, and compile them into an epub.',
+  },
+  {
+    name: 'Toki',
+    href: 'https://github.com/tnixc/toki',
+    description: 'A macOS app usage tracking app written in swift.',
+  },
+];
+
+import Layout from '@/layouts/Layout.astro';
 import DashedLine from '@/components/common/DashedLine.astro';
 import Link from '@/components/common/Link.astro';
-import ProjectCard from '@/components/ProjectCard.astro';
-import Layout from '@/layouts/Layout.astro';
 ---
 
 <Layout title="Projects" description="Projects | tnixc.space" dim>
-  <div class="flex items-center gap-7">
+  <div class="flex items-center gap-7 unblur-in">
     <div transition:name="hero" transition:animate="fade">
       <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,90px)] font-thin italic" id="title-text">Projects</h1>
     </div>
   </div>
   <DashedLine width="100%" />
 
-  <div class="text-lg pt-8">
-    <p>
-      <Link
-        class="px-2 mr-1 text-xl bg-gradient-to-bl from-a1/30 via-a2/30 to-a3/30"
-        href="https://github.com/tnixc/simple"
-        external>Simple</Link
-      >
-      A static site generator/component based html inliner written in rust. It has cool features like bi-directional editing.
-    </p>
-  </div>
-  <DashedLine width="100%" />
-  <div class="text-lg pt-8">
-    <p>
-      <Link class="mr-1 text-xl" href="https://github.com/tnixc/replacer" external>Replacer</Link>
-      A cli to replace text recursively in files or from stdin to stdout. Written in rust.
-    </p>
-  </div>
-
-  <DashedLine width="100%" />
-  <div class="text-lg pt-8">
-    <p>
-      <Link class="mr-1 text-xl" href="https://github.com/tnixc/3db" external>3db</Link>
-      A UI for using GitHub repositories as a CDN/file store. Pretty flaky, but works. Uses supabase and sveltekit.
-    </p>
-  </div>
-  <DashedLine width="100%" />
-  <div class="text-lg pt-8">
-    <p>
-      <Link class="mr-1 text-xl" href="https://github.com/tnixc/website-v7" external> This website </Link>
-      This is v7, v6 was built with <Link href="https://github.com/tnixc/simple" external>Simple</Link>. You can read
-      more about the history of this site <Link href="/writing/history-of-this-site">here</Link>.
-    </p>
-  </div>
-  <DashedLine width="100%" />
-  <div class="text-lg pt-8">
-    <Link class="mr-1 text-xl" href="https://github.com/tnixc/nix-config" external> nix-config </Link>
-    My nix-darwin configuration. I spend way too much time on this.
-  </div>
-
-  <DashedLine width="100%" />
-  <div class="text-lg pt-8">
-    <Link class="mr-1 text-xl" href="https://github.com/tnixc/lightscrape-rs" external> lightscrape-rs </Link>
-    A cli to asynchronously download lightnovels from certain websites, and compile them into an epub.
-  </div>
-
-  <DashedLine width="100%" />
-  <div class="text-lg pt-8">
-    <Link class="mr-1 text-xl" href="https://github.com/tnixc/toki" external> Toki </Link>
-    A macOS app usage tracking app written in swift.
-  </div>
-  <DashedLine width="100%" />
+  {
+    projects.map((project, index) => {
+      switch (project.tag) {
+        case 'website':
+          return (
+            <>
+              <div class:list={['text-lg pt-8 unblur-in', `animation-delay-${index * 100}`]}>
+                <p>
+                  <Link class="mr-1 text-xl" href={project.href} external>
+                    {project.name}
+                  </Link>
+                  {' This is v7, v6 was built with '}
+                  <Link class="mr-1 text-xl" href="https://github.com/tnixc/simple" external>
+                    Simple
+                  </Link>
+                  .{' You can read more about the history of this site '}
+                  <Link href="/writing/history-of-this-site">here</Link>.
+                </p>
+              </div>
+              <DashedLine width="100%" class:list={[`unblur-in animation-delay-${index * 100}`]} />
+            </>
+          );
+        default:
+          return (
+            <>
+              <div class:list={['text-lg pt-8 unblur-in', `animation-delay-${index * 100}`]}>
+                <p>
+                  <Link class={project.linkStyle ? project.linkStyle : 'mr-1 text-xl'} href={project.href} external>
+                    {project.name}
+                  </Link>
+                  {project.description}
+                </p>
+              </div>
+              <DashedLine width="100%" class:list={[`unblur-in animation-delay-${index * 100}`]} />
+            </>
+          );
+      }
+    })
+  }
 </Layout>

@@ -75,6 +75,28 @@
   --font-mono: 'iAWriterMono', ui-monospace, monospace;
 }
 
+@utility animation-delay-none {
+  animation-delay: 0s;
+}
+@utility animation-delay-inherit {
+  animation-delay: inherit;
+}
+@utility animation-delay-initial {
+  animation-delay: initial;
+}
+@utility animation-delay-revert {
+  animation-delay: revert;
+}
+@utility animation-delay-revert-layer {
+  animation-delay: revert-layer;
+}
+@utility animation-delay-unset {
+  animation-delay: unset;
+}
+@utility animation-delay-* {
+  animation-delay: --value([ *]);
+  animation-delay: calc(--value(integer) * 1ms);
+}
 :root {
   --transition-duration: 500ms;
 }
@@ -103,9 +125,185 @@ h6 {
 }
 
 ::selection {
-  background: var(--color-link);
-  color: var(--color-bg);
+  background: --alpha(var(--color-link) / 20%);
 }
 p {
   white-space: normal;
+}
+
+@utility unblur-in {
+  filter: blur(10px);
+  opacity: 0;
+  animation: unblur-in var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes unblur-in {
+  0% {
+    filter: blur(8px);
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0px);
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.prose {
+  hr {
+    @apply opacity-20 border-0 h-px my-5;
+  }
+  h1 {
+    @apply text-2xl font-light font-zodiak text-text py-3 pt-5;
+  }
+  h2 {
+    @apply text-xl font-light font-zodiak text-text py-3 pt-4;
+  }
+  h3 {
+    @apply text-lg font-light font-zodiak text-text py-2 pt-3;
+  }
+  h4 {
+    @apply text-base font-light font-zodiak text-text py-2 pt-2;
+  }
+  p {
+    @apply py-2;
+  }
+  strong {
+    @apply font-bold bg-a2/20 text-text;
+  }
+  em {
+    @apply italic text-text;
+  }
+  blockquote {
+    @apply border-l-4 border-text/10 pl-4 text-text italic text-lg;
+  }
+  ol {
+    @apply list-decimal list-inside py-2;
+  }
+  ul {
+    @apply list-inside py-2;
+  }
+  ol ul,
+  ul ul,
+  ul ol,
+  ol ol {
+    @apply py-0 pl-5;
+  }
+  ul li::marker {
+    content: '- ';
+    font-family: iAWriterMono;
+  }
+  li::marker {
+    color: --alpha(var(--color-text) / 50%);
+  }
+
+  pre {
+    @apply bg-bg text-text/70 rounded-md p-4 text-sm overflow-x-auto my-4;
+  }
+  :not(pre) code {
+    @apply bg-a3/20 text-text rounded-md px-1 py-0.5 text-sm;
+  }
+  .katex {
+    @apply text-text py-3;
+  }
+  table {
+    @apply table-auto w-full border border-a3/5 rounded-md;
+    th {
+      @apply text-text font-bold py-2 px-4 bg-a1/5 border-b border-a1/10;
+    }
+    td {
+      @apply py-2 px-4;
+    }
+  }
+  a {
+    @apply mx-1 text-link;
+  }
+  input[checked] {
+    @apply bg-a1;
+  }
+
+  img {
+    @apply rounded-md p-2 bg-text/10;
+  }
+
+  input[type='checkbox'] {
+    --active: var(--color-link);
+    --active-inner: var(--color-bg);
+    --focus: 2px var(--color-link);
+    --border: --alpha(var(--color-text) / 50%);
+    --border-hover: var(--color-link);
+    --background: --alpha(var(--color-text) / 10%);
+    --disabled: var(--color-bg);
+    --disabled-inner: var(--color-link);
+    scale: 0.8;
+    translate: 1px 0;
+    transform-origin: bottom;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    width: 21px;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    &:after {
+      content: '';
+      display: block;
+      left: 0;
+      top: 0;
+      position: absolute;
+      transition:
+        transform var(--d-t, 0.3s) var(--d-t-e, ease),
+        opacity var(--d-o, 0.2s);
+    }
+    &:disabled {
+      --b: var(--disabled);
+      cursor: not-allowed;
+      &:checked {
+        --b: var(--disabled-inner);
+        --bc: var(--border);
+      }
+      & + label {
+        cursor: not-allowed;
+      }
+    }
+    &:focus {
+      box-shadow: 0 0 0 var(--focus);
+    }
+    &:after {
+      opacity: var(--o, 0);
+    }
+    &:checked {
+      --o: 1;
+    }
+    & + label {
+      font-size: 14px;
+      line-height: 21px;
+      display: inline-block;
+      vertical-align: top;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+  }
+  input[type='checkbox'] {
+    border-radius: 7px;
+    &:after {
+      width: 5px;
+      height: 9px;
+      border: 2px solid var(--active-inner);
+      border-top: 0;
+      border-left: 0;
+      left: 7px;
+      top: 4px;
+      transform: rotate(var(--r, 20deg));
+    }
+    &:checked {
+      --r: 43deg;
+    }
+  }
 }

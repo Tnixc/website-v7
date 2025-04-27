@@ -13,14 +13,14 @@ import Layout from '@/layouts/Layout.astro';
 <Layout title="Index" description="Index | tnixc.space">
   <Hero />
   <div id="collapsing-margin-container">
-    <DashedLine width="20ch" class="scroll-dashed mt-80" />
+    <DashedLine width="20ch" class="scroll-dashed mt-80 unblur-in" />
   </div>
 
   <article class="flex max-w-[60ch] flex-col gap-3">
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl">
+    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-100">
       <span class="text-text/25 w-[3ch] font-thin">0x1</span>About
     </h1>
-    <p class="text-text flex flex-wrap items-center">
+    <p class="text-text flex flex-wrap items-center unblur-in animation-delay-200">
       I'm a 16 year old grade 12 student from <Chip class="bg-a1/50 mx-1 h-[1.4em]">
         <span class="pl-[0.5px]"><HongKong /></span> Hong Kong
       </Chip>
@@ -29,15 +29,15 @@ import Layout from '@/layouts/Layout.astro';
       </Chip>
       I go by <b class="mx-1 font-extrabold">Tnixc</b> online.
     </p>
-    <p>
+    <p class="unblur-in animation-delay-200">
       I love programming and design. You will learn way more about me on <Link href="/about">about</Link>
     </p>
-    <DashedLine width="40ch" class="mt-5" />
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl">
+    <DashedLine width="40ch" class="mt-5 unblur-in animation-delay-300" />
+    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-400">
       <span class="text-text/25 w-[3ch] font-thin">0x2</span>Work
     </h1>
-    <p>I now mostly work with <Chip class="bg-a2/50">Rust</Chip></p>
-    <p>
+    <p class="unblur-in animation-delay-500">I now mostly work with <Chip class="bg-a2/50">Rust</Chip></p>
+    <p class="unblur-in animation-delay-600">
       I've also worked with <Chip class="bg-a1/50">JavaScript & TypeScript</Chip>
       <Chip class="bg-a3/50">Java</Chip>
       <Chip class="bg-a4/50">Python</Chip>
@@ -46,21 +46,21 @@ import Layout from '@/layouts/Layout.astro';
       <Chip class="bg-a2/50">Svelte</Chip>
       <Chip class="bg-a1/50">Solid</Chip>
     </p>
-    <p>
+    <p class="unblur-in animation-delay-600">
       You can view <Link href="/projects">my projects</Link> on my
       <Link href="https://github.com/tnixc" external>GitHub</Link>
     </p>
-    <DashedLine width="60ch" class="mt-5" />
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl">
+    <DashedLine width="60ch" class="mt-5 unblur-in animation-delay-700" />
+    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-800">
       <span class="text-text/25 w-[3ch] font-thin">0x3</span>Contact
     </h1>
-    <p>Feel free to email me or shoot me a dm on Discord.</p>
-    <p>
+    <p class="unblur-in animation-delay-900">Feel free to email me or shoot me a dm on Discord.</p>
+    <p class="unblur-in animation-delay-900">
       Email me at <Copy text="tnixxc@gmail.com">tnixxc@gmail.com</Copy>
       <br />
       Discord <Copy text="Tnixc">@Tnixc</Copy>
     </p>
-    <h1 class="font-zodiak text-text flex gap-1 text-lg">
+    <h1 class="font-zodiak text-text flex gap-1 text-lg unblur-in animation-delay-1000">
       <span class="text-text/25 w-[1ch] font-thin">&</span>Say anything
     </h1>
     <ContactForm />
