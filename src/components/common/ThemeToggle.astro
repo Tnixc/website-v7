@@ -4,10 +4,13 @@ import { Moon, Sun } from 'astro-feather-icons2';
 
 <button
   id="theme-toggle"
-  class="bg-text/10 aspect-square place-items-center inline-grid size-8 hover:bg-text/20 rounded-sm">
-  <span id="icon-moon"><Moon size="18" /></span>
-  <span id="icon-sun"><Sun size="18" /></span>
+  class="bg-text/10 aspect-square place-items-center inline-grid size-8 hover:bg-text/20 smooth-corners-xs rounded-sm">
+  <span id="icon-moon"><Moon size="16" /></span>
+  <span id="icon-sun"><Sun size="16" /></span>
 </button>
+<div class="corner-smooth">
+  <div class="smooth"></div>
+</div>
 
 <!-- Add this overlay div -->
 <div
@@ -92,11 +95,11 @@ import { Moon, Sun } from 'astro-feather-icons2';
     scale: 1.2;
     transition: transform 600ms ease;
     will-change: transform;
-    z-index: -50;
+    z-index: 9999;
     background: url(https://cdn.cosmos.so/7f07bb14-287b-4c05-82ca-b1422ad43f23?format=jpeg);
     background-size: cover;
     filter: blur(30px);
-    mix-blend-mode: screen !important;
+    mix-blend-mode: color-dodge !important;
     opacity: 0.3;
     display: none;
     mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));

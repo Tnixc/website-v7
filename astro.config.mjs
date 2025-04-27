@@ -1,8 +1,8 @@
-import { execSync } from 'node:child_process';
 // @ts-check
+import { execSync } from 'node:child_process';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
-
+import rehypeAnimationDelay from './plugins/rehypeAnimationDelay.js';
 import sitemap from '@astrojs/sitemap';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -55,6 +55,7 @@ export default defineConfig({
     shikiConfig: {
       theme: 'ayu-dark',
     },
+    rehypePlugins: [rehypeAnimationDelay],
   },
   image: {
     service: imageService(),
@@ -68,5 +69,5 @@ export default defineConfig({
       BUILD_DATE: JSON.stringify(commitDate),
     },
   },
-  adapter: vercel(),
+  // adapter: vercel(),
 });

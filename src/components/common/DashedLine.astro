@@ -13,16 +13,18 @@ if (width) {
 }
 ---
 
-<div class="opacity-20">
-  <hr class:list={['h-px border-0 bg-transparent inline-block max-w-full', className]} style={s} />
-</div>
+<hr
+  transition:animate="none"
+  class:list={['h-px border-0 bg-transparent inline-block max-w-full', className]}
+  style={s}
+/>
 
 <style is:global>
   hr {
     background-image: repeating-linear-gradient(
       to right,
-      var(--color-text) 0px,
-      var(--color-text) 12px,
+      --alpha(var(--color-text) / 20%) 0px,
+      --alpha(var(--color-text) / 20%) 12px,
       transparent 12px,
       transparent 24px
     );
@@ -31,7 +33,8 @@ if (width) {
     hr {
       background-image: repeating-linear-gradient(
         to right,
-        var(--color-link) 0px,
+        --alpha(var(--color-link) / 20%) 0px,
+        --alpha(var(--color-link) / 20%) 12px,
         var(--color-link) 12px,
         transparent 12px,
         transparent 24px

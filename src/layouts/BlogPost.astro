@@ -4,7 +4,6 @@ import FormattedDate from '@/components/FormattedDate.astro';
 import Layout from './Layout.astro';
 import DashedLine from '@/components/common/DashedLine.astro';
 
-import '@/styles/prose.css';
 import { ArrowLeft } from 'astro-feather-icons2';
 
 type Props = CollectionEntry<'writing'>['data'];
@@ -19,15 +18,17 @@ const { title, description, pubDate, updatedDate } = Astro.props;
   crossorigin="anonymous"
 />
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} dim>
   <a
-    class="text-text duration-100 size-8 bg-text/10 hover:bg-text/20 rounded-md grid place-items-center mt-10"
+    class="text-text duration-100 size-8 bg-text/10 hover:bg-text/20 rounded-sm smooth-corners-xs overflow-hidden grid place-items-center mt-10"
     aria-label="Back"
     href="/writing">
-    <ArrowLeft size="16" />
+    <span class="opacity-70">
+      <ArrowLeft size="16" />
+    </span>
   </a>
   <h1 transition:name={`post ${title}`} class="font-zodiak text-3xl font-light text-text py-6">{title}</h1>
-  <p>
+  <p class="unblur-in animation-delay-50">
     <span class:list={[updatedDate ? 'text-text/30' : 'text-text/100']}>
       <FormattedDate date={pubDate} />
     </span>

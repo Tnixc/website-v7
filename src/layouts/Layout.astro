@@ -17,14 +17,14 @@ const { title, description, dim: isDim, class: classList } = Astro.props;
 <html lang="en">
   <head>
     <BaseHead {title} {description} />
-    <ClientRouter fallback="swap" />
+    <ClientRouter fallback="none" />
   </head>
   <body
     class="bg-bg text-text/70 font-crimson grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] min-h-screen w-screen gap-4 md:gap-20 p-2 lg:p-20 relative">
     <Aside class="md:sticky top-20" dim={isDim} transition:persist="aside" />
     <div class="w-[80ch] max-w-full">
-      <Header transition:animate="fade" />
-      <main transition:animate="fade" class={classList}>
+      <Header transition:animate="none" />
+      <main class:list={[classList]}>
         <slot />
       </main>
       <Footer />
