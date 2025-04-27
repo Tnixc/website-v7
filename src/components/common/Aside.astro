@@ -8,11 +8,17 @@ type Props = {
 const { dim, class: className } = Astro.props;
 ---
 
-<section class:list={[className, 'h-[600px] w-full flex-col gap-12 overflow-hidden rounded-md md:max-w-[300px]']}>
+<section
+  class:list={[
+    className,
+    'w-full flex-col gap-12 overflow-hidden rounded-md md:max-w-[300px]',
+    dim ? 'md:h-[600px] h-[100px]' : 'h-[600px]',
+  ]}>
   <div
+    transition:name="aside-sky"
     class:list={[
-      'relative h-full w-full duration-300 after:rounded-md after:absolute after:inset-0',
-      dim ? 'hidden' : 'opacity-100 after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]',
+      'relative h-full w-full duration-300 after:rounded-md after:absolute after:inset-0  after:shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]',
+      dim ? 'md:opacity-10' : 'opacity-100 ',
     ]}>
     <div class="absolute inset-0" id="day">
       <div class="noise w-full h-full">
@@ -20,7 +26,7 @@ const { dim, class: className } = Astro.props;
           <StarrySky />
         </div>
       </div>
-      <div class="w-full p-6 shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]"></div>
+      <!-- <div class="w-full p-6 shadow-[inset_0_0_0_2px_--alpha(var(--color-text)/20%)]"></div> -->
     </div>
     <style is:global>
       #day {
