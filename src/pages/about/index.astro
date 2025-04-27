@@ -1,5 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import coffee_img from '@/images/coffee.webp';
+import typography_img from '@/images/typography.webp';
+import graphic_design_img from '@/images/graphic_design.webp';
+import keyboard_img from '@/images/keyboard.webp';
+import Link from '@/components/common/Link.astro';
 ---
 
 {
@@ -19,4 +25,68 @@ import Layout from '@/layouts/Layout.astro';
   // articles read
 }
 
-<Layout title="Interests" description="Interests | tnixc.space" />
+<Layout title="Interests" description="Interests | tnixc.space">
+  <article class="font-zodiak text-2xl text-text/70 font-light flex flex-wrap items-center gap-2 justify-center">
+    <div class="inline-flex items-center gap-1 rounded-xl p-1 bg-link/5 border border-link/20">
+      <Image
+        src={coffee_img.src}
+        alt="coffee"
+        width={50}
+        height={50}
+        class="mix-blend-multiply brightness-50 invert dark:invert-0 dark:brightness-100 dark:mix-blend-luminosity rounded-xl bg-a1/10"
+      />
+      <p class="text-2xl font-zodiak font-normal text-text px-4">I enjoy coffee</p>
+    </div>
+    <span class="text-2xl font-zodiak text-text bg-a2/20 border px-4 rounded-full border-a2">draw, and make 3D art</span
+    >
+    <span>as well as</span>
+    <span class="h-13"></span>
+    <span class="flex flex-col pt-2">
+      <span class="text-2xl font-zodiak text-text bg-a1/20 border px-4 rounded-full border-a1">play video games</span>
+      <span class="text-xs">Minecraft / osu! / maimai DX / wacca / ddr</span>
+    </span>
+    I also like
+    <span class="h-13"></span>
+    <div class="inline-flex items-center gap-1 rounded-xl p-1 bg-link/5 border border-link/20">
+      <Image
+        src={typography_img.src}
+        alt="coffee"
+        width={50}
+        height={50}
+        class="mix-blend-multiply brightness-50 invert dark:invert-0 dark:mix-blend-plus-lighter dark:brightness-100 rounded-xl bg-a1/10"
+      />
+      <p class="text-2xl font-zodiak font-normal text-text px-4">Typography</p>
+    </div>
+    &
+    <div class="inline-flex items-center gap-1 rounded-xl p-1 bg-link/5 border border-link/20">
+      <Image
+        src={graphic_design_img.src}
+        alt="coffee"
+        width={50}
+        height={50}
+        class="mix-blend-multiply brightness-50 invert dark:invert-0 dark:mix-blend-plus-lighter dark:brightness-100 rounded-xl bg-a1/10"
+      />
+      <p class="text-2xl font-zodiak font-normal text-text px-4">Graphic Design</p>
+    </div>
+    I spent a lot of time doing <span class="text-2xl font-zodiak text-text bg-a3/20 border px-4 rounded-full border-a3"
+      ><Link href="https://www.firstinspires.org/robotics/frc" external>FRC</Link> robotics</span
+    >. I like <span class="h-13"></span>
+    <span class="text-2xl font-zodiak text-text bg-a4/20 border px-4 rounded-full border-a4">reading books</span> & <span
+      class="text-2xl font-zodiak text-text bg-a4/20 border px-4 rounded-full border-a4">watching anime</span
+    >
+    <span class="h-13"></span>but recently I've been <span class="flex flex-col pt-2 items-center">
+      <span class="text-2xl font-zodiak text-text bg-a1/20 border px-4 rounded-full border-a1"
+        >reading interesting essays</span
+      >
+      <span class="text-xs">Near's reading list / Scott Alexander / misc. eng. & cs</span>
+    </span>
+    . I enjoy travelling a lot, <span class="h-13"></span>
+    <span class="text-2xl font-zodiak text-text bg-a2/20 border px-4 rounded-full border-a2">hiking</span> & <span
+      class="text-2xl font-zodiak text-text bg-a2/20 border px-4 rounded-full border-a2">biking</span
+    >. Some of my favorite places are <span class="h-13"></span>
+    <strong class="text-text">Switzerland</strong>, <strong class="text-text">Hokkaido</strong>,
+    <strong class="text-text">Amsterdam</strong>.
+  </article>
+</Layout>
+
+<style></style>
