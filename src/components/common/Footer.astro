@@ -19,8 +19,8 @@ const date = date_unix.toLocaleDateString('en-US', {
 });
 ---
 
-<footer class="h-96 py-12" transition:name="footer">
-  <div id="arrow-box" class="max-w-screen overflow-hidden">
+<footer class="h-96 py-12 max-w-screen overflow-hidden" transition:name="footer">
+  <div id="arrow-box">
     <div class="arrow-grid">
       {
         Array.from({ length: totalArrows }).map((_, i) => (
@@ -208,7 +208,7 @@ const date = date_unix.toLocaleDateString('en-US', {
         const opacity = isNearFooter ? Math.max(0.2, 1 - Math.abs(normalizedDistance - optimalDistanceRatio) * 2) : 0.2;
 
         // Apply transformations
-        arrow.style.transform = `translate(${spring.x}px, ${spring.y}px) rotate(${angle}deg) `;
+        arrow.style.transform = `translate3d(${spring.x}px, ${spring.y}px, 0) rotate(${angle}deg) `;
         arrow.style.color = `var(--color-link)`;
         arrow.style.opacity = opacity.toFixed(2);
       });

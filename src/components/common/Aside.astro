@@ -12,7 +12,7 @@ const { dim, class: className } = Astro.props;
   class:list={[
     className,
     'w-full flex-col gap-12 overflow-hidden rounded-md md:max-w-[300px]',
-    dim ? 'md:h-[600px] h-[100px]' : 'h-[600px]',
+    dim ? 'md:h-[600px] h-[100px]' : 'h-[300px] md:h-[600px]',
   ]}>
   <div
     transition:name="aside-sky"

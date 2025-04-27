@@ -10,8 +10,7 @@ import { Moon, Sun } from 'astro-feather-icons2';
 </button>
 
 <!-- Add this overlay div -->
-<div id="theme-transition-overlay" class="fixed inset-0 blur-[80px] -z-10 pointer-events-none will-change-transform">
-</div>
+<div id="theme-transition-overlay" class="fixed inset-0 z-[0] pointer-events-none will-change-transform"></div>
 
 <script is:inline>
   // Function to update the displayed icon based on the current theme
@@ -34,9 +33,7 @@ import { Moon, Sun } from 'astro-feather-icons2';
     // Set initial position of overlay
     overlay.style.transform = 'translateX(-100%)';
     overlay.style.display = 'block';
-    overlay.style.background =
-      'linear-gradient(to right, var(--color-a1),  var(--color-a2), var(--color-a3), var(--color-a4))';
-    overlay.style.mixBlendMode = isDark ? 'soft-light' : 'color';
+    // overlay.style.background = 'linear-gradient(to right, blue, red, red)';
     // dark to light : light to dark
     // Trigger animation
     setTimeout(() => {
@@ -56,12 +53,10 @@ import { Moon, Sun } from 'astro-feather-icons2';
         // Complete the animation
         setTimeout(() => {
           overlay.style.transform = 'translateX(100%)';
-          overlay.style.opacity = '0';
 
           // Hide overlay when done
           setTimeout(() => {
             overlay.style.display = 'none';
-            overlay.style.opacity = '1';
           }, 500);
         }, 50);
       }, 250);
@@ -94,6 +89,12 @@ import { Moon, Sun } from 'astro-feather-icons2';
     transition: transform 500ms ease;
     will-change: transform;
     z-index: 9999;
+    background: url(https://cdn.cosmos.so/7f07bb14-287b-4c05-82ca-b1422ad43f23?format=jpeg);
+    background-size: cover;
+    filter: blur(50px);
+    mix-blend-mode: overlay !important;
+    opacity: 0.2;
     display: none;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   }
 </style>

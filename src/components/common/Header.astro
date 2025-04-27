@@ -2,19 +2,32 @@
 import DashedLine from '@/components/common/DashedLine.astro';
 import HeaderLink from '@/components/common/HeaderLink.astro';
 import ThemeToggle from '@/components/common/ThemeToggle.astro';
+import { Edit3, Feather, Grid, Home } from 'astro-feather-icons2';
 ---
 
 <header class="" transition:name="header">
-  <div class="flex items-center py-2">
+  <div class="flex items-center py-2 px-4 sm:px-0 justify-between">
     <nav>
-      <div class="flex gap-11 px-5 text-sm flex-wrap">
-        <HeaderLink href="/">Index</HeaderLink>
-        <HeaderLink href="/projects">Projects</HeaderLink>
-        <HeaderLink href="/writing">Writing</HeaderLink>
-        <HeaderLink href="/about">About</HeaderLink>
+      <div class="flex gap-8 sm:gap-11 sm:px-5 text-sm flex-wrap text-text">
+        <HeaderLink href="/">
+          <span class="hidden sm:block"> Index </span>
+          <Home class="block sm:hidden" size="20" />
+        </HeaderLink>
+        <HeaderLink href="/projects">
+          <span class="hidden sm:block"> Projects </span>
+          <Grid class="block sm:hidden" size="20" />
+        </HeaderLink>
+        <HeaderLink href="/writing">
+          <span class="hidden sm:block"> Writing </span>
+          <Edit3 class="block sm:hidden" size="20" />
+        </HeaderLink>
+        <HeaderLink href="/about">
+          <span class="hidden sm:block"> About </span>
+          <Feather class="block sm:hidden" size="20" />
+        </HeaderLink>
       </div>
     </nav>
-    <div class="ml-auto mr-0">
+    <div class="sm:ml-auto sm:mr-0">
       <ThemeToggle />
     </div>
   </div>
