@@ -15,7 +15,7 @@ import { Moon, Sun } from 'astro-feather-icons2';
 <!-- Add this overlay div -->
 <div
   id="theme-transition-overlay"
-  class="fixed inset-0 pointer-events-none will-change-transform rotate-[20deg] md:rotate-0">
+  class="fixed inset-0 pointer-events-none will-change-transform">
 </div>
 
 <script is:inline>
@@ -96,11 +96,12 @@ import { Moon, Sun } from 'astro-feather-icons2';
     transition: transform 600ms ease;
     will-change: transform;
     z-index: 9999;
-    background: url(https://cdn.cosmos.so/7f07bb14-287b-4c05-82ca-b1422ad43f23?format=jpeg);
+    /* background: url(https://cdn.cosmos.so/7f07bb14-287b-4c05-82ca-b1422ad43f23?format=jpeg); */
+    background: linear-gradient(to right, #d97173, #627fae, #c872c5);
     background-size: cover;
     filter: blur(30px);
     mix-blend-mode: color-dodge !important;
-    opacity: 0.3;
+    opacity: 1;
     display: none;
     mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   }
