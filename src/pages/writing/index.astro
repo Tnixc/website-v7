@@ -26,7 +26,7 @@ const posts = (await getCollection('writing')).sort((a, b) => b.data.pubDate.val
               <span class="inline-block">
                 <FormattedDate date={post.data.pubDate} />
               </span>
-              |{post.data.description}
+              | {post.data.description}
             </p>
           </a>
           <DashedLine width="100%" class={`unblur-in animate-delay-${index * 100 + 50}ms`} />
