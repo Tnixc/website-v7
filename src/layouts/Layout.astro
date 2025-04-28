@@ -57,9 +57,9 @@ const themeClass = currentTheme === 'dark' ? 'dark' : '';
       </style>
     </OgImage>
   </head>
-  <body class="flex flex-col items-center p-2 sm:p-12 lg:p-20 bg-bg text-text/70 font-crimson">
+  <body class="flex flex-col items-center p-2 sm:p-12 lg:p-20 text-text/70 font-crimson bg-bg">
     <Header />
-    <div class="flex flex-wrap gap-20 w-full">
+    <div class="flex flex-wrap gap-20 w-full bg-bg">
       <Aside class="top-20 xl:sticky" dim={isDim} transition:persist="aside" />
       <div class="max-w-full w-[80ch]">
         <main class:list={[classList]}>

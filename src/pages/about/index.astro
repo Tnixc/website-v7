@@ -3,6 +3,11 @@ import Layout from '@/layouts/Layout.astro';
 import DashedLine from '@/components/common/DashedLine.astro';
 import Link from '@/components/common/Link.astro';
 import Chip from '@/components/Chip.astro';
+
+import { Image } from 'astro:assets';
+import coffee_img from '@/images/coffee.webp';
+import typography_img from '@/images/typography.webp';
+import know_img from '@/images/k.webp';
 ---
 
 <Layout title="About" description="About me | tnixc.space">
@@ -29,8 +34,9 @@ import Chip from '@/components/Chip.astro';
     </h1>
     <p class="unblur-in animation-delay-300">
       My daily driver is <Chip class="bg-a2/50">macOS</Chip> on an M3 air, and I use
-      <Chip class="bg-a3/50">Nix</Chip> for package management. I'm a big fan of <Chip class="bg-a1/50">Neovim</Chip> for
-      editing but also use Zed and VS Code. I use a tiling window manager, and now I can't live without it.
+      <Chip class="bg-a3/50"> Nix</Chip>
+      for package management. I'm a big fan of <Chip class="bg-a1/50">Neovim</Chip> for editing but also use Zed and VS Code.
+      I use a tiling window manager, and now I can't live without it.
     </p>
 
     <DashedLine width="50ch" class="mt-5 unblur-in animation-delay-350" />
@@ -69,20 +75,34 @@ import Chip from '@/components/Chip.astro';
         </p>
       </div>
       <div>
-        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-850">Typography</h2>
-        <p class="text-sm unblur-in animation-delay-900">
-          I'm a type nerd who enjoys exploring different typefaces and their applications. Current favorites are <Chip
-            class="bg-a3/50">Zodiak</Chip
-          > and <Chip class="bg-a2/50">Berkeley Mono</Chip>. SF Pro is also the goat.
-        </p>
-      </div>
-      <div class="md:col-span-2">
         <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-950">Drawing & Digital Art</h2>
         <p class="text-sm unblur-in animation-delay-1000">
           I draw digitally using <Chip class="bg-a4/50">Procreate</Chip> and do 3D art with <Chip class="bg-a2/50"
             >Blender</Chip
           >.
         </p>
+      </div>
+      <div
+        class="md:col-span-2 flex gap-4 items-center p-1 bg-a2/10 rounded-lg shadow-[0_0_0_8px_--alpha(var(--color-a2)/10%)] w-fit pr-3 pl-2">
+        <span class="bg-bg rounded-md overflow-hidden">
+          <Image
+            src={typography_img.src}
+            alt="coffee"
+            width={155}
+            height={155}
+            class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
+          />
+        </span>
+        <div>
+          <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-850">Typography</h2>
+          <p class="text-sm unblur-in animation-delay-900 flex gap-2">
+            <span>
+              I'm a type nerd who enjoys exploring different typefaces and their applications. Current favorites are <Chip
+                class="bg-a3/50">Zodiak</Chip
+              > and <Chip class="bg-a2/50">Berkeley Mono</Chip>. SF Pro is also the goat.
+            </span>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -92,7 +112,7 @@ import Chip from '@/components/Chip.astro';
       <span class="font-thin text-text/25 w-[3ch]">0x6</span>Other Passions
     </h1>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div class="md:row-span-2">
+      <div class="">
         <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1150">Mechanical Keyboards</h2>
         <p class="text-sm unblur-in animation-delay-1200">
           I'm into custom mechanical keyboards with a preference for
@@ -102,9 +122,20 @@ import Chip from '@/components/Chip.astro';
           > layout.
         </p>
       </div>
-      <div>
-        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1250">Coffee</h2>
-        <p class="text-sm unblur-in animation-delay-1300">I love coffee. Hot coffee though.</p>
+      <div class="bg-a1/10 rounded-lg shadow-[0_0_0_8px_--alpha(var(--color-a1)/10%)] w-fit pr-3 md:translate-y-14">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1250 pb-1">Coffee</h2>
+        <p class="text-sm unblur-in animation-delay-1300 flex items-center gap-2 rounded-md">
+          <span class="bg-bg rounded-md overflow-hidden">
+            <Image
+              src={coffee_img.src}
+              alt="coffee"
+              width={50}
+              height={50}
+              class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
+            />
+          </span>
+          I love coffee. Hot coffee though.
+        </p>
       </div>
       <div>
         <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1350">Books & Anime</h2>
@@ -113,24 +144,34 @@ import Chip from '@/components/Chip.astro';
           <Chip class="bg-a3/50">Lord of the Mysteries</Chip>. I also watch anime, occasionally.
         </p>
       </div>
-      <div class="md:col-span-2">
-        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1450">Knowledge Management</h2>
-        <p class="text-sm unblur-in animation-delay-1500">
-          I've jumped around obsidian, apple notes, notion, and now I'm using <Link href="https://craft.do" external
-            >Craft</Link
-          > for knowledge management. It's avalible everywhere, has a student plan, and beautifully designed. I use the <Link
-            href="https://www.wikiwand.com/en/articles/Zettelkasten"
-            external>Zettelkasten</Link
-          > method, and grep for what I need all the time.
-        </p>
+      <div class="md:col-span-2 bg-a3/10 rounded-lg shadow-[0_0_0_8px_--alpha(var(--color-a3)/10%)] w-fit pr-3">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1450 py-2">Knowledge Management</h2>
+        <div class="text-sm unblur-in animation-delay-1500 flex items-center gap-2 rounded-md">
+          <div class="rounded-md bg-bg overflow-hidden block flex-grow aspect-square">
+            <Image
+              src={know_img.src}
+              alt="a hashtag"
+              width={70}
+              height={70}
+              class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
+            />
+          </div>
+          <p class="w-fit">
+            I've jumped around obsidian, apple notes, notion, and now I'm using <Link href="https://craft.do" external
+              >Craft</Link
+            > for knowledge management. It's avalible everywhere, has a student plan, and beautifully designed. I use the
+            <Link href="https://www.wikiwand.com/en/articles/Zettelkasten" external>Zettelkasten</Link> method, and grep
+            for what I need all the time.
+          </p>
+        </div>
       </div>
-      <div class="md:col-span-2">
-        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1550">Arcade & Video Games</h2>
-        <p class="text-sm unblur-in animation-delay-1600">
-          I play all kinds of games, mainly rhythm games, roguelites, and RPGs. Minecraft / osu! / maimai DX / Wacca /
-          DDR / Hades / Celeste / Hollow Knight / Divinity 2 are some of my favorites.
-        </p>
-      </div>
+    </div>
+    <div class="md:col-span-2">
+      <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1550">Arcade & Video Games</h2>
+      <p class="text-sm unblur-in animation-delay-1600">
+        I play all kinds of games, mainly rhythm games, roguelites, and RPGs. Minecraft / osu! / maimai DX / Wacca / DDR
+        / Hades / Celeste / Hollow Knight / Divinity 2 are some of my favorites.
+      </p>
     </div>
   </article>
 </Layout>
