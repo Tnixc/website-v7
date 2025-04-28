@@ -14,15 +14,15 @@ import Layout from '@/layouts/Layout.astro';
   <Hero />
   <DashedLine width="20ch" class="scroll-dashed unblur-in" />
 
-  <article class="flex max-w-[60ch] flex-col gap-3">
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-100">
-      <span class="text-text/25 w-[3ch] font-thin">0x1</span>About
+  <article class="flex flex-col gap-3 max-w-[60ch]">
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-100">
+      <span class="font-thin text-text/25 w-[3ch]">0x1</span>About
     </h1>
-    <p class="text-text flex flex-wrap items-center unblur-in animation-delay-200">
-      I'm a 16 year old grade 12 student from <Chip class="bg-a1/50 mx-1 h-[1.4em]">
+    <p class="flex flex-wrap items-center text-text unblur-in animation-delay-200">
+      I'm a 16 year old grade 12 student from <Chip class="mx-1 bg-a1/50 h-[1.4em]">
         <span class="pl-[0.5px]"><HongKong /></span> Hong Kong
       </Chip>
-      studying in <Chip class="bg-a2/50 mx-1 h-[1.4em]">
+      studying in <Chip class="mx-1 bg-a2/50 h-[1.4em]">
         <span class="pl-[0.5px]"><Canada /></span> Canada
       </Chip>
       I go by <b class="mx-1 font-extrabold">Tnixc</b> online.
@@ -31,8 +31,8 @@ import Layout from '@/layouts/Layout.astro';
       I love programming and design. You will learn way more about me on <Link href="/about">about</Link>
     </p>
     <DashedLine width="40ch" class="mt-5 unblur-in animation-delay-300" />
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-400">
-      <span class="text-text/25 w-[3ch] font-thin">0x2</span>Work
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-400">
+      <span class="font-thin text-text/25 w-[3ch]">0x2</span>Work
     </h1>
     <p class="unblur-in animation-delay-500">I now mostly work with <Chip class="bg-a2/50">Rust</Chip></p>
     <p class="unblur-in animation-delay-600">
@@ -49,8 +49,8 @@ import Layout from '@/layouts/Layout.astro';
       <Link href="https://github.com/tnixc" external>GitHub</Link>
     </p>
     <DashedLine width="60ch" class="mt-5 unblur-in animation-delay-700" />
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-800">
-      <span class="text-text/25 w-[3ch] font-thin">0x3</span>Contact
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-800">
+      <span class="font-thin text-text/25 w-[3ch]">0x3</span>Contact
     </h1>
     <p class="unblur-in animation-delay-900">Feel free to email me or shoot me a dm on Discord.</p>
     <p class="unblur-in animation-delay-900">
@@ -58,8 +58,8 @@ import Layout from '@/layouts/Layout.astro';
       <br />
       Discord <Copy text="Tnixc">@Tnixc</Copy>
     </p>
-    <h1 class="font-zodiak text-text flex gap-1 text-lg unblur-in animation-delay-1000">
-      <span class="text-text/25 w-[1ch] font-thin">&</span>Say anything
+    <h1 class="flex gap-1 text-lg font-zodiak text-text unblur-in animation-delay-1000">
+      <span class="font-thin text-text/25 w-[1ch]">&</span>Say anything
     </h1>
     <ContactForm />
   </article>

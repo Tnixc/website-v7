@@ -8,7 +8,7 @@ const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'li
 <button
   id="theme-toggle"
   title="Toggle theme"
-  class="bg-text/10 text-text aspect-square place-items-center inline-grid size-8 hover:bg-text/20 smooth-corners-xs rounded-sm">
+  class="inline-grid place-items-center rounded-sm bg-text/10 text-text aspect-square size-8 smooth-corners-xs hover:bg-text/20">
   <span id="icon-moon" style={`display: ${initialTheme === 'light' ? 'inline-block' : 'none'}`}><Moon size="16" /></span
   >
   <span id="icon-sun" style={`display: ${initialTheme === 'dark' ? 'inline-block' : 'none'}`}><Sun size="16" /></span>

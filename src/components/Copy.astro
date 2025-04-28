@@ -11,7 +11,7 @@ const { text, class: className } = Astro.props;
   class:list={['copy-wrapper inline-flex items-center cursor-pointer group relative text-link', className]}
   data-copy-text={text}>
   <slot />
-  <span class="copy-icon ml-1 inline-flex items-center opacity-0 scale-25 transition-all duration-200">
+  <span class="inline-flex items-center ml-1 opacity-0 transition-all duration-200 copy-icon scale-25">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="14"
@@ -22,7 +22,7 @@ const { text, class: className } = Astro.props;
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="checkmark hidden">
+      class="hidden checkmark">
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
     <svg

@@ -10,35 +10,35 @@ import { ArrowRight, Loader, Check, X } from 'astro-feather-icons2';
       required
       rows="4"
       autocomplete="off"
-      class="bg-bg border border-text/10 rounded-sm p-2 focus:border-link/50 focus:outline-none transition-colors resize-none h-3em"
+      class="p-2 rounded-sm border transition-colors resize-none focus:outline-none bg-bg border-text/10 h-3em focus:border-link/50"
       placeholder="What would you like to say? An interesting article...a new tool to try...or simply :3"></textarea>
   </div>
 
   <div class="flex flex-col gap-1">
     <label for="contact" class="pl-1">
-      Contact <span class="text-text/50 italic text-sm">optional</span>
+      Contact <span class="text-sm italic text-text/50">optional</span>
     </label>
-    <div class="flex w-full gap-1">
+    <div class="flex gap-1 w-full">
       <input
         id="contact"
         type="text"
-        class="bg-bg border border-text/10 rounded-sm p-2 focus:border-link/50 focus:outline-none transition-colors w-full"
+        class="p-2 w-full rounded-sm border transition-colors focus:outline-none bg-bg border-text/10 focus:border-link/50"
         placeholder="Email, Discord, or other contact info"
         autocomplete="off"
       />
 
-      <p id="errorMessage" class="text-a2 text-sm hidden"></p>
+      <p id="errorMessage" class="hidden text-sm text-a2"></p>
 
       <button
         type="submit"
         id="submitButton"
-        class="flex items-center group justify-center gap-2 bg-text/10 hover:bg-text/20 disabled:bg-text/5 disabled:cursor-not-allowed rounded-sm py-2 px-4 transition-colors w-fit">
+        class="flex gap-2 justify-center items-center py-2 px-4 rounded-sm transition-colors disabled:cursor-not-allowed group bg-text/10 w-fit hover:bg-text/20 disabled:bg-text/5">
         <span>Send</span>
 
         <ArrowRight
           size="16"
           id="idleIcon"
-          class="text-text opacity-70 transition-transform duration-200 group-hover:translate-x-1"
+          class="opacity-70 transition-transform duration-200 group-hover:translate-x-1 text-text"
         />
 
         <!-- Sending state icon (hidden by default) -->

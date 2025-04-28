@@ -21,8 +21,8 @@ const { dim, class: className } = Astro.props;
       dim ? 'md:opacity-10' : 'opacity-100 ',
     ]}>
     <div class="absolute inset-0" id="day">
-      <div class="noise w-full h-full">
-        <div class="absolute inset-0 overflow-hidden opacity-0 dark:opacity-100" id="night">
+      <div class="w-full h-full noise">
+        <div class="overflow-hidden absolute inset-0 opacity-0 dark:opacity-100" id="night">
           <StarrySky />
         </div>
       </div>

@@ -20,14 +20,14 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 
 <Layout title={title} description={description} dim>
   <a
-    class="text-text duration-100 size-8 bg-text/10 hover:bg-text/20 rounded-sm smooth-corners-xs overflow-hidden grid place-items-center mt-10"
+    class="grid overflow-hidden place-items-center mt-10 rounded-sm duration-100 text-text size-8 bg-text/10 smooth-corners-xs hover:bg-text/20"
     aria-label="Back"
     href="/writing">
     <span class="opacity-70">
       <ArrowLeft size="16" />
     </span>
   </a>
-  <h1 transition:name={`post ${title}`} class="font-zodiak text-3xl font-light text-text py-6">{title}</h1>
+  <h1 transition:name={`post ${title}`} class="py-6 text-3xl font-light font-zodiak text-text">{title}</h1>
   <p class="unblur-in animation-delay-50">
     <span class:list={[updatedDate ? 'text-text/30' : 'text-text/100']}>
       <FormattedDate date={pubDate} />

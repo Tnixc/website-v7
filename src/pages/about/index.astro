@@ -6,17 +6,17 @@ import Chip from '@/components/Chip.astro';
 ---
 
 <Layout title="About" description="About me | tnixc.space">
-  <div class="flex items-center gap-7 pl-2 unblur-in-no-move-opacity">
+  <div class="flex gap-7 items-center pl-2 unblur-in-no-move-opacity">
     <div transition:name="hero" transition:animate="fade">
-      <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,90px)] font-thin italic" id="title-text">About</h1>
+      <h1 class="italic font-thin font-zodiak text-text/10 text-[clamp(26px,20vmin,90px)]" id="title-text">About</h1>
     </div>
   </div>
 
   <DashedLine width="100%" />
 
-  <article class="flex max-w-[60ch] flex-col gap-3">
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-100">
-      <span class="text-text/25 w-[3ch] font-thin">0x1</span>Going outside
+  <article class="flex flex-col gap-3 max-w-[60ch]">
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-100">
+      <span class="font-thin text-text/25 w-[3ch]">0x1</span>Going outside
     </h1>
     <p class="unblur-in animation-delay-150">
       I love travelling. Some of my favourite places are <Chip class="bg-a1/50">Hokkaido</Chip>, <Chip class="bg-a2/50"
@@ -24,8 +24,8 @@ import Chip from '@/components/Chip.astro';
       >, and <Chip class="bg-a3/50">Switzerland</Chip>. I enjoy hiking, cycling, and trying out new foods.
     </p>
     <DashedLine width="45ch" class="mt-5 unblur-in animation-delay-200" />
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-250">
-      <span class="text-text/25 w-[3ch] font-thin">0x2</span>Software I Use
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-250">
+      <span class="font-thin text-text/25 w-[3ch]">0x2</span>Software I Use
     </h1>
     <p class="unblur-in animation-delay-300">
       My daily driver is <Chip class="bg-a2/50">macOS</Chip> on an M3 air, and I use
@@ -35,8 +35,8 @@ import Chip from '@/components/Chip.astro';
 
     <DashedLine width="50ch" class="mt-5 unblur-in animation-delay-350" />
 
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-400">
-      <span class="text-text/25 w-[3ch] font-thin">0x3</span>Programming
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-400">
+      <span class="font-thin text-text/25 w-[3ch]">0x3</span>Programming
     </h1>
     <p class="unblur-in animation-delay-450">
       I like working with <Chip class="bg-a2/50">Rust</Chip>, I'm interested in systems programming, compilers, and
@@ -45,8 +45,8 @@ import Chip from '@/components/Chip.astro';
 
     <DashedLine width="55ch" class="mt-5 unblur-in animation-delay-500" />
 
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-550">
-      <span class="text-text/25 w-[3ch] font-thin">0x4</span>Robots & FRC
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-550">
+      <span class="font-thin text-text/25 w-[3ch]">0x4</span>Robots & FRC
     </h1>
     <p class="unblur-in animation-delay-600">
       I've been involved with <Link href="https://www.firstinspires.org/robotics/frc" external
@@ -57,28 +57,28 @@ import Chip from '@/components/Chip.astro';
 
     <DashedLine width="60ch" class="mt-5 unblur-in animation-delay-650" />
 
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-700">
-      <span class="text-text/25 w-[3ch] font-thin">0x5</span>Design Interests
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-700">
+      <span class="font-thin text-text/25 w-[3ch]">0x5</span>Design Interests
     </h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-750">UI Design</h2>
-        <p class="unblur-in animation-delay-800 text-sm">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-750">UI Design</h2>
+        <p class="text-sm unblur-in animation-delay-800">
           I love detailed, functional interfaces with thoughtful micro-interactions. I spend a lot of time thinking
           about UI.
         </p>
       </div>
       <div>
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-850">Typography</h2>
-        <p class="unblur-in animation-delay-900 text-sm">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-850">Typography</h2>
+        <p class="text-sm unblur-in animation-delay-900">
           I'm a type nerd who enjoys exploring different typefaces and their applications. Current favorites are <Chip
             class="bg-a3/50">Zodiak</Chip
           > and <Chip class="bg-a2/50">Berkeley Mono</Chip>. SF Pro is also the goat.
         </p>
       </div>
       <div class="md:col-span-2">
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-950">Drawing & Digital Art</h2>
-        <p class="unblur-in animation-delay-1000 text-sm">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-950">Drawing & Digital Art</h2>
+        <p class="text-sm unblur-in animation-delay-1000">
           I draw digitally using <Chip class="bg-a4/50">Procreate</Chip> and do 3D art with <Chip class="bg-a2/50"
             >Blender</Chip
           >.
@@ -88,13 +88,13 @@ import Chip from '@/components/Chip.astro';
 
     <DashedLine width="65ch" class="mt-5 unblur-in animation-delay-1050" />
 
-    <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-1100">
-      <span class="text-text/25 w-[3ch] font-thin">0x6</span>Other Passions
+    <h1 class="flex gap-1 pt-4 pb-3 text-2xl font-zodiak text-text unblur-in animation-delay-1100">
+      <span class="font-thin text-text/25 w-[3ch]">0x6</span>Other Passions
     </h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="md:row-span-2">
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-1150">Mechanical Keyboards</h2>
-        <p class="unblur-in animation-delay-1200 text-sm">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1150">Mechanical Keyboards</h2>
+        <p class="text-sm unblur-in animation-delay-1200">
           I'm into custom mechanical keyboards with a preference for
           <Chip class="bg-a2/50">linear switches</Chip> and I've been trying out the <Link
             href="https://semilin.github.io/blog/2021/reflection_on_semimak.html"
@@ -103,19 +103,19 @@ import Chip from '@/components/Chip.astro';
         </p>
       </div>
       <div>
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-1250">Coffee</h2>
-        <p class="unblur-in animation-delay-1300 text-sm">I love coffee. Hot coffee though.</p>
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1250">Coffee</h2>
+        <p class="text-sm unblur-in animation-delay-1300">I love coffee. Hot coffee though.</p>
       </div>
       <div>
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-1350">Books & Anime</h2>
-        <p class="unblur-in animation-delay-1400 text-sm">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1350">Books & Anime</h2>
+        <p class="text-sm unblur-in animation-delay-1400">
           I read a lot of webnovels and other fiction. Current favourite is
           <Chip class="bg-a3/50">Lord of the Mysteries</Chip>. I also watch anime, occasionally.
         </p>
       </div>
       <div class="md:col-span-2">
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-1450">Knowledge Management</h2>
-        <p class="unblur-in animation-delay-1500 text-sm">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1450">Knowledge Management</h2>
+        <p class="text-sm unblur-in animation-delay-1500">
           I've jumped around obsidian, apple notes, notion, and now I'm using <Link href="https://craft.do" external
             >Craft</Link
           > for knowledge management. It's avalible everywhere, has a student plan, and beautifully designed. I use the <Link
@@ -126,8 +126,8 @@ import Chip from '@/components/Chip.astro';
         </p>
       </div>
       <div class="md:col-span-2">
-        <h2 class="font-zodiak text-lg text-text unblur-in animation-delay-1550">Arcade & Video Games</h2>
-        <p class="unblur-in animation-delay-1600 text-sm">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1550">Arcade & Video Games</h2>
+        <p class="text-sm unblur-in animation-delay-1600">
           I play all kinds of games, mainly rhythm games, roguelites, and RPGs. Minecraft / osu! / maimai DX / Wacca /
           DDR / Hades / Celeste / Hollow Knight / Divinity 2 are some of my favorites.
         </p>
