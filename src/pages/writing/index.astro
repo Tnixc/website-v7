@@ -8,6 +8,12 @@ const posts = (await getCollection('writing')).sort((a, b) => b.data.pubDate.val
 ---
 
 <Layout title="Writing" description="Writing | tnixc.space">
+  <div class="flex items-center gap-7 unblur-in-no-move-opacity">
+    <div transition:name="hero" transition:animate="fade">
+      <h1 class="font-zodiak text-text/10 text-[clamp(26px,20vmin,90px)] font-thin italic" id="title-text">Writing</h1>
+    </div>
+  </div>
+  <DashedLine width="100%" />
   <ul class="py-10 flex flex-col gap-4">
     {
       posts.map((post) => (
