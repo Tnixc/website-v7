@@ -25,6 +25,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.12.0",
     "@biomejs/biome": "1.9.4",
+    "@fontsource/crimson-pro": "^5.2.5",
     "@tailwindcss/typography": "^0.5.16",
     "@typescript-eslint/parser": "^8.31.0",
     "@unpic/astro": "^1.0.0",

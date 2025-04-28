@@ -19,6 +19,7 @@
       "devDependencies": {
         "@antfu/eslint-config": "^4.12.0",
         "@biomejs/biome": "1.9.4",
+        "@fontsource/crimson-pro": "^5.2.5",
         "@tailwindcss/typography": "^0.5.16",
         "@typescript-eslint/parser": "^8.31.0",
         "@unpic/astro": "^1.0.0",
@@ -170,6 +171,8 @@
     "@eslint/object-schema": ["@eslint/object-schema@2.1.6", "", {}, "sha512-RBMg5FRL0I0gs51M/guSAj5/e14VQ4tpZnQNWwuDT66P14I43ItmPfIZRhO9fUVIPOAQXU47atlywZ/czoqFPA=="],
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.2.8", "", { "dependencies": { "@eslint/core": "^0.13.0", "levn": "^0.4.1" } }, "sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA=="],
+
+    "@fontsource/crimson-pro": ["@fontsource/crimson-pro@5.2.5", "", {}, "sha512-U7j8zA4hpnUN0BxSVoL6snE9nC/Ww4w7VGXpkUuAr2beHvyvtLSPjsskWY12vBuKi/UUoDryQ3q4abU1j/eCWg=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 

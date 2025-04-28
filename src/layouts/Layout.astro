@@ -3,6 +3,7 @@ import Aside from '@/components/common/Aside.astro';
 import BaseHead from '@/components/common/BaseHead.astro';
 import Footer from '@/components/common/Footer.astro';
 import Header from '@/components/common/Header.astro';
+import { OgImage } from 'astro-opengraph-image/components';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -18,17 +19,50 @@ const { title, description, dim: isDim, class: classList } = Astro.props;
   <head>
     <BaseHead {title} {description} />
     <ClientRouter fallback="none" />
+    <OgImage>
+      <div id="main">
+        <div id="top">
+          <div id="box"></div>
+          <h1>{title}</h1>
+        </div>
+        <p>{description}</p>
+      </div>
+      <style is:inline>
+        #top {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        #box {
+          height: 2rem;
+          width: 2rem;
+          background: #0056ff;
+          border-radius: 50%;
+          display: flex;
+        }
+        #main {
+          height: 100%;
+          width: 100%;
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+        }
+        p {
+          opacity: 0.7;
+        }
+      </style>
+    </OgImage>
   </head>
-  <body
-    class="bg-bg text-text/70 font-crimson grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] min-h-screen w-screen gap-4 md:gap-20 p-2 lg:p-20 relative">
-    <Aside class="md:sticky top-20" dim={isDim} transition:persist="aside" />
-    <div class="w-[80ch] max-w-full">
-      <Header transition:animate="none" />
-      <main class:list={[classList]}>
-        <slot />
-      </main>
-      <Footer />
+  <body class="bg-bg flex flex-col items-center text-text/70 font-crimson lg:p-20 sm:p-12 p-2">
+    <Header transition:animate="none" />
+    <div class="flex w-full gap-20 flex-wrap">
+      <Aside class="md:sticky top-20" dim={isDim} transition:persist="aside" />
+      <div class="w-[80ch] max-w-full">
+        <main class:list={[classList]}>
+          <slot />
+        </main>
+      </div>
     </div>
-    <div class="md:max-w-[300px] w-full"></div>
+    <Footer />
   </body>
 </html>

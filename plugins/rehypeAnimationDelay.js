@@ -1,6 +1,5 @@
 export default function rehypeAnimationDelay() {
   return (tree) => {
-    console.log(tree);
     let index = 1;
     tree.children.forEach((child) => {
       if (child.type === 'element') {
