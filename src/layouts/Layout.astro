@@ -54,9 +54,9 @@ const { title, description, dim: isDim, class: classList } = Astro.props;
     </OgImage>
   </head>
   <body class="bg-bg flex flex-col items-center text-text/70 font-crimson lg:p-20 sm:p-12 p-2">
-    <Header transition:animate="none" />
+    <Header transition:animate="initial" />
     <div class="flex w-full gap-20 flex-wrap">
-      <Aside class="md:sticky top-20" dim={isDim} transition:persist="aside" />
+      <Aside class="lg:sticky top-20" dim={isDim} transition:persist="aside" />
       <div class="w-[80ch] max-w-full">
         <main class:list={[classList]}>
           <slot />
