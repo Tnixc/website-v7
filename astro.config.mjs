@@ -65,5 +65,6 @@ export default defineConfig({
       BUILD_DATE: JSON.stringify(commitDate),
     },
   },
+  output: 'server',
   adapter: vercel(),
 });

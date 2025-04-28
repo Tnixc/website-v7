@@ -13,11 +13,11 @@ const isActive = href === pathname || href === `/${subpath?.[0] || ''}`;
   href={href}
   {...props}
   class:list={[className, { active: isActive }]}
-  transition:animate="initial"
-  transition:name="break"
+  transition:animate="none"
   class="font-zodiak uppercase tracking-wider font-extrabold">
   <slot />
 </a>
+
 <style>
   a {
     text-decoration: none;
@@ -27,5 +27,8 @@ const isActive = href === pathname || href === `/${subpath?.[0] || ''}`;
   a.active {
     font-weight: 400;
     opacity: 1;
+  }
+  a {
+    animation-duration: 0s !important;
   }
 </style>

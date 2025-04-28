@@ -1,18 +1,15 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import BlogPost from '@/layouts/BlogPost.astro';
-import { getCollection, render } from 'astro:content';
-
-export async function getStaticPaths() {
-  const posts = await getCollection('writing');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
-  }));
+import { getEntry, render } from 'astro:content';
+const req = Astro.request;
+const id = req.url.split('/').slice(2)[2]; // FIXME: there's gotta be a better way to do this
+if (id === undefined) {
+  return Astro.redirect('/404');
 }
-type Props = CollectionEntry<'writing'>;
-
-const post = Astro.props;
+const post = await getEntry('writing', id);
+if (post === undefined) {
+  return Astro.redirect('/404');
+}
 const { Content } = await render(post);
 ---
 

@@ -16,16 +16,21 @@ const posts = (await getCollection('writing')).sort((a, b) => b.data.pubDate.val
   <DashedLine width="100%" />
   <ul class="py-10 flex flex-col gap-4">
     {
-      posts.map((post) => (
-        <a class="block my-4" href={`/writing/${post.id}/`}>
-          <h1 class="font-zodiak text-3xl font-light text-text" transition:name={`post ${post.data.title}`}>
-            {post.data.title}
-          </h1>
-          <span class="block">
-            <FormattedDate date={post.data.pubDate} />
-          </span>
-          <DashedLine width="100%" />
-        </a>
+      posts.map((post, index) => (
+        <>
+          <a class:list={['block my-4 unblur-in', `animate-delay-${index * 100}ms`]} href={`/writing/${post.id}/`}>
+            <h1 class="font-zodiak text-3xl font-light text-text" transition:name={`post ${post.data.title}`}>
+              {post.data.title}
+            </h1>
+            <p>
+              <span class="inline-block">
+                <FormattedDate date={post.data.pubDate} />
+              </span>
+              |{post.data.description}
+            </p>
+          </a>
+          <DashedLine width="100%" class={`unblur-in animate-delay-${index * 100 + 50}ms`} />
+        </>
       ))
     }
   </ul>

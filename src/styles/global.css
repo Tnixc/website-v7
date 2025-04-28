@@ -157,7 +157,7 @@ p {
 
 @keyframes unblur-in-no-move-opacity {
   0% {
-    filter: blur(10px);
+    filter: blur(2px);
   }
   100% {
     filter: blur(0px);

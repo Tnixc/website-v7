@@ -12,9 +12,7 @@ import Layout from '@/layouts/Layout.astro';
 
 <Layout title="tnixc.space" description="Index | tnixc.space">
   <Hero />
-  <div id="collapsing-margin-container">
-    <DashedLine width="20ch" class="scroll-dashed mt-80 unblur-in" />
-  </div>
+  <DashedLine width="20ch" class="scroll-dashed unblur-in" />
 
   <article class="flex max-w-[60ch] flex-col gap-3">
     <h1 class="font-zodiak text-text flex gap-1 pt-4 pb-3 text-2xl unblur-in animation-delay-100">
@@ -65,19 +63,4 @@ import Layout from '@/layouts/Layout.astro';
     </h1>
     <ContactForm />
   </article>
-  <script>
-    document.addEventListener('astro:page-load', () => {
-      const dashedLine = document.querySelector('.scroll-dashed') as HTMLElement | null;
-      if (!dashedLine) return;
-      const initialMargin = 320; // initial margin in pixels (adjust if necessary)
-
-      window.addEventListener('scroll', () => {
-        // Get current scroll position in pixels.
-        const scrollY = window.scrollY * 0.7;
-        // Calculate the new margin: reduce it by the scroll amount but not below zero.
-        const newMargin = Math.max(initialMargin - scrollY, 0);
-        dashedLine.style.marginTop = `${newMargin}px`;
-      });
-    });
-  </script>
 </Layout>

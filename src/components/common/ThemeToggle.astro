@@ -1,27 +1,28 @@
 ---
 import { Moon, Sun } from 'astro-feather-icons2';
+// Read the cookie server-side *only* to set the initial icon state correctly
+// The actual class on <html> is handled by the layout
+const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'light';
 ---
 
 <button
   id="theme-toggle"
+  title="Toggle theme"
   class="bg-text/10 text-text aspect-square place-items-center inline-grid size-8 hover:bg-text/20 smooth-corners-xs rounded-sm">
-  <span id="icon-moon"><Moon size="16" /></span>
-  <span id="icon-sun"><Sun size="16" /></span>
+  <span id="icon-moon" style={`display: ${initialTheme === 'light' ? 'inline-block' : 'none'}`}><Moon size="16" /></span
+  >
+  <span id="icon-sun" style={`display: ${initialTheme === 'dark' ? 'inline-block' : 'none'}`}><Sun size="16" /></span>
 </button>
 <div class="corner-smooth">
   <div class="smooth"></div>
 </div>
 
-<!-- Add this overlay div -->
 <div id="theme-transition-overlay" class="fixed inset-0 pointer-events-none will-change-transform"></div>
 
-<script is:inline>
-  // Function to update the displayed icon based on the current theme
+<script>
+  // Function to update the displayed icon based on the current theme class on <html>
   function updateIcon() {
     const isDark = document.documentElement.classList.contains('dark');
-    const moonIcon = document.getElementById('icon-moon');
-    const sunIcon = document.getElementById('icon-sun');
-
     if (moonIcon) moonIcon.style.display = isDark ? 'none' : 'inline-block';
     if (sunIcon) sunIcon.style.display = isDark ? 'inline-block' : 'none';
   }
@@ -29,28 +30,29 @@ import { Moon, Sun } from 'astro-feather-icons2';
   // Function to toggle the theme with transition
   function toggleTheme() {
     const isDark = document.documentElement.classList.contains('dark');
-    const overlay = document.getElementById('theme-transition-overlay');
+    const newTheme = isDark ? 'light' : 'dark';
 
     if (!overlay) return;
 
     // Set initial position of overlay
     overlay.style.transform = 'translateX(-125%)';
     overlay.style.display = 'block';
-    // overlay.style.background = 'linear-gradient(to right, blue, red, red)';
-    // dark to light : light to dark
+
     // Trigger animation
     setTimeout(() => {
       overlay.style.transform = 'translateX(0) translateY(0)';
 
       // Change theme when overlay is halfway through
       setTimeout(() => {
-        if (isDark) {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        } else {
+        if (newTheme === 'dark') {
           document.documentElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
         }
+        // Set cookie
+        document.cookie = `theme=${newTheme};path=/;max-age=31536000;samesite=lax`; // max-age=1 year
+        // Optionally keep localStorage sync'd if other scripts use it
+        // localStorage.setItem('theme', newTheme);
         updateIcon();
 
         // Complete the animation
@@ -67,23 +69,24 @@ import { Moon, Sun } from 'astro-feather-icons2';
   }
 
   // Attach the click event listener to the toggle button
-  function init() {
+  function initThemeToggle() {
     const toggleButton = document.getElementById('theme-toggle');
+    window.moonIcon = document.getElementById('icon-moon');
+    window.sunIcon = document.getElementById('icon-sun');
+    window.overlay = document.getElementById('theme-transition-overlay');
     if (toggleButton) {
       toggleButton.addEventListener('click', toggleTheme);
     }
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    // On load, check localStorage for the saved theme and update the HTML element's class and icon
+    // Initial icon state is now set via inline style from server,
+    // but we call updateIcon on load/swap in case the class was somehow changed client-side
+    // before this script runs or during swaps.
     updateIcon();
   }
-  document.addEventListener('astro:after-swap', init);
-  init();
+
+  initThemeToggle();
+  document.addEventListener('astro:page-load', () => {
+    initThemeToggle();
+  });
 </script>
 
 <style>
@@ -93,7 +96,6 @@ import { Moon, Sun } from 'astro-feather-icons2';
     transition: transform 600ms ease;
     will-change: transform;
     z-index: 9999;
-    /* background: url(https://cdn.cosmos.so/7f07bb14-287b-4c05-82ca-b1422ad43f23?format=jpeg); */
     background: linear-gradient(to right, #d97173, #627fae, #c872c5);
     background-size: cover;
     filter: blur(30px);
