@@ -1,31 +1,40 @@
 ---
 import DashedLine from '@/components/common/DashedLine.astro';
-import HeaderLink from '@/components/common/HeaderLink.astro';
 import ThemeToggle from '@/components/common/ThemeToggle.astro';
 import { Edit3, Feather, Grid, Home } from 'astro-feather-icons2';
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
+const subpath = pathname.match(/[^/]+/g);
+const isActive = (href: string) => href === pathname || href === `/${subpath?.[0] || ''}`;
 ---
 
-<header
-  class="sticky top-0 z-40 w-full rounded-md bg-bg/50 backdrop-blur-xl smooth-corners-xs"
-  transition:animate="initial">
-  <div class="flex justify-between items-center py-2 px-2.5 sm:px-0 sm:pr-2.5" transition:animate="initial">
-    <nav class="flex gap-4 pl-0.5 text-sm sm:gap-11 sm:px-5 text-text" transition:animate="initial">
-      <HeaderLink href="/">
+<header class="sticky top-0 z-40 w-full rounded-md bg-bg smooth-md">
+  <div class="flex justify-between items-center py-2 px-2.5 sm:px-0 sm:pr-2.5">
+    <nav class="flex gap-4 pl-0.5 text-sm sm:gap-11 sm:px-5 text-text">
+      <a class="font-light tracking-wider uppercase font-zodiak relative" data-active={isActive('/')} href="/">
         <span class="hidden sm:block"> Index </span>
         <Home class="block sm:hidden" size="20" />
-      </HeaderLink>
-      <HeaderLink href="/projects">
+      </a>
+      <a
+        class="font-light tracking-wider uppercase font-zodiak relative"
+        data-active={isActive('/projects')}
+        href="/projects">
         <span class="hidden sm:block"> Projects </span>
         <Grid class="block sm:hidden" size="20" />
-      </HeaderLink>
-      <HeaderLink href="/writing">
+      </a>
+      <a
+        class="font-light tracking-wider uppercase font-zodiak relative"
+        data-active={isActive('/writing')}
+        href="/writing">
         <span class="hidden sm:block"> Writing </span>
         <Edit3 class="block sm:hidden" size="20" />
-      </HeaderLink>
-      <HeaderLink href="/about">
+      </a>
+      <a
+        class="font-light tracking-wider uppercase font-zodiak relative"
+        data-active={isActive('/about')}
+        href="/about">
         <span class="hidden sm:block"> About </span>
         <Feather class="block sm:hidden" size="20" />
-      </HeaderLink>
+      </a>
     </nav>
     <DashedLine class="opacity-0" width="100%" />
     <ThemeToggle />
@@ -34,5 +43,13 @@ import { Edit3, Feather, Grid, Home } from 'astro-feather-icons2';
 <style>
   header * {
     animation-duration: 0s !important;
+  }
+  a[data-active='true']::before {
+    position: absolute;
+    content: '';
+    inset: -8px;
+    background-color: --alpha(var(--color-text) / 8%);
+    view-transition-name: 'nav-active';
+    border-radius: 8px;
   }
 </style>

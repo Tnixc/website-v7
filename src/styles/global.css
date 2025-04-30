@@ -338,7 +338,7 @@ p {
   }
 }
 
-@utility smooth-corners-xs {
+@utility smooth-md {
   @apply rounded-md;
   -webkit-mask-box-image-width: 60px;
   mask-border-width: 60px;
