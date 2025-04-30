@@ -7,8 +7,6 @@ import sitemap from '@astrojs/sitemap';
 
 import tailwindcss from '@tailwindcss/vite';
 
-import { imageService } from '@unpic/astro/service';
-
 import opengraphImage from 'astro-opengraph-image';
 import { defineConfig } from 'astro/config';
 
@@ -53,10 +51,6 @@ export default defineConfig({
     },
     rehypePlugins: [rehypeAnimationDelay],
   },
-  // image: {
-  //   service: imageService(),
-  // },
-
   vite: {
     plugins: [tailwindcss()],
     define: {
