@@ -53,9 +53,9 @@ export default defineConfig({
     },
     rehypePlugins: [rehypeAnimationDelay],
   },
-  image: {
-    service: imageService(),
-  },
+  // image: {
+  //   service: imageService(),
+  // },
 
   vite: {
     plugins: [tailwindcss()],
