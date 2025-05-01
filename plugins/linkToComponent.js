@@ -1,34 +1,41 @@
 export default function linkToComponent() {
   return (tree) => {
-    tree.children.unshift({
-      type: 'mdxjsEsm',
-      value: "import Link from '@/components/common/Link.astro';",
-      data: {
-        estree: {
-          type: 'Program',
-          body: [
-            {
-              type: 'ImportDeclaration',
-              specifiers: [
-                {
-                  type: 'ImportDefaultSpecifier',
-                  local: {
-                    type: 'Identifier',
-                    name: 'Link',
+    if (
+      tree.children.some(
+        (x) =>
+          (x?.value?.includes("import Link from '@/components/common/Link.astro'") && x?.value?.type === 'mdxjsEsm'),
+      )
+    ) {
+      tree.children.unshift({
+        type: 'mdxjsEsm',
+        value: "import Link from '@/components/common/Link.astro';",
+        data: {
+          estree: {
+            type: 'Program',
+            body: [
+              {
+                type: 'ImportDeclaration',
+                specifiers: [
+                  {
+                    type: 'ImportDefaultSpecifier',
+                    local: {
+                      type: 'Identifier',
+                      name: 'Link',
+                    },
                   },
+                ],
+                source: {
+                  type: 'Literal',
+                  value: '@/components/common/Link.astro',
+                  raw: "'@/components/common/Link.astro'",
                 },
-              ],
-              source: {
-                type: 'Literal',
-                value: '@/components/common/Link.astro',
-                raw: "'@/components/common/Link.astro'",
               },
-            },
-          ],
-          sourceType: 'module',
+            ],
+            sourceType: 'module',
+          },
         },
-      },
-    });
+      });
+    }
     tree.children.forEach((child) => {
       recursiveWalk(child);
     });
