@@ -84,17 +84,17 @@ import know_img from '@/images/k.webp';
         </p>
       </div>
       <div
-        class="md:col-span-2 flex gap-4 items-center p-1 bg-a2/10 rounded-lg shadow-[0_0_0_8px_--alpha(var(--color-a2)/10%)] w-fit pr-3 pl-2">
-        <span class="overflow-hidden rounded-md bg-bg">
+        class="md:col-span-2 flex gap-4 bg-a2/10 rounded-md shadow-[0_0_0_8px_--alpha(var(--color-a2)/10%)] w-fit md:flex-row flex-col">
+        <span class="overflow-hidden rounded-md bg-bg block w-18 h-fit">
           <Image
             src={typography_img}
-            alt="coffee"
+            alt="typography"
             width={155}
             height={155}
             class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
           />
         </span>
-        <div>
+        <div class="flex-shrink w-fit">
           <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-850">Typography</h2>
           <p class="flex gap-2 text-sm unblur-in animation-delay-900">
             <span>
@@ -123,20 +123,23 @@ import know_img from '@/images/k.webp';
           > layout.
         </p>
       </div>
-      <div class="bg-a1/10 rounded-lg shadow-[0_0_0_8px_--alpha(var(--color-a1)/10%)] w-fit pr-3 md:translate-y-14">
-        <h2 class="pb-1 text-lg font-zodiak text-text unblur-in animation-delay-1250">Coffee</h2>
-        <p class="flex gap-2 items-center text-sm rounded-md unblur-in animation-delay-1300">
-          <span class="overflow-hidden rounded-md bg-bg">
-            <Image
-              src={coffee_img}
-              alt="coffee"
-              width={50}
-              height={50}
-              class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
-            />
-          </span>
-          I love coffee. Hot coffee though.
-        </p>
+      <div
+        class="bg-a1/10 rounded-md shadow-[0_0_0_8px_--alpha(var(--color-a1)/10%)] w-fit pr-3 md:translate-y-14 flex gap-4 h-fit">
+        <span class="overflow-hidden rounded-md bg-bg h-fit">
+          <Image
+            src={coffee_img}
+            alt="coffee"
+            width={50}
+            height={50}
+            class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
+          />
+        </span>
+        <div>
+          <h2 class="pb-1 text-lg font-zodiak text-text unblur-in animation-delay-1250">Coffee</h2>
+          <p class="flex gap-2 items-center text-sm rounded-md unblur-in animation-delay-1300">
+            I love coffee. Hot coffee though.
+          </p>
+        </div>
       </div>
       <div>
         <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-1350">Books & Anime</h2>
@@ -145,26 +148,29 @@ import know_img from '@/images/k.webp';
           <Chip class="bg-a3/50">Lord of the Mysteries</Chip>. I also watch anime, occasionally.
         </p>
       </div>
-      <div class="md:col-span-2 bg-a3/10 rounded-lg shadow-[0_0_0_8px_--alpha(var(--color-a3)/10%)] w-fit pr-3">
-        <h2 class="pb-1 text-lg font-zodiak text-text unblur-in animation-delay-1450">Knowledge Management</h2>
-        <div class="flex gap-2 items-center text-sm rounded-md unblur-in animation-delay-1500">
-          <div class="block overflow-hidden flex-grow rounded-md bg-bg aspect-square">
-            <Image
-              src={know_img}
-              alt="a hashtag"
-              width={70}
-              height={70}
-              class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
-            />
-          </div>
-          <p class="w-fit">
+    </div>
+    <div
+      class="md:col-span-2 flex gap-4 bg-a2/10 rounded-md shadow-[0_0_0_8px_--alpha(var(--color-a2)/10%)] w-fit md:flex-row flex-col">
+      <span class="overflow-hidden rounded-md bg-bg w-18 h-fit">
+        <Image
+          src={know_img}
+          alt="hashtag at"
+          width={155}
+          height={155}
+          class="mix-blend-multiply dark:mix-blend-color-dodge dark:invert"
+        />
+      </span>
+      <div class="w-fit">
+        <h2 class="text-lg font-zodiak text-text unblur-in animation-delay-850">Knowledge Management</h2>
+        <p class="flex gap-2 text-sm unblur-in animation-delay-900">
+          <span>
             I've jumped around Obsidian, Apple Notes, Notion, and now I'm using <Link href="https://craft.do" external
               >Craft</Link
             > for knowledge management. It's avalible everywhere, has a student plan, and beautifully designed. I use the
             <Link href="https://www.wikiwand.com/en/articles/Zettelkasten" external>Zettelkasten</Link> method, and grep
             for what I need all the time.
-          </p>
-        </div>
+          </span>
+        </p>
       </div>
     </div>
     <div class="md:col-span-2">
