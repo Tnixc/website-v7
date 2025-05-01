@@ -1,17 +1,20 @@
 // @ts-check
-import { execSync } from 'node:child_process';
+import { defineConfig } from 'astro/config';
+
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
-import rehypeAnimationDelay from './plugins/rehypeAnimationDelay.js';
 import sitemap from '@astrojs/sitemap';
+import opengraphImage from 'astro-opengraph-image';
+
+import rehypeAnimationDelay from './plugins/rehypeAnimationDelay.js';
+import linkToComponent from './plugins/linkToComponent.js';
 
 import tailwindcss from '@tailwindcss/vite';
 
-import opengraphImage from 'astro-opengraph-image';
-import { defineConfig } from 'astro/config';
 
 import vercel from '@astrojs/vercel';
 
+import { execSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 
 const commitHash = execSync('git rev-parse HEAD').toString().trim();
@@ -49,7 +52,7 @@ export default defineConfig({
     shikiConfig: {
       theme: 'ayu-dark',
     },
-    rehypePlugins: [rehypeAnimationDelay],
+    rehypePlugins: [rehypeAnimationDelay, linkToComponent],
   },
   vite: {
     plugins: [tailwindcss()],
