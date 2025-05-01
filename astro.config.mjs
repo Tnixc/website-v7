@@ -54,8 +54,8 @@ export default defineConfig({
       theme: 'ayu-dark',
     },
     rehypePlugins: [
-      rehypeAnimationDelay,
       linkToComponent,
+      rehypeAnimationDelay,
       rehypeSlug,
       [
         rehypeAutolinkHeadings,
