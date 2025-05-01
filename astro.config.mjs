@@ -8,9 +8,10 @@ import opengraphImage from 'astro-opengraph-image';
 
 import rehypeAnimationDelay from './plugins/rehypeAnimationDelay.js';
 import linkToComponent from './plugins/linkToComponent.js';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 
 import tailwindcss from '@tailwindcss/vite';
-
 
 import vercel from '@astrojs/vercel';
 
@@ -52,7 +53,23 @@ export default defineConfig({
     shikiConfig: {
       theme: 'ayu-dark',
     },
-    rehypePlugins: [rehypeAnimationDelay, linkToComponent],
+    rehypePlugins: [
+      rehypeAnimationDelay,
+      linkToComponent,
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'wrap',
+          headingProperties: {
+            className: ['rehype-heading'],
+          },
+          properties: {
+            className: ['rehype-heading-link'],
+          },
+        },
+      ],
+    ],
   },
   vite: {
     plugins: [tailwindcss()],

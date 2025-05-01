@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-/* @plugin "tailwind-corner-smoothing"; */
 
 @font-face {
   font-family: 'Crimson Pro';
@@ -106,6 +105,8 @@ html {
   transition:
     background-color var(--transition-duration) ease,
     color var(--transition-duration) ease;
+  scroll-behavior: smooth;
+  scroll-padding: 2rem;
 }
 
 body,
@@ -246,9 +247,26 @@ p {
       @apply py-2 px-4;
     }
   }
-  a {
-    @apply mx-1 text-link;
+
+  .rehype-heading {
+    margin-left: -1ch;
   }
+
+  .rehype-heading-link::before {
+    content: '#';
+    color: --alpha(var(--color-text) / 50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    right: 0.6ch;
+  }
+
+  .rehype-heading:hover .rehype-heading-link::before {
+    visibility: visible;
+    opacity: 0.8;
+  }
+
   input[checked] {
     @apply bg-a1;
   }

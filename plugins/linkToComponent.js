@@ -1,9 +1,8 @@
 export default function linkToComponent() {
   return (tree) => {
     if (
-      tree.children.some(
-        (x) =>
-          (x?.value?.includes("import Link from '@/components/common/Link.astro'") && x?.value?.type === 'mdxjsEsm'),
+      !tree.children.some(
+        (x) => x?.value?.includes("import Link from '@/components/common/Link.astro'") && x?.value?.type === 'mdxjsEsm',
       )
     ) {
       tree.children.unshift({
