@@ -129,8 +129,9 @@ h6 {
 ::selection {
   background: --alpha(var(--color-link) / 20%);
 }
-p {
+* {
   white-space: normal;
+  line-height: 1.681;
 }
 
 @utility unblur-in {
