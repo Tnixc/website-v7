@@ -18,11 +18,11 @@ const posts = (await getCollection('writing')).sort((a, b) => b.data.pubDate.val
     {
       posts.map((post, index) => (
         <>
-          <a class:list={['block my-4 unblur-in', `animate-delay-${index * 100}ms`]} href={`/writing/${post.id}/`}>
+          <a class="block my-4" href={`/writing/${post.id}/`}>
             <h1 class="text-3xl font-light font-zodiak text-text" transition:name={`post ${post.data.title}`}>
               {post.data.title}
             </h1>
-            <p>
+            <p class:list={`unblur-in animation-delay-${index * 100}ms`}>
               <span class="inline-block">
                 <FormattedDate date={post.data.pubDate} />
               </span>
