@@ -130,7 +130,6 @@ h6 {
   background: --alpha(var(--color-link) / 20%);
 }
 * {
-  white-space: normal;
   line-height: 1.681;
 }
 
@@ -223,7 +222,7 @@ h6 {
   }
   ul li::marker {
     content: '- ';
-    font-family: iAWriterMono;
+    font-family: iAWriterMono, ui-monospace, monospace;
   }
   li::marker {
     color: --alpha(var(--color-text) / 50%);
