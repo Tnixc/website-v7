@@ -95,7 +95,7 @@ const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'li
     transition: transform 600ms ease;
     will-change: transform;
     z-index: 9999;
-    background: linear-gradient(to right, #d97173, #627fae, #c872c5);
+    background: linear-gradient(to right in lch, #d97173, #627fae, #c872c5);
     background-size: cover;
     filter: blur(30px);
     mix-blend-mode: color-dodge !important;
