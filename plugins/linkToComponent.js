@@ -1,6 +1,5 @@
 export default function linkToComponent() {
   return (tree) => {
-    // console.log(JSON.stringify(tree));
     if (
       !tree.children.some(
         (el) => el.value?.includes("import Link from '@/components/common/Link.astro'") && el.type === 'mdxjsEsm',
@@ -36,9 +35,9 @@ export default function linkToComponent() {
         },
       });
     }
-    tree.children.forEach((child) => {
+    for (const child of tree.children) {
       recursiveWalk(child);
-    });
+    }
     return tree;
   };
 }
@@ -70,10 +69,9 @@ function recursiveWalk(element) {
       });
     }
     element.properties = undefined;
-    return null;
   } else if (element.children) {
-    element.children.forEach((child) => {
+    for (const child of element.children) {
       recursiveWalk(child);
-    });
+    }
   }
 }
