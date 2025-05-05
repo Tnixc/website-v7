@@ -79,6 +79,15 @@ export default defineConfig({
       BUILD_DATE: JSON.stringify(commitDate),
     },
   },
+
+  prefetch: {
+    defaultStrategy: 'viewport',
+    prefetchAll: true,
+  },
+  experimental: {
+    clientPrerender: true,
+  },
+
   output: 'server',
   adapter: vercel(),
 });

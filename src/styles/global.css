@@ -248,18 +248,20 @@ h6 {
     }
   }
 
-  .rehype-heading {
-    margin-left: -1ch;
+  .rehype-heading-link {
+    @apply grid grid-cols-2;
+    grid-template-columns: 1.1ch 1fr;
+    transform: translateX(-1.1ch);
   }
 
   .rehype-heading-link::before {
     content: '#';
+    display: block;
     color: --alpha(var(--color-text) / 50%);
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     position: relative;
-    right: 0.6ch;
   }
 
   .rehype-heading:hover .rehype-heading-link::before {
@@ -272,7 +274,7 @@ h6 {
   }
 
   img {
-    @apply rounded-md bg-text/10;
+    @apply rounded-md;
   }
 
   input[type='checkbox'] {
