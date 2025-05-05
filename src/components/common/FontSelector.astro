@@ -20,12 +20,6 @@ const initialFontClass = fonts.find((f) => f.name === initialFont)?.class || 'fo
 Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=31536000; SameSite=Lax`);
 ---
 
-<!-- Add initial font class server-side -->
-<script define:vars={{ initialFontClass }} is:inline>
-  document.documentElement.classList.remove('font-inter', 'font-crimson', 'font-mono');
-  document.documentElement.classList.add(initialFontClass);
-</script>
-
 <div id="font-selector" class="flex p-1 space-x-1 rounded-xl bg-text/10 w-fit">
   {
     fonts.map(({ name, label, class: className }) => (
@@ -46,10 +40,10 @@ Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=3
 
 <script is:inline define:vars={{ initialFont, fonts }}>
   let currentFont = initialFont;
-  const fontButtons = document.querySelectorAll('.font-button');
   const fontClasses = fonts.map((f) => f.class); // ['font-inter', 'font-crimson', 'font-mono']
 
   function updateButtons(selectedFont) {
+    const fontButtons = document.querySelectorAll('.font-button');
     fontButtons.forEach((button) => {
       const buttonFont = button.dataset.font;
       if (buttonFont === selectedFont) {
@@ -85,6 +79,7 @@ Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=3
 
   // Initialize font toggle
   function initFontSelector() {
+    const fontButtons = document.querySelectorAll('.font-button');
     fontButtons.forEach((button) => {
       // Remove potential duplicate listeners from SPA navigation
       button.removeEventListener('click', handleFontButtonClick);

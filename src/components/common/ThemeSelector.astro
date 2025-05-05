@@ -32,9 +32,9 @@ const themes = [
 
 <script is:inline define:vars={{ initialTheme }}>
   let currentTheme = initialTheme;
-  const themeButtons = document.querySelectorAll('.theme-button');
 
   function updateButtons(selectedTheme) {
+    const themeButtons = document.querySelectorAll('.theme-button');
     themeButtons.forEach((button) => {
       const buttonTheme = button.dataset.theme;
       if (buttonTheme === selectedTheme) {
@@ -71,6 +71,7 @@ const themes = [
 
   // Initialize theme toggle
   function initThemeSelector() {
+    const themeButtons = document.querySelectorAll('.theme-button');
     themeButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const newTheme = button.dataset.theme;
