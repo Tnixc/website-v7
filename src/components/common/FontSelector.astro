@@ -20,7 +20,7 @@ const initialFontClass = fonts.find((f) => f.name === initialFont)?.class || 'fo
 Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=31536000; SameSite=Lax`);
 ---
 
-<div id="font-selector" class="flex p-1 space-x-1 rounded-xl bg-text/10 w-fit">
+<div id="font-selector" class="flex p-1 space-x-1 rounded-xl bg-text/10 w-fit shadow-md">
   {
     fonts.map(({ name, label, class: className }) => (
       <button
@@ -28,7 +28,7 @@ Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=3
         title={`Set font to ${label}`}
         class:list={[
           'font-button px-3 py-1 text-sm text-text smooth-md rounded-lg',
-          { 'bg-bg shadow-md': initialFont === name }, // Active state
+          { 'bg-bg': initialFont === name }, // Active state
           { 'hover:bg-text/10': initialFont !== name }, // Hover state for inactive buttons
           className,
         ]}>
@@ -47,10 +47,10 @@ Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=3
     fontButtons.forEach((button) => {
       const buttonFont = button.dataset.font;
       if (buttonFont === selectedFont) {
-        button.classList.add('bg-bg', 'shadow-md'); // Active class uses background color and shadow
+        button.classList.add('bg-bg');
         button.classList.remove('hover:bg-text/10');
       } else {
-        button.classList.remove('bg-bg', 'shadow-md');
+        button.classList.remove('bg-bg');
         button.classList.add('hover:bg-text/10');
       }
     });

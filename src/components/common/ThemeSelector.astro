@@ -11,7 +11,7 @@ const themes = [
 ];
 ---
 
-<div id="theme-selector" class="flex p-1 space-x-1 rounded-xl bg-text/10 w-fit">
+<div id="theme-selector" class="flex p-1 space-x-1 rounded-xl bg-text/10 w-fit shadow-md">
   {
     themes.map(({ name, icon: Icon }) => (
       <button
@@ -19,7 +19,7 @@ const themes = [
         title={`Set theme to ${name}`}
         class:list={[
           'theme-button inline-grid place-items-center text-text aspect-square size-8 smooth-md rounded-lg',
-          { 'bg-bg shadow-md': initialTheme === name },
+          { 'bg-bg': initialTheme === name },
           { 'hover:bg-text/10': initialTheme !== name },
         ]}>
         <Icon size="16" />
@@ -28,7 +28,7 @@ const themes = [
   }
 </div>
 
-<div id="theme-transition-overlay" class="fixed inset-0 pointer-events-none will-change-transform"></div>
+<!-- <div id="theme-transition-overlay" class="fixed inset-0 pointer-events-none will-change-transform"></div> -->
 
 <script is:inline define:vars={{ initialTheme }}>
   let currentTheme = initialTheme;
