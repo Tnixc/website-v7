@@ -26,7 +26,7 @@ Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=3
   document.documentElement.classList.add(initialFontClass);
 </script>
 
-<div id="font-selector" class="flex space-x-1 bg-text/10 p-1 rounded-xl w-fit">
+<div id="font-selector" class="flex p-1 space-x-1 rounded-xl bg-text/10 w-fit">
   {
     fonts.map(({ name, label, class: className }) => (
       <button

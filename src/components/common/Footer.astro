@@ -21,7 +21,7 @@ const date = date_unix.toLocaleDateString('en-US', {
 });
 ---
 
-<footer class="overflow-hidden py-12 w-full h-96 max-w-screen" transition:name="footer">
+<footer class="overflow-hidden py-12 w-full max-w-screen" transition:name="footer">
   <div id="arrow-box">
     <div class="arrow-grid">
       {
@@ -35,11 +35,12 @@ const date = date_unix.toLocaleDateString('en-US', {
   </div>
   <DashedLine width="100%" class="my-5" />
   <div class="flex flex-col flex-wrap gap-3">
-    <div class="flex gap-4 flex-wrap">
+    <div class="flex flex-wrap gap-3 items-center">
       <ThemeSelector />
+      <span class="text-text/20">&bull;</span>
       <FontSelector />
     </div>
-    <p class="flex flex-wrap gap-4 items-center">
+    <p class="flex flex-wrap gap-3 items-center mt-5">
       <Link href="/rss.xml">RSS</Link>
       <span class="text-text/20">&bull;</span>
       <span class="flex flex-wrap gap-3">
@@ -47,6 +48,23 @@ const date = date_unix.toLocaleDateString('en-US', {
         <Link href="https://bsky.app/profile/tnixc.space" external>Bluesky</Link>
         <Link href="https://twitter.com/_tnixc" external>Twitter</Link>
       </span>
+    </p>
+    <p class="flex flex-col mt-5 lg:flex-row lg:gap-3">
+      <span>website-v7 </span>
+      <span class="text-text/20">&bull;</span>
+      <span> Built with &lt;3 and Astro </span>
+      <span class="text-text/20">&bull;</span>
+      <span>
+        Updated <span class="font-mono text-[14px]">{date}</span>
+      </span>
+      <span class="text-text/20">&bull;</span>
+      <span> Commit <span class="font-mono text-[14px]">{commit}</span> </span>
+      <span class="text-text/20">&bull;</span>
+      <Link href="https://github.com/tnixc/website-v7" external class="-translate-y-px">Source</Link>
+      <span class="text-text/20">&bull;</span>
+      <Link href="https://us.umami.is/share/o4Mje48LZ8anrxZi/tnixc.space" external class="-translate-y-px"
+        >Analytics</Link
+      >
       <span class="flex gap-2 items-end sm:mr-0 sm:ml-auto">
         <Link href="https://ctp-webr.ing/tnixc/previous">
           <span class="block px-1 translate-y-[-3px]">
@@ -61,12 +79,8 @@ const date = date_unix.toLocaleDateString('en-US', {
         </Link>
       </span>
     </p>
-    <p>
-      website-v7 | Built with &lt;3 and Astro | Updated <span class="font-mono text-[14px]">{date}</span> | Commit <span
-        class="font-mono text-[14px]">{commit}</span
-      > | <Link href="https://github.com/tnixc/website-v7" external class="-translate-y-px">Source</Link>
-    </p>
   </div>
+  <DashedLine width="100%" class="mt-5 mb-32" />
 </footer>
 
 <style>
