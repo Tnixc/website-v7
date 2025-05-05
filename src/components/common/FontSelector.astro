@@ -7,8 +7,8 @@ if (!initialFont || !validFonts.includes(initialFont)) {
 }
 
 const fonts = [
-  { name: 'sans', label: 'Sans', class: 'font-inter' },
   { name: 'serif', label: 'Serif', class: 'font-crimson' },
+  { name: 'sans', label: 'Sans', class: 'font-inter' },
   { name: 'mono', label: 'Mono', class: 'font-mono' },
 ];
 
@@ -28,14 +28,15 @@ Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=3
 
 <div id="font-selector" class="flex space-x-1 bg-text/10 p-1 rounded-xl w-fit">
   {
-    fonts.map(({ name, label }) => (
+    fonts.map(({ name, label, class: className }) => (
       <button
         data-font={name}
         title={`Set font to ${label}`}
         class:list={[
-          'font-button px-3 py-1 text-sm text-text smooth-md rounded-lg', // Adjusted padding for text
+          'font-button px-3 py-1 text-sm text-text smooth-md rounded-lg',
           { 'bg-bg shadow-md': initialFont === name }, // Active state
           { 'hover:bg-text/10': initialFont !== name }, // Hover state for inactive buttons
+          className,
         ]}>
         {label}
       </button>
