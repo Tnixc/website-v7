@@ -8,7 +8,7 @@ pubDate: 'May 05 2025'
 
 Here's a side by side comparison of the effect I'm taking about:
 
-![comparison between smooth and normally rounded corners](https://private-user-images.githubusercontent.com/12258850/404619600-1170cfc9-14b9-4742-abe7-14d3bd2043bf.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDY0NzMyMzMsIm5iZiI6MTc0NjQ3MjkzMywicGF0aCI6Ii8xMjI1ODg1MC80MDQ2MTk2MDAtMTE3MGNmYzktMTRiOS00NzQyLWFiZTctMTRkM2JkMjA0M2JmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MDUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTA1VDE5MjIxM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWM4ZjZiNGI5ZWFkNjViYTc2MjA3MjIxMzYyZWY1NTgwMDU1NGNlYjMxYzAyZjk5YjkwZWRjZGY4ODk4NzhiNTImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.cr8QUC7aND8W1LPa9qAQL-dRVTG7KSXV1ClL9D4n5t4)
+![comparison between smooth and normally rounded corners](https://github.com/user-attachments/assets/1170cfc9-14b9-4742-abe7-14d3bd2043bf)
 
 It's a subtle effect but it does look a lot better to me. Unforunately this is only supported on Chromium and WebKit at the time of writing.
 
@@ -105,3 +105,11 @@ export default function rehypeAnimationDelay() {
 ```
 
 To be honest, I don't love writing specific plugins like this, not only is it in JavaScript(so untyped), but it also feels like it could break easily.
+
+---
+
+# The contact me section
+
+I have an api hosted on vercel that spins up a discord bot to send a message with the contents. It was shockingly simple to do. The api is also written in rust, which I didn't think you could host on vercel.
+
+You can view the code [here](https://github.com/Tnixc/tnixc-api/blob/main/api/message.rs)

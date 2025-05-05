@@ -2,8 +2,6 @@
 import DashedLine from '@/components/common/DashedLine.astro';
 import ThemeToggle from '@/components/common/ThemeToggle.astro';
 import { Edit3, Feather, Grid, Home } from 'astro-feather-icons2';
-// Ensure ViewTransitions is imported and enabled in your main layout, not typically here.
-// import { ViewTransitions } from 'astro:transitions';
 
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
 const subpath = pathname.match(/[^/]+/g);

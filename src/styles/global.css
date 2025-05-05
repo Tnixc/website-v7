@@ -51,14 +51,30 @@
   --themed-text: oklch(0.88 0.0614 259.83);
   --themed-bg: oklch(0.21 0.0353 259.49);
   --themed-link: oklch(0.71 0.1643 254.62);
-
-  --themed-a1: oklch(0.71 0.0789 238.32);
-  --themed-a2: oklch(0.71 0.1184 34.41);
-  --themed-a3: oklch(0.71 0.0937 300.18);
-  --themed-a4: oklch(0.71 0.1135 132.88);
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+.system {
+  --themed-text: oklch(0.28 0.0071 106.85);
+  --themed-bg: oklch(0.97 0.0108 95.16);
+  --themed-link: oklch(0.56 0.2573 262.91);
+
+  @media (prefers-color-scheme: dark) {
+    --themed-text: oklch(0.88 0.0614 259.83);
+    --themed-bg: oklch(0.21 0.0353 259.49);
+    --themed-link: oklch(0.71 0.1643 254.62);
+  }
+}
+
+@custom-variant dark {
+  &:where(.dark *) {
+    @slot;
+  }
+  &:where(.system *) {
+    @media (prefers-color-scheme: dark) {
+      @slot;
+    }
+  }
+}
 
 @theme {
   --color-text: var(--themed-text);

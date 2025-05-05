@@ -1,8 +1,8 @@
 ---
-import { Moon, Sun } from 'astro-feather-icons2';
-// Read the cookie server-side *only* to set the initial icon state correctly
-// The actual class on <html> is handled by the layout
-const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'light';
+import { Moon, Sun, Monitor } from 'astro-feather-icons2';
+// Read the cookie server-side and default to "system" if not set
+const themeCookie = Astro.cookies.get('theme');
+const initialTheme = themeCookie?.value || 'system';
 ---
 
 <button
@@ -11,6 +11,9 @@ const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'li
   class="inline-grid place-items-center bg-text/10 text-text aspect-square size-8 smooth-md hover:bg-text/20 rounded-xl">
   <span id="icon-moon" style={`display: ${initialTheme === 'dark' ? 'inline-block' : 'none'}`}><Moon size="16" /></span>
   <span id="icon-sun" style={`display: ${initialTheme === 'light' ? 'inline-block' : 'none'}`}><Sun size="16" /></span>
+  <span id="icon-system" style={`display: ${initialTheme === 'system' ? 'inline-block' : 'none'}`}
+    ><Monitor size="16" /></span
+  >
 </button>
 <div class="corner-smooth">
   <div class="smooth"></div>
@@ -19,17 +22,27 @@ const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'li
 <div id="theme-transition-overlay" class="fixed inset-0 pointer-events-none will-change-transform"></div>
 
 <script>
-  // Function to update the displayed icon based on the current theme class on <html>
-  function updateIcon() {
-    const isDark = document.documentElement.classList.contains('dark');
-    if (moonIcon) moonIcon.style.display = !isDark ? 'none' : 'inline-block';
-    if (sunIcon) sunIcon.style.display = !isDark ? 'inline-block' : 'none';
+  // Function to update the displayed icon based on the current theme
+  function updateIcon(theme) {
+    if (moonIcon) moonIcon.style.display = theme === 'dark' ? 'inline-block' : 'none';
+    if (sunIcon) sunIcon.style.display = theme === 'light' ? 'inline-block' : 'none';
+    if (systemIcon) systemIcon.style.display = theme === 'system' ? 'inline-block' : 'none';
   }
 
-  // Function to toggle the theme with transition
+  // Function to toggle through theme options: light → dark → system → light
   function toggleTheme() {
-    const isDark = document.documentElement.classList.contains('dark');
-    const newTheme = isDark ? 'light' : 'dark';
+    // Get current theme from cookie or default to system
+    const currentTheme =
+      document.cookie
+        .split(';')
+        .find((c) => c.trim().startsWith('theme='))
+        ?.split('=')[1] || 'system';
+
+    // Determine next theme in the cycle
+    let newTheme;
+    if (currentTheme === 'light') newTheme = 'dark';
+    else if (currentTheme === 'dark') newTheme = 'system';
+    else newTheme = 'light';
 
     if (!overlay) return;
 
@@ -41,18 +54,26 @@ const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'li
     setTimeout(() => {
       overlay.style.transform = 'translateX(0) translateY(0)';
 
-      // Change theme when overlay is halfway through
+      // Apply the new theme
       setTimeout(() => {
+        // Apply theme class to HTML element
         if (newTheme === 'dark') {
           document.documentElement.classList.add('dark');
-        } else {
+          document.documentElement.classList.remove('system');
+        } else if (newTheme === 'light') {
           document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove('system');
+        } else {
+          // system
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('system');
         }
+
         // Set cookie
-        document.cookie = `theme=${newTheme};path=/;max-age=31536000;samesite=lax`; // max-age=1 year
-        // Optionally keep localStorage sync'd if other scripts use it
-        // localStorage.setItem('theme', newTheme);
-        updateIcon();
+        document.cookie = `theme=${newTheme};path=/;max-age=31536000;samesite=lax`;
+
+        // Update icon display
+        updateIcon(newTheme);
 
         // Complete the animation
         setTimeout(() => {
@@ -67,19 +88,17 @@ const initialTheme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'li
     }, 10);
   }
 
-  // Attach the click event listener to the toggle button
+  // Initialize theme toggle
   function initThemeToggle() {
     const toggleButton = document.getElementById('theme-toggle');
     window.moonIcon = document.getElementById('icon-moon');
     window.sunIcon = document.getElementById('icon-sun');
+    window.systemIcon = document.getElementById('icon-system');
     window.overlay = document.getElementById('theme-transition-overlay');
+
     if (toggleButton) {
       toggleButton.addEventListener('click', toggleTheme);
     }
-    // Initial icon state is now set via inline style from server,
-    // but we call updateIcon on load/swap in case the class was somehow changed client-side
-    // before this script runs or during swaps.
-    updateIcon();
   }
 
   initThemeToggle();

@@ -15,11 +15,12 @@ interface Props {
 const { title, description, dim: isDim, class: classList } = Astro.props;
 
 const themeCookie = Astro.cookies.get('theme');
-const currentTheme = themeCookie?.value === 'dark' ? 'dark' : 'light'; // Default to light if no cookie
-const themeClass = currentTheme === 'dark' ? 'dark' : '';
+let currentTheme = themeCookie?.value || 'system';
+const themeClass = currentTheme === 'dark' ? 'dark' : currentTheme === 'system' ? 'system' : '';
+const font = Astro.cookies.get('font')?.value === 'serif' ? 'serif' : 'font-crimson';
 ---
 
-<html lang="en" class:list={[themeClass]}>
+<html lang="en" class:list={[themeClass, font]}>
   <head>
     <BaseHead {title} {description} />
     <ClientRouter fallback="none" />
@@ -57,7 +58,7 @@ const themeClass = currentTheme === 'dark' ? 'dark' : '';
       </style>
     </OgImage>
   </head>
-  <body class="flex flex-col items-center p-5 sm:p-12 lg:p-20 text-text/70 font-crimson bg-bg">
+  <body class="flex flex-col items-center p-5 sm:p-12 lg:p-20 text-text/70 bg-bg">
     <Header />
     <div class="flex flex-wrap gap-20 w-full bg-bg">
       <Aside class="top-20 xl:sticky" dim={isDim} transition:persist="aside" />
