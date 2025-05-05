@@ -1,11 +1,9 @@
 ---
-// Read the font cookie server-side and default to "sans" if not set
 const fontCookie = Astro.cookies.get('font');
-// Define the default font if the cookie isn't set or has an invalid value
 const validFonts = ['sans', 'serif', 'mono'];
 let initialFont = fontCookie?.value;
 if (!initialFont || !validFonts.includes(initialFont)) {
-  initialFont = 'sans'; // Default to 'sans'
+  initialFont = 'serif';
 }
 
 const fonts = [
