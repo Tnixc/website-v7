@@ -1,0 +1,107 @@
+---
+title: Some interesting details about this site
+description: I care about the details very much.
+pubDate: 'May 05 2025'
+---
+
+# Smooth corners with CSS mask-border images
+
+Here's a side by side comparison of the effect I'm taking about:
+
+![comparison between smooth and normally rounded corners](https://private-user-images.githubusercontent.com/12258850/404619600-1170cfc9-14b9-4742-abe7-14d3bd2043bf.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDY0NzMyMzMsIm5iZiI6MTc0NjQ3MjkzMywicGF0aCI6Ii8xMjI1ODg1MC80MDQ2MTk2MDAtMTE3MGNmYzktMTRiOS00NzQyLWFiZTctMTRkM2JkMjA0M2JmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MDUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTA1VDE5MjIxM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWM4ZjZiNGI5ZWFkNjViYTc2MjA3MjIxMzYyZWY1NTgwMDU1NGNlYjMxYzAyZjk5YjkwZWRjZGY4ODk4NzhiNTImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.cr8QUC7aND8W1LPa9qAQL-dRVTG7KSXV1ClL9D4n5t4)
+
+It's a subtle effect but it does look a lot better to me. Unforunately this is only supported on Chromium and WebKit at the time of writing.
+
+The code looks something like this
+
+```css
+@utility smooth-md {
+  -webkit-mask-box-image-width: 60px;
+  mask-border-width: 60px;
+  mask-border: url(data:image/png;...);
+  -webkit-mask-box-image: url(data:image/png;...);
+}
+```
+
+They should just add this to css already.
+
+---
+
+# The Link Component
+
+```astro
+<Link href="https://..." external>text</Link>
+```
+
+The link component is just a standard wrapper around the `<a>` tag, and adds a nice little arrow when it's external.
+
+The fun part is when I have to replace all the instances of `<a>` with the proper `<Link>` component when rendering the markdown. So I wrote a slightly cursed plugin to do so.
+
+```js
+export default function linkToComponent() {
+  return (tree) => {
+    if (
+      !tree.children.some(
+        (el) => el.value?.includes("import Link from '@/components/common/Link.astro'") && el.type === 'mdxjsEsm',
+      )
+    ) {
+      tree.children.unshift({
+        type: 'mdxjsEsm',
+        value: "import Link from '@/components/common/Link.astro';",
+        data: { ... },
+      });
+    }
+    for (const child of tree.children) { recursiveWalk(child); }
+    return tree;
+  };
+}
+
+function recursiveWalk(element) {
+  if (element.type === 'element' && element.tagName === 'a') {
+    const href = element.properties.href;
+    const isExternal = !href.startsWith('/');
+
+    element.type = 'mdxJsxFlowElement';
+    element. ... = ...; // etc
+    if (isExternal) {
+      element.attributes.push({
+        type: 'mdxJsxAttribute',
+        name: 'external',
+        value: null,
+      });
+    }
+  } else if (element.children) {
+    for (const child of element.children) {
+      recursiveWalk(child);
+    }
+  }
+}
+```
+
+This walks the AST parsed from rehype(?) and replaces all `<a>` tags with the `<Link>` component. It also adds the `external` prop if the link is external. The plugin is a bit of a mess, but it works for now. I also had to shove in the import statement for the link component in its AST form.
+
+---
+
+# Fade by element
+
+The last other plugin I use is for the animation delay on each element in the blog. I use a simple fade in animation, and I wanted to stagger the animation for each element. So I wrote a plugin that edits the style for each element in the tree.
+
+```js
+export default function rehypeAnimationDelay() {
+  return (tree) => {
+    let index = 1;
+    tree.children.forEach((child) => {
+      if (child.type === 'element') {
+        const delay = Math.min(20 * 50, index * 50);
+        if (child.properties) {
+          child.properties.style = `${child.properties?.style || ''}animation-delay: ${delay}ms;`;
+          index += 1;
+        }
+      }
+    });
+    return tree;
+  };
+}
+```
+
+To be honest, I don't love writing specific plugins like this, not only is it in JavaScript(so untyped), but it also feels like it could break easily.
