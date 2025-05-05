@@ -1,0 +1,109 @@
+---
+// Read the font cookie server-side and default to "sans" if not set
+const fontCookie = Astro.cookies.get('font');
+// Define the default font if the cookie isn't set or has an invalid value
+const validFonts = ['sans', 'serif', 'mono'];
+let initialFont = fontCookie?.value;
+if (!initialFont || !validFonts.includes(initialFont)) {
+  initialFont = 'sans'; // Default to 'sans'
+}
+
+const fonts = [
+  { name: 'sans', label: 'Sans', class: 'font-inter' },
+  { name: 'serif', label: 'Serif', class: 'font-crimson' },
+  { name: 'mono', label: 'Mono', class: 'font-mono' },
+];
+
+// Determine the initial class based on the initialFont
+const initialFontClass = fonts.find((f) => f.name === initialFont)?.class || 'font-inter';
+
+// Add the initial font class to the html tag server-side
+// This ensures the correct font is applied on initial load without FOUC
+Astro.response.headers.set('Set-Cookie', `font=${initialFont}; Path=/; Max-Age=31536000; SameSite=Lax`);
+---
+
+<!-- Add initial font class server-side -->
+<script define:vars={{ initialFontClass }} is:inline>
+  document.documentElement.classList.remove('font-inter', 'font-crimson', 'font-mono');
+  document.documentElement.classList.add(initialFontClass);
+</script>
+
+<div id="font-selector" class="flex space-x-1 bg-text/10 p-1 rounded-xl w-fit">
+  {
+    fonts.map(({ name, label }) => (
+      <button
+        data-font={name}
+        title={`Set font to ${label}`}
+        class:list={[
+          'font-button px-3 py-1 text-sm text-text smooth-md rounded-lg', // Adjusted padding for text
+          { 'bg-bg shadow-md': initialFont === name }, // Active state
+          { 'hover:bg-text/10': initialFont !== name }, // Hover state for inactive buttons
+        ]}>
+        {label}
+      </button>
+    ))
+  }
+</div>
+
+<script is:inline define:vars={{ initialFont, fonts }}>
+  let currentFont = initialFont;
+  const fontButtons = document.querySelectorAll('.font-button');
+  const fontClasses = fonts.map((f) => f.class); // ['font-inter', 'font-crimson', 'font-mono']
+
+  function updateButtons(selectedFont) {
+    fontButtons.forEach((button) => {
+      const buttonFont = button.dataset.font;
+      if (buttonFont === selectedFont) {
+        button.classList.add('bg-bg', 'shadow-md'); // Active class uses background color and shadow
+        button.classList.remove('hover:bg-text/10');
+      } else {
+        button.classList.remove('bg-bg', 'shadow-md');
+        button.classList.add('hover:bg-text/10');
+      }
+    });
+  }
+
+  function setFont(newFont) {
+    if (newFont === currentFont) return; // Don't do anything if font is the same
+
+    const oldFontData = fonts.find((f) => f.name === currentFont);
+    const newFontData = fonts.find((f) => f.name === newFont);
+
+    if (!newFontData) return; // Exit if the new font isn't valid
+
+    currentFont = newFont;
+
+    // Remove all possible font classes
+    document.documentElement.classList.remove(...fontClasses);
+    // Add the new font class
+    document.documentElement.classList.add(newFontData.class);
+
+    // Update the cookie
+    document.cookie = `font=${newFont};path=/;max-age=31536000;samesite=lax`;
+
+    updateButtons(newFont);
+  }
+
+  // Initialize font toggle
+  function initFontSelector() {
+    fontButtons.forEach((button) => {
+      // Remove potential duplicate listeners from SPA navigation
+      button.removeEventListener('click', handleFontButtonClick);
+      // Add the listener
+      button.addEventListener('click', handleFontButtonClick);
+    });
+
+    // Ensure the correct button is highlighted on init
+    updateButtons(currentFont);
+  }
+
+  function handleFontButtonClick(event) {
+    const newFont = event.currentTarget.dataset.font;
+    if (newFont) {
+      setFont(newFont);
+    }
+  }
+
+  initFontSelector();
+  document.addEventListener('astro:page-load', initFontSelector);
+</script>

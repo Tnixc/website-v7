@@ -8,8 +8,8 @@
 }
 
 @font-face {
-  font-family: 'Onest';
-  src: url('/fonts/Onest-Variable.woff2') format('woff2');
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
 }
@@ -86,9 +86,24 @@
   --color-a4: var(--themed-a4);
 
   --font-crimson: 'Crimson Pro', serif;
-  --font-onest: 'Onest', system-ui, sans-serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
   --font-zodiak: 'Zodiak', serif;
   --font-mono: 'iAWriterMono', ui-monospace, monospace;
+  --font-display--font-feature-settings: 'salt';
+}
+/* Example global.css */
+html.font-inter {
+  font-family: theme('fontFamily.inter');
+}
+html.font-crimson {
+  font-family: theme('fontFamily.crimson');
+}
+html.font-mono {
+  font-family: theme('fontFamily.mono');
+}
+/* fallback */
+html:not(.font-inter):not(.font-crimson):not(.font-mono) {
+  font-family: theme('fontFamily.crimson');
 }
 
 @utility animation-delay-none {
