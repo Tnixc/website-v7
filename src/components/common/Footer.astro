@@ -113,7 +113,7 @@ const date = date_unix.toLocaleDateString('en-US', {
 <script>
   let lastMouseEvent: MouseEvent | null = null;
 
-  document.addEventListener('astro:page-load', () => {
+  const init = () => {
     const arrowWrappers = document.querySelectorAll('.arrow-wrapper');
     const footer = document.querySelector('#arrow-box');
 
@@ -262,5 +262,6 @@ const date = date_unix.toLocaleDateString('en-US', {
       clientX: window.innerWidth / 2,
       clientY: window.innerHeight * 2,
     } as MouseEvent);
-  });
+  };
+  init();
 </script>
