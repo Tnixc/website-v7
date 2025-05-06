@@ -18,7 +18,6 @@
     "@tailwindcss/vite": "^4.1.5",
     "astro": "^5.7.10",
     "astro-feather-icons2": "^1.0.0",
-    "astro-opengraph-image": "^0.2.2",
     "astro-opengraph-images": "^1.12.3",
     "katex": "^0.16.22",
     "react": "^19.1.0",

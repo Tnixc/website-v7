@@ -2,7 +2,7 @@ import type { RenderFunctionInput } from 'astro-opengraph-images';
 import React from 'react';
 const { twj } = await import('tw-to-css');
 
-export function render({ title, description }: RenderFunctionInput): Promise<React.ReactNode> {
+export function fnRender({ title, description }: RenderFunctionInput): Promise<React.ReactNode> {
   return Promise.resolve(
     <div style={twj('flex flex-col w-full h-full justify-start flex-col bg-[#F7F5ED]')}>
       <div style={twj('flex justify-start items-start flex-col p-20')}>

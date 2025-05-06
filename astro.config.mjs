@@ -4,7 +4,6 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
-import opengraphImage from 'astro-opengraph-image';
 
 import rehypeAnimationDelay from './plugins/rehypeAnimationDelay.js';
 import linkToComponent from './plugins/linkToComponent.js';
@@ -16,11 +15,10 @@ import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 
 import { execSync } from 'node:child_process';
-import { readFile } from 'node:fs/promises';
 
-import opengraphImages, { presets } from 'astro-opengraph-images';
+import opengraphImages from 'astro-opengraph-images';
 import fs from 'node:fs';
-import { render } from './src/ogRender.tsx';
+import { fnRender } from './src/OgRender.tsx';
 
 const commitHash = execSync('git rev-parse HEAD').toString().trim();
 const commitDate = execSync('git log -1 --format=%cI').toString().trim();
@@ -43,7 +41,7 @@ export default defineConfig({
           },
         ],
       },
-      render: render,
+      render: fnRender,
     }),
   ],
   markdown: {
