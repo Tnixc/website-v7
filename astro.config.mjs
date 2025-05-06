@@ -18,38 +18,34 @@ import vercel from '@astrojs/vercel';
 import { execSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 
+import opengraphImages, { presets } from 'astro-opengraph-images';
+import fs from 'node:fs';
+import { render } from './src/ogRender';
+
 const commitHash = execSync('git rev-parse HEAD').toString().trim();
 const commitDate = execSync('git log -1 --format=%cI').toString().trim();
-
-/** @type {import('astro-opengraph-image').Options} */
-const openGraphConfig = {
-  // what color do you want your background to be?
-  background: '#F7F5ED',
-
-  // what size do you want your images to be?
-  // 1200x630 is a good default across platforms,
-  // and 3x scale is a convenient choice.
-  width: 1200,
-  height: 630,
-  scale: 3,
-
-  // the fonts you picked before. you will have to include the particular
-  // weights and variants you want to use.
-  fonts: [
-    {
-      name: 'Crimson Pro',
-      data: await readFile('node_modules/@fontsource/crimson-pro/files/crimson-pro-latin-400-normal.woff'),
-      style: 'normal',
-      weight: 400,
-    },
-  ],
-};
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tnixc.space',
-  // opengraphImage(openGraphConfig),
-  integrations: [mdx(), sitemap(), partytown()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    partytown(),
+    opengraphImages({
+      options: {
+        fonts: [
+          {
+            name: 'Crimson Pro',
+            weight: 400,
+            style: 'normal',
+            data: fs.readFileSync('node_modules/@fontsource/crimson-pro/files/crimson-pro-latin-400-normal.woff'),
+          },
+        ],
+      },
+      render: render,
+    }),
+  ],
   markdown: {
     shikiConfig: {
       theme: 'ayu-dark',
