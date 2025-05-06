@@ -79,9 +79,6 @@ export default defineConfig({
     defaultStrategy: 'viewport',
     prefetchAll: true,
   },
-  experimental: {
-    clientPrerender: true,
-  },
 
   output: 'static',
   adapter: vercel(),
