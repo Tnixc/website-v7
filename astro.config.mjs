@@ -20,7 +20,7 @@ import { readFile } from 'node:fs/promises';
 
 import opengraphImages, { presets } from 'astro-opengraph-images';
 import fs from 'node:fs';
-import { render } from './src/ogRender';
+import { render } from './src/ogRender.tsx';
 
 const commitHash = execSync('git rev-parse HEAD').toString().trim();
 const commitDate = execSync('git log -1 --format=%cI').toString().trim();
