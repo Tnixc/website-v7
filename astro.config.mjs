@@ -90,5 +90,5 @@ export default defineConfig({
   },
 
   output: 'static',
-  // adapter: vercel(),
+  adapter: vercel(),
 });
