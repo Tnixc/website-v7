@@ -8,6 +8,7 @@ import { Image } from 'astro:assets';
 import coffee_img from '@/images/coffee.webp';
 import typography_img from '@/images/typography.webp';
 import know_img from '@/images/k.webp';
+import Badges from '@/components/Badges.astro';
 ---
 
 <Layout title="About" description="About me | tnixc.space">
@@ -181,4 +182,6 @@ import know_img from '@/images/k.webp';
       </p>
     </div>
   </article>
+  <DashedLine width="100%" class="mt-5" />
+  <Badges />
 </Layout>
